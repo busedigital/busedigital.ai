@@ -786,7 +786,7 @@ function renderRoute(initial=false){
  closeSubmenus();
  const servicesLink=$('#services-link');
  if(['hizmetlerim','ugc-iceriklerim','egitim-akademi'].includes(name))servicesLink?.setAttribute('aria-current','page');
- initPortfolio();initContact();$('#main .avatar-portrait, #main .editorial-image').forEach(frame=>{if(!frame.querySelector('.brand-watermark'))frame.append(el('span','brand-watermark','@busedigital.ai'))});
+ initPortfolio();initContact();$$('#main .avatar-portrait, #main .editorial-image').forEach(frame=>{if(!frame.querySelector('.brand-watermark'))frame.append(el('span','brand-watermark','@busedigital.ai'))});
  if(!initial){window.scrollTo({top:0,behavior:'instant'});$('#main').focus({preventScroll:true})}
 }
 document.addEventListener('click',e=>{const link=e.target.closest('a');if(!link||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||link.target||link.hasAttribute('download'))return;const href=link.getAttribute('href');if(/^[a-z-]+\.html(?:\?|$)/.test(href)){e.preventDefault();location.hash='/'+href.replace('.html','').replace(/^index(?=\?|$)/,'')}});
