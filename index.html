@@ -635,6 +635,11 @@ body[data-page="ai-avatarlarim.html"] .avatar-portrait .brand-watermark{bottom:1
 #work-grid:has(.sector-guide) .sector-guide{margin-bottom:0}
 @media(max-width:900px){.sector-choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:550px){.sector-choice-grid{grid-template-columns:1fr}}
+
+/* Always show all service sectors, including categories waiting for real media uploads */
+.sector-pending-preview{aspect-ratio:16/10;background:linear-gradient(140deg,#213A51,#14243A);color:#E8F0F2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;text-align:center;border-radius:8px;padding:22px}
+.sector-pending-preview span{font-size:clamp(20px,2vw,28px);font-weight:650;line-height:1.2}
+.sector-pending-preview small{font-size:12px;color:#BBCAD6;letter-spacing:.04em}
 </style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
@@ -721,14 +726,11 @@ function render(){
   if(tab==='ai'&&!chosen){
     guide('Çalışmalarımı sektörlere göre keşfedin','Bir sektör seçerek o alana ait tüm görsel ve videoları görüntüleyebilirsiniz.','Sektör seçimini aç ↓');
     const categoryGallery=el('div','sector-choice-grid');categoryGallery.setAttribute('aria-label','Sektör kategorileri');
-    const samples=data.sectors.filter(([key])=>key!=='all').map(([key,label])=>({key,label,works:data.works.filter(w=>w.type==='ai'&&w.category===key&&isReady(w.id))})).filter(x=>x.works.length);
+    const samples=data.sectors.filter(([key])=>key!=='all').map(([key,label])=>({key,label,works:data.works.filter(w=>w.type==='ai'&&w.category===key&&isReady(w.id))}));
     samples.forEach(({key,label,works})=>{
       const card=el('button','sector-choice-card');card.type='button';card.setAttribute('aria-label',label+' alanındaki '+works.length+' projeyi incele');
-      const cover=works.find(w=>!media[w.id].path.toLowerCase().endsWith('.mp4'))||works[0];
-      const preview=mediaFrame(media[cover.id],label+' proje örneği');
-      preview.querySelectorAll('video').forEach(v=>{v.controls=false;v.muted=true;v.setAttribute('aria-hidden','true');v.tabIndex=-1});
-      card.append(preview);
-      const heading=el('div','sector-choice-caption');heading.append(el('strong','',label),el('span','',works.length+' proje · Görüntüle ↗'));card.append(heading);
+      if(works.length){const cover=works.find(w=>!media[w.id].path.toLowerCase().endsWith('.mp4'))||works[0];const preview=mediaFrame(media[cover.id],label+' proje örneği');preview.querySelectorAll('video').forEach(v=>{v.controls=false;v.muted=true;v.setAttribute('aria-hidden','true');v.tabIndex=-1});card.append(preview)}else{const placeholder=el('div','sector-pending-preview');placeholder.append(el('span','',label),el('small','','İçerik henüz yüklenmedi'));card.append(placeholder)}
+      const heading=el('div','sector-choice-caption');heading.append(el('strong','',label),el('span','',works.length?works.length+' proje · Görüntüle ↗':'Medya bekleniyor ↗'));card.append(heading);
       card.addEventListener('click',()=>{filter.value=key;const q=routeParams();q.set('sector',key);q.delete('style');fashionChoice='';history.replaceState(null,'','#/'+routeName()+'?'+q);render()});
       categoryGallery.append(card)
     });
@@ -738,7 +740,7 @@ function render(){
   if(tab==='animation'&&!chosen){guide('Hangi animasyon türünü incelemek istersiniz?','Kişiye özel hikâyeler, markalara özel animasyonlar ve Pilu çizgi film serisi ayrı galerilerde sunuluyor.','Animasyon türünü seç ↓');return}
   const list=data.works.filter(w=>w.type===tab&&isReady(w.id)&&(chosen==='all'||w.category===chosen)&&(!(tab==='ai'&&chosen==='fashion')||w.subcategory===fashionChoice));
   $('#result-count').textContent=tab==='collaborations'?'':list.length+' çalışma';
-  if(!list.length){const empty=el('div','empty-state');empty.append(el('h2','',tab==='collaborations'?'Gerçek iş birlikleri':'Bu kategoride henüz yayınlanmış çalışma yok.'),el('p','',tab==='collaborations'?'Bu alan yalnızca doğrulanmış marka iş birlikleri için ayrılmıştır.':'Yeni çalışmalar eklendiğinde bu koleksiyonda görünecek.'));grid.append(empty);return}
+  if(!list.length){const empty=el('div','empty-state');empty.append(el('h2','',tab==='collaborations'?'Gerçek iş birlikleri':chosen==='architecture'?'Mimari projeleri':chosen==='business'?'İşletme Tanıtımı projeleri':'Bu kategoride henüz yayınlanmış çalışma yok.'),el('p','',tab==='collaborations'?'Bu alan yalnızca doğrulanmış marka iş birlikleri için ayrılmıştır.':chosen==='architecture'||chosen==='business'?'Bu kategori hazır; ancak proje videosu henüz medya klasörüne yüklenmemiş. İçerik eklendiğinde burada sergilenecek.':'Yeni çalışmalar eklendiğinde bu koleksiyonda görünecek.'));grid.append(empty);return}
   list.forEach(w=>{
     const m=media[w.id],card=el('article','work-card');
     const openGallery=(trigger)=>{
