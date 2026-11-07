@@ -538,6 +538,11 @@ body[data-page="index.html"] .hero h1{font-size:clamp(34px,3.7vw,53px)}
 body[data-page="index.html"] .home-services,body[data-page="index.html"] .process{padding-block:34px 39px}
 @media(max-width:950px){.brand-with-logo{min-width:0}.brand-with-logo img{width:58px;height:58px;flex-basis:58px}body[data-page="ai-avatarlarim.html"] .avatar-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:700px){body[data-page="hakkimda.html"] .editorial{display:block}body[data-page="hakkimda.html"] .editorial-image{max-width:510px;margin:0 auto 26px}body[data-page="hakkimda.html"] .editorial-copy h2{font-size:32px}body[data-page="ai-avatarlarim.html"] .avatar-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}body[data-page="ai-avatarlarim.html"] .avatar-card{padding:7px}.brand-wordmark strong{font-size:19px}.brand-wordmark small{font-size:7px}}
+
+/* Crisp full-color emblem: crop source to actual artwork instead of compressing full lockup into a thumbnail */
+.brand-with-logo img{width:68px;height:68px;flex:0 0 68px;object-fit:contain;border-radius:50%;background:#F2F3F1;padding:3px;box-shadow:0 0 0 1px rgba(242,243,241,.28);filter:none;mix-blend-mode:normal;image-rendering:auto}
+.brand-with-logo{gap:11px;align-items:center}
+@media(max-width:700px){.brand-with-logo img{width:56px;height:56px;flex-basis:56px;padding:2px}}
 </style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
