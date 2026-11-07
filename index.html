@@ -621,6 +621,20 @@ body[data-page="ai-avatarlarim.html"] .avatar-portrait .brand-watermark{right:9p
 body[data-page="hakkimda.html"] .editorial-image::after{content:none}
 body[data-page="hakkimda.html"] .editorial-image .brand-watermark{bottom:16px;right:16px}
 body[data-page="ai-avatarlarim.html"] .avatar-portrait .brand-watermark{bottom:12px;right:10px}
+
+/* Visual sector chooser: discover uploaded work without mixing unrelated industries */
+.sector-choice-grid{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;width:100%}
+.sector-choice-card{min-width:0;text-align:left;border:1px solid #D9E0E6;border-radius:12px;background:#FFF;padding:9px;color:#162338;cursor:pointer;overflow:hidden;transition:border-color .2s,transform .2s}
+.sector-choice-card:hover{border-color:#55738D;transform:translateY(-2px)}
+.sector-choice-card .brand-media-frame{aspect-ratio:16/10;height:auto}
+.sector-choice-card .brand-media-frame video{pointer-events:none}
+.sector-choice-card .brand-watermark{font-size:9px;bottom:8px}
+.sector-choice-caption{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 4px 8px}
+.sector-choice-caption strong{font-size:16px;line-height:1.3}
+.sector-choice-caption span{font-size:11px;color:#506980;white-space:nowrap}
+#work-grid:has(.sector-guide) .sector-guide{margin-bottom:0}
+@media(max-width:900px){.sector-choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:550px){.sector-choice-grid{grid-template-columns:1fr}}
 </style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
@@ -690,7 +704,7 @@ const fashionChoices=[['women','Kadın Giyim'],['men','Erkek Giyim'],['children'
 let fashionChoice=fashionChoices.some(([id])=>id===qs.get('style'))?qs.get('style'):'';
 const subcategories=el('nav','portfolio-subcategories');subcategories.setAttribute('aria-label','Moda alt kategorileri');$('.filter-bar').after(subcategories);
 function addBrandOverlay(frame){if(!frame.querySelector('.brand-watermark'))frame.append(el('span','brand-watermark','@busedigital.ai'))}
-function mediaFrame(m,alt,options={}){const frame=el(options.dialog?'div':'div',options.dialog?'brand-media-frame dialog-media-frame':'brand-media-frame');const isVideo=m.path.toLowerCase().endsWith('.mp4');if(isVideo){const blur=document.createElement('video');blur.src=m.path;blur.muted=true;blur.playsInline=true;blur.preload='none';blur.setAttribute('aria-hidden','true');blur.tabIndex=-1;blur.className='brand-blurred-media';const vid=document.createElement('video');vid.src=m.path;vid.controls=true;vid.preload=options.dialog?'metadata':'none';vid.playsInline=true;vid.setAttribute('aria-label',alt);vid.className='brand-primary-media';vid.addEventListener('play',()=>{document.querySelectorAll('video.brand-primary-media').forEach(v=>{if(v!==vid)v.pause()});blur.currentTime=vid.currentTime;blur.play().catch(()=>{})});vid.addEventListener('pause',()=>blur.pause());vid.addEventListener('seeked',()=>{try{blur.currentTime=vid.currentTime}catch{}});vid.addEventListener('ended',()=>blur.pause());frame.append(blur,vid)}else{const bg=image(m,'');bg.className='brand-blurred-media';bg.alt='';bg.setAttribute('aria-hidden','true');const photo=image(m,alt);photo.className='brand-primary-media';frame.append(bg,photo)}addBrandOverlay(frame);return frame}
+function mediaFrame(m,alt,options={}){const frame=el(options.dialog?'div':'div',options.dialog?'brand-media-frame dialog-media-frame':'brand-media-frame');const isVideo=m.path.toLowerCase().endsWith('.mp4');if(isVideo){const blur=document.createElement('video');blur.src=m.path;blur.muted=true;blur.playsInline=true;blur.preload='none';blur.setAttribute('aria-hidden','true');blur.tabIndex=-1;blur.className='brand-blurred-media';const vid=document.createElement('video');vid.src=m.path;vid.controls=true;vid.preload='metadata';if(m.poster)vid.poster=m.poster;vid.playsInline=true;vid.setAttribute('aria-label',alt);vid.className='brand-primary-media';vid.addEventListener('play',()=>{document.querySelectorAll('video.brand-primary-media').forEach(v=>{if(v!==vid)v.pause()});blur.currentTime=vid.currentTime;blur.play().catch(()=>{})});vid.addEventListener('pause',()=>blur.pause());vid.addEventListener('seeked',()=>{try{blur.currentTime=vid.currentTime}catch{}});vid.addEventListener('ended',()=>blur.pause());frame.append(blur,vid)}else{const bg=image(m,'');bg.className='brand-blurred-media';bg.alt='';bg.setAttribute('aria-hidden','true');const photo=image(m,alt);photo.className='brand-primary-media';frame.append(bg,photo)}addBrandOverlay(frame);return frame}
 function render(){
   const chosen=filter.value,grid=$('#work-grid');grid.replaceChildren();subcategories.replaceChildren();
   if(tab==='ai'&&chosen==='fashion'){
@@ -704,7 +718,22 @@ function render(){
     if(buttonText){const btn=el('button','sector-guide-button',buttonText);btn.type='button';btn.addEventListener('click',()=>{filter.focus();filter.scrollIntoView({behavior:'smooth',block:'center'});if(typeof filter.showPicker==='function'){try{filter.showPicker()}catch{}}});box.append(btn)}
     grid.append(box);
   };
-  if(tab==='ai'&&!chosen){guide('Hangi sektörün çalışmalarını incelemek istersiniz?','Otomotiv, gıda, moda, kozmetik ve diğer sektörlere özel projeleri görmek için önce yukarıdaki sektör menüsünden seçim yapın.','Sektör seçimini aç ↓');return}
+  if(tab==='ai'&&!chosen){
+    guide('Çalışmalarımı sektörlere göre keşfedin','Bir sektör seçerek o alana ait tüm görsel ve videoları görüntüleyebilirsiniz.','Sektör seçimini aç ↓');
+    const categoryGallery=el('div','sector-choice-grid');categoryGallery.setAttribute('aria-label','Sektör kategorileri');
+    const samples=data.sectors.filter(([key])=>key!=='all').map(([key,label])=>({key,label,works:data.works.filter(w=>w.type==='ai'&&w.category===key&&isReady(w.id))})).filter(x=>x.works.length);
+    samples.forEach(({key,label,works})=>{
+      const card=el('button','sector-choice-card');card.type='button';card.setAttribute('aria-label',label+' alanındaki '+works.length+' projeyi incele');
+      const cover=works.find(w=>!media[w.id].path.toLowerCase().endsWith('.mp4'))||works[0];
+      const preview=mediaFrame(media[cover.id],label+' proje örneği');
+      preview.querySelectorAll('video').forEach(v=>{v.controls=false;v.muted=true;v.setAttribute('aria-hidden','true');v.tabIndex=-1});
+      card.append(preview);
+      const heading=el('div','sector-choice-caption');heading.append(el('strong','',label),el('span','',works.length+' proje · Görüntüle ↗'));card.append(heading);
+      card.addEventListener('click',()=>{filter.value=key;const q=routeParams();q.set('sector',key);q.delete('style');fashionChoice='';history.replaceState(null,'','#/'+routeName()+'?'+q);render()});
+      categoryGallery.append(card)
+    });
+    grid.append(categoryGallery);return
+  }
   if(tab==='ai'&&chosen==='fashion'&&!fashionChoice){guide('Moda koleksiyonunu seçin','Kadın giyim, erkek giyim, çocuk giyim veya gelinlik koleksiyonlarına yukarıdaki sekmelerden ulaşabilirsiniz.');return}
   if(tab==='animation'&&!chosen){guide('Hangi animasyon türünü incelemek istersiniz?','Kişiye özel hikâyeler, markalara özel animasyonlar ve Pilu çizgi film serisi ayrı galerilerde sunuluyor.','Animasyon türünü seç ↓');return}
   const list=data.works.filter(w=>w.type===tab&&isReady(w.id)&&(chosen==='all'||w.category===chosen)&&(!(tab==='ai'&&chosen==='fashion')||w.subcategory===fashionChoice));
