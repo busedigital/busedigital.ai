@@ -616,6 +616,11 @@ body[data-page="ai-avatarlarim.html"] .avatar-portrait .brand-watermark{right:9p
 .editorial-image{position:relative}
 @media(max-width:920px){body[data-page="hizmetlerim.html"] .work-grid,body[data-page="ugc-iceriklerim.html"] .work-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){body[data-page="hizmetlerim.html"] .work-grid,body[data-page="ugc-iceriklerim.html"] .work-grid{grid-template-columns:1fr}.brand-media-frame{aspect-ratio:4/4.6}.dialog-gallery{grid-template-columns:1fr}.subcategory-intro{width:100%}}
+
+/* Full page media label for profile and editorial photography */
+body[data-page="hakkimda.html"] .editorial-image::after{content:none}
+body[data-page="hakkimda.html"] .editorial-image .brand-watermark{bottom:16px;right:16px}
+body[data-page="ai-avatarlarim.html"] .avatar-portrait .brand-watermark{bottom:12px;right:10px}
 </style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
@@ -670,7 +675,7 @@ const isReady=id=>!!media[id]&&availablePaths.has(media[id].path);
 $$('[data-avatar]').forEach(btn=>{const av=data.avatars.find(a=>a.id===btn.dataset.avatar);if(!av)btn.remove()});
 if($('.avatar-grid')&&!$('.avatar-grid').children.length){const p=el('p','notice','Avatar görselleri yükleme aşamasında. Tamamlandığında karakter galerileri burada görünecek.');$('.avatar-grid').after(p)}
 
-$$('[data-avatar]').forEach(btn=>btn.addEventListener('click',()=>{const a=data.avatars.find(a=>a.id===btn.dataset.avatar);const wrap=el('div');wrap.append(el('p','small',`${a.age} · Kurgusal AI karakteri`));const grid=el('div','dialog-gallery');const ready=a.images.filter(isReady);ready.forEach(id=>grid.append(image(media[id],a.name+' karakter detay fotoğrafı')));if(ready.length===1)wrap.append(el('p','small','Bu karakter için şu anda bir fotoğraf yayında. Yeni portreler hazırlandığında aynı galeride gösterilecek.'));wrap.append(grid);showDialog(a.name+' — Detay galerisi',wrap,btn)}));
+$$('[data-avatar]').forEach(btn=>btn.addEventListener('click',()=>{const a=data.avatars.find(a=>a.id===btn.dataset.avatar);const wrap=el('div');wrap.append(el('p','small',`${a.age} · Kurgusal AI karakteri`));const grid=el('div','dialog-gallery');const ready=a.images.filter(isReady);ready.forEach(id=>grid.append(mediaFrame(media[id],a.name+' karakter detay fotoğrafı',{dialog:true})));if(ready.length===1)wrap.append(el('p','small','Bu karakter için şu anda bir fotoğraf yayında. Yeni portreler hazırlandığında aynı galeride gösterilecek.'));wrap.append(grid);showDialog(a.name+' — Detay galerisi',wrap,btn)}));
 if(!$('#work-browser'))return;
 const qs=routeParams();const valid=['ai','animation','ugc','collaborations'];const tab=document.body.dataset.page==='ugc-iceriklerim.html'?'ugc':valid.includes(qs.get('tab'))?qs.get('tab'):'ai';
 $$('[data-work-tab]').forEach(a=>{if(a.dataset.workTab===tab)a.setAttribute('aria-current','page')});
@@ -752,7 +757,7 @@ function renderRoute(initial=false){
  closeSubmenus();
  const servicesLink=$('#services-link');
  if(['hizmetlerim','ugc-iceriklerim','egitim-akademi'].includes(name))servicesLink?.setAttribute('aria-current','page');
- initPortfolio();initContact();
+ initPortfolio();initContact();$('#main .avatar-portrait, #main .editorial-image').forEach(frame=>{if(!frame.querySelector('.brand-watermark'))frame.append(el('span','brand-watermark','@busedigital.ai'))});
  if(!initial){window.scrollTo({top:0,behavior:'instant'});$('#main').focus({preventScroll:true})}
 }
 document.addEventListener('click',e=>{const link=e.target.closest('a');if(!link||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||link.target||link.hasAttribute('download'))return;const href=link.getAttribute('href');if(/^[a-z-]+\.html(?:\?|$)/.test(href)){e.preventDefault();location.hash='/'+href.replace('.html','').replace(/^index(?=\?|$)/,'')}});
