@@ -253,8 +253,8 @@ const $=(s,r=document)=>r.querySelector(s);const $$=(s,r=document)=>[...r.queryS
 const menu=$('.menu-toggle'),nav=$('#navigation');
 menu?.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Menüyü kapat':'Menüyü aç');nav.classList.toggle('is-open',open)});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu?.getAttribute('aria-expanded')==='true'){menu.click();menu.focus()}});
-const serviceGroups=$('#navigation .nav-group');
-const submenuToggles=$('#navigation .nav-subtoggle');
+const serviceGroups=$$('#navigation .nav-group');
+const submenuToggles=$$('#navigation .nav-subtoggle');
 function closeSubmenus(){serviceGroups.forEach(g=>g.classList.remove('is-expanded'));submenuToggles.forEach(b=>b.setAttribute('aria-expanded','false'))}
 submenuToggles.forEach(button=>button.addEventListener('click',e=>{
  e.preventDefault();e.stopPropagation();
