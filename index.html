@@ -133,6 +133,68 @@ body[data-page="hizmetlerim.html"] #main,body[data-page="ugc-iceriklerim.html"] 
 body[data-page="hakkimda.html"] .editorial{padding:18px}
 }
 @media(prefers-reduced-motion:reduce){.project-detail-btn{transition:none}}
+
+/* Homepage alternating champagne layout: black navigation / beige hero / charcoal showcase / beige services / charcoal process / beige contact */
+body[data-page="index.html"] .site-header{background:#101014;color:#f5f2ec}
+body[data-page="index.html"] .hero,
+body[data-page="index.html"] .featured,
+body[data-page="index.html"] .home-services,
+body[data-page="index.html"] .process,
+body[data-page="index.html"] .home-contact{position:relative;isolation:isolate;border-radius:0;background:transparent}
+body[data-page="index.html"] .hero::before,
+body[data-page="index.html"] .featured::before,
+body[data-page="index.html"] .home-services::before,
+body[data-page="index.html"] .process::before,
+body[data-page="index.html"] .home-contact::before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);inset-block:0}
+body[data-page="index.html"] .hero::before,
+body[data-page="index.html"] .home-services::before,
+body[data-page="index.html"] .home-contact::before{background:#eee5d8}
+body[data-page="index.html"] .featured::before,
+body[data-page="index.html"] .process::before{background:#101014}
+body[data-page="index.html"] .hero{padding-block:64px 70px;color:#242025}
+body[data-page="index.html"] .hero h1{color:#242025}
+body[data-page="index.html"] .hero h1 span{color:#8a673e}
+body[data-page="index.html"] .hero .lead{color:#514941}
+body[data-page="index.html"] .hero .eyebrow{color:#756044}
+body[data-page="index.html"] .hero .dash{background:#967347}
+body[data-page="index.html"] .hero-caption{color:#544940}
+body[data-page="index.html"] .hero-caption span{color:#8a673e}
+body[data-page="index.html"] .hero .button{background:#242025;border-color:#242025;color:#f5efe6}
+body[data-page="index.html"] .hero .button:hover{background:#443a34}
+body[data-page="index.html"] .hero .button-quiet{background:transparent;color:#242025;border:1px solid #8b7352}
+body[data-page="index.html"] .hero .button-quiet:hover{background:#e1d4c4}
+body[data-page="index.html"] .hero-image img{background:#e0d4c8}
+body[data-page="index.html"] .hero-image figcaption,
+body[data-page="index.html"] .hero-image figcaption span{color:#60534a}
+body[data-page="index.html"] .featured{margin-top:0;padding-block:78px 83px;color:#f5f2ec}
+body[data-page="index.html"] .featured h2,
+body[data-page="index.html"] .featured h3{color:#f5f2ec}
+body[data-page="index.html"] .featured h2 span,
+body[data-page="index.html"] .featured .featured-category,
+body[data-page="index.html"] .featured .eyebrow,
+body[data-page="index.html"] .featured .text-link{color:#c8a96b}
+body[data-page="index.html"] .featured .text-link{border-color:#c8a96b}
+body[data-page="index.html"] .home-services{margin-top:0;padding-block:78px 83px;color:#242025}
+body[data-page="index.html"] .home-services h2,
+body[data-page="index.html"] .home-services h3{color:#242025}
+body[data-page="index.html"] .home-services h2 span{color:#88653e}
+body[data-page="index.html"] .home-services .eyebrow{color:#765b3e}
+body[data-page="index.html"] .service-grid li{background:#f5efe6;border:1px solid #dbcebd;color:#242025}
+body[data-page="index.html"] .service-number{color:#816e59}
+body[data-page="index.html"] .process{margin-top:0;padding-block:78px 84px;color:#f5f2ec}
+body[data-page="index.html"] .process h2,
+body[data-page="index.html"] .process h3{color:#f5f2ec}
+body[data-page="index.html"] .process .eyebrow,
+body[data-page="index.html"] .process .step{color:#c8a96b}
+body[data-page="index.html"] .process p{color:#b8b5b3}
+body[data-page="index.html"] .home-contact{margin-top:0;padding-block:70px 80px;border-top:0;color:#242025}
+body[data-page="index.html"] .home-contact h2{color:#242025}
+body[data-page="index.html"] .home-contact h2 span{color:#88653e}
+body[data-page="index.html"] .home-contact .eyebrow{color:#765b3e}
+body[data-page="index.html"] .home-contact p:not(.eyebrow){color:#5f5853}
+body[data-page="index.html"] .home-contact .button{background:#242025;color:#f5efe6}
+@media(max-width:850px){body[data-page="index.html"] .hero{padding-block:42px 48px}body[data-page="index.html"] .featured,body[data-page="index.html"] .home-services,body[data-page="index.html"] .process,body[data-page="index.html"] .home-contact{padding-block:50px}}
+@media(max-width:600px){body[data-page="index.html"] .hero{padding-block:32px 40px}body[data-page="index.html"] .featured,body[data-page="index.html"] .home-services,body[data-page="index.html"] .process,body[data-page="index.html"] .home-contact{padding-block:42px}body[data-page="index.html"] .hero-image{max-width:420px;justify-self:center}}
 </style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand" href="#/" aria-label="BUSE DIGITAL ana sayfa">BUSE<span>DIGITAL</span><small>AI CREATIVE STUDIO</small></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü"><a href="#/hakkimda" >Hakkımda</a><a href="#/hizmetlerim" >Hizmetlerim</a><a href="#/ai-avatarlarim" >AI Avatarlarım</a><a href="#/egitim-akademi" >Eğitim / Akademi</a><a href="#/iletisim" >İletişim</a></nav></div></header><main id="main" class="container" tabindex="-1"><section class="hero"><div class="hero-copy"><p class="eyebrow"><span class="dash"></span> AI CREATIVE STUDIO</p><h1>Yaratıcı Fikirler.<br><span>Yapay Zekâyla</span><br>Yeni Bir Gerçeklik.</h1><p class="lead">Markalar için yapay zekâ destekli görseller, reklam filmleri ve hikâyesi olan kreatif içerikler üretiyorum.</p><div class="hero-actions"><a class="button" href="#/hizmetlerim">Çalışmalarımı İncele ↗</a><a class="button button-quiet" href="#/iletisim">Projenizi Konuşalım</a></div><p class="hero-caption">BAĞIMSIZ KREATİF ÜRETİM <span>·</span> ONLINE ÇALIŞMA</p></div><figure class="hero-image"><img class="" src="assets/media/portrait.webp" alt="Buse Vatansever, beyaz takım elbisesiyle" width="1087" height="1447" fetchpriority="high" decoding="async"><figcaption>Buse Vatansever <span>AI & UGC Content Creator</span></figcaption></figure></section><section class="featured" aria-labelledby="featured-title"><div class="section-title"><div><p class="eyebrow">01 / SEÇİLİ ÜRETİMLER</p><h2 id="featured-title">İşlerim <span>konuşsun.</span></h2></div><a class="text-link" href="#/hizmetlerim">Tüm çalışmaları incele ↗</a></div><div class="featured-grid"><a class="featured-card featured-card-1" href="#/hizmetlerim?tab=ai&sector=automotive" aria-label="Otomotiv çalışmalarını incele"><div class="featured-visual"><img src="assets/media/auto-04.webp" alt="Otomotiv konsept proje kapağı" loading="lazy" decoding="async"></div><span class="featured-category">Otomotiv</span><h3>Sinematik otomotiv konsepti</h3></a><a class="featured-card featured-card-2" href="#/hizmetlerim?tab=ai&sector=food" aria-label="Gıda & İçecek çalışmalarını incele"><div class="featured-visual"><img src="assets/media/food-01.webp" alt="Gıda & İçecek konsept proje kapağı" loading="lazy" decoding="async"><span class="featured-play" aria-hidden="true">▶ Video</span></div><span class="featured-category">Gıda & İçecek</span><h3>Kreatif ürün reklamı</h3></a><a class="featured-card featured-card-3" href="#/hizmetlerim?tab=animation&sector=brand" aria-label="Animasyon çalışmalarını incele"><div class="featured-visual"><img src="assets/media/animation-pilu.webp" alt="Animasyon konsept proje kapağı" loading="lazy" decoding="async"></div><span class="featured-category">Animasyon</span><h3>Karakter ve hikâye tasarımı</h3></a></div></section><section class="home-services"><div class="section-title"><p class="eyebrow">02 / UZMANLIK ALANLARIM</p><h2>Fikirden <span>görsele.</span></h2></div><ul class="service-grid"><li><span class="service-number">01</span><h3>AI Görsel Üretimi</h3></li><li><span class="service-number">02</span><h3>AI Video & Reklam Filmleri</h3></li><li><span class="service-number">03</span><h3>UGC İçerik Üretimi</h3></li><li><span class="service-number">04</span><h3>Animasyon</h3></li><li><span class="service-number">05</span><h3>Sosyal Medya Yönetimi</h3></li><li><span class="service-number">06</span><h3>Meta Reklam Yönetimi</h3></li><li><span class="service-number">07</span><h3>Dijital Pazarlama & Strateji</h3></li></ul></section><section class="process"><div class="section-title"><p class="eyebrow">03 / ÇALIŞMA SÜRECİ</p><h2>Nasıl <span>çalışıyorum?</span></h2></div><ol><li><span class="step">01</span><h3>Brief</h3><p>İhtiyacınızı ve hedefinizi birlikte netleştiriyoruz.</p></li><li><span class="step">02</span><h3>Konsept</h3><p>Fikrin görsel dilini ve anlatımını oluşturuyorum.</p></li><li><span class="step">03</span><h3>Üretim</h3><p>Onaylanan konsepti içeriğe dönüştürüyorum.</p></li><li><span class="step">04</span><h3>Revizyon</h3><p>Kararlaştırılan kapsamda geri bildirimleri uyguluyorum.</p></li><li><span class="step">05</span><h3>Teslim</h3><p>İçeriği belirlenen formatlarda teslim ediyorum.</p></li></ol></section><section class="home-contact"><p class="eyebrow">BİRLİKTE ÜRETELİM</p><h2>Bir fikriniz mi <span>var?</span></h2><p>Markanız için kreatif bir proje planlıyorsanız, detayları konuşalım.</p><a href="#/iletisim" class="button">Projenizi Konuşalım ↗</a></section></main><footer class="site-footer"><div class="container footer-inner"><p>BUSE DIGITAL <span>© 2026</span></p><div class="social-links" aria-label="Instagram hesapları"><a href="https://www.instagram.com/busedigital.ai/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @busedigital.ai — yeni sekmede">@busedigital.ai</a><a href="https://www.instagram.com/evreninanimasyonu/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @evreninanimasyonu — yeni sekmede">@evreninanimasyonu</a><a href="https://www.instagram.com/sezenn.co/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @sezenn.co — yeni sekmede">@sezenn.co</a><a href="https://www.instagram.com/evrendeva.v/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @evrendeva.v — yeni sekmede">@evrendeva.v</a></div></div></footer><dialog id="media-dialog" aria-labelledby="dialog-title"><div class="dialog-head"><h2 id="dialog-title"></h2><button class="close-dialog" aria-label="Galeriyi kapat">×</button></div><div id="dialog-content"></div></dialog><script>// Public configuration only. Never place API keys in this file.
 window.BUSE_CONFIG = { contactEndpoint: './api/contact' };
 
