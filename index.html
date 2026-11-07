@@ -320,6 +320,40 @@ body[data-page="ai-avatarlarim.html"] .avatar-toolbar{background:#F2F3F1;color:#
 body[data-page="ai-avatarlarim.html"] .avatar-toolbar p,
 body[data-page="ai-avatarlarim.html"] .avatar-toolbar span{color:#18283D}
 footer,.site-footer{background:#18283D;color:#F2F3F1}
+
+/* Compact portrait-free hero: centered editorial composition without unused right column */
+body[data-page="index.html"] .hero{
+ display:flex;flex-direction:column;align-items:center;justify-content:center;
+ min-height:0;gap:0;padding-block:48px 54px;text-align:center
+}
+body[data-page="index.html"] .hero-copy{
+ width:100%;max-width:1050px;margin-inline:auto;display:flex;
+ flex-direction:column;align-items:center
+}
+body[data-page="index.html"] .hero .eyebrow{justify-content:center;margin-bottom:19px}
+body[data-page="index.html"] .hero h1{
+ font-size:clamp(39px,4.15vw,62px);line-height:1.12;letter-spacing:-.045em;
+ max-width:1050px;margin:0;text-wrap:balance
+}
+body[data-page="index.html"] .hero .lead{
+ font-size:clamp(15px,1.25vw,17px);line-height:1.65;
+ max-width:760px;margin:20px auto 0
+}
+body[data-page="index.html"] .hero-actions{
+ justify-content:center;margin-top:22px;gap:12px
+}
+body[data-page="index.html"] .hero-caption{margin-top:23px}
+@media(max-width:850px){
+ body[data-page="index.html"] .hero{min-height:0;padding-block:43px 49px}
+ body[data-page="index.html"] .hero h1{font-size:clamp(35px,5.5vw,49px)}
+}
+@media(max-width:600px){
+ body[data-page="index.html"] .hero{min-height:0;padding-block:34px 40px}
+ body[data-page="index.html"] .hero h1{font-size:clamp(32px,8vw,43px);line-height:1.14}
+ body[data-page="index.html"] .hero .lead{margin-top:16px}
+ body[data-page="index.html"] .hero-actions{margin-top:19px}
+ body[data-page="index.html"] .hero-caption{margin-top:20px}
+}
 </style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand" href="#/" aria-label="BUSE DIGITAL ana sayfa">BUSE<span>DIGITAL</span><small>AI CREATIVE STUDIO</small></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
