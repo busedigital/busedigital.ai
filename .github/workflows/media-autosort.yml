@@ -1,0 +1,58 @@
+name: Medya dosyalarini dogru klasore al
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.jpg'
+      - '*.jpeg'
+      - '*.png'
+      - '*.webp'
+      - '*.gif'
+      - '*.avif'
+      - '*.mp4'
+      - '*.mov'
+      - '*.m4v'
+      - '*.webm'
+
+permissions:
+  contents: write
+
+jobs:
+  copy-uploads:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: media-autosort-main
+      cancel-in-progress: false
+    steps:
+      - name: Repository checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Copy new root uploads into website media folder
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/media
+          while IFS= read -r -d '' file; do
+            name="${file#./}"
+            destination="assets/media/$name"
+            if [[ ! -f "$destination" ]]; then
+              cp -- "$file" "$destination"
+              echo "Added: $destination"
+            elif ! cmp -s -- "$file" "$destination"; then
+              echo "::warning file=$name::A file with this name exists in assets/media. Existing website media was preserved to avoid accidental replacement. Rename the new upload and retry."
+            fi
+          done < <(find . -maxdepth 1 -type f \
+            \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \
+            -o -iname '*.gif' -o -iname '*.avif' -o -iname '*.mp4' -o -iname '*.mov' \
+            -o -iname '*.m4v' -o -iname '*.webm' \) -print0)
+          if [[ -n "$(git status --porcelain -- assets/media)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -- assets/media
+            git commit -m "Automatically place new uploads under assets/media"
+            git push
+          else
+            echo "No new media to copy."
+          fi
