@@ -1250,7 +1250,8 @@ form.addEventListener('submit',async e=>{
   const thankYou=document.createElement('section');
   thankYou.className='contact-success-panel';
   thankYou.setAttribute('role','status');
-  thankYou.innerHTML='<span class="contact-success-icon" aria-hidden="true">✓</span><h2>Talebiniz alındı!</h2><p>Projenizi bizimle paylaştığınız için teşekkür ederiz. Mesajınız iletildi; en kısa sürede e-posta üzerinden dönüş yapacağız.</p><a class="contact-success-link" href="#/hizmetlerim">Çalışmalarımı İncele ↗</a>';
+  thankYou.setAttribute('tabindex','-1');
+  thankYou.innerHTML='<span class="contact-success-icon" aria-hidden="true">✓</span><h2>Mesajınız başarıyla gönderildi!</h2><p>BUSE DIGITAL ile iletişime geçtiğiniz için teşekkür ederim. En kısa sürede size dönüş sağlayacağım.</p><a class="contact-success-link" href="#/hizmetlerim">Çalışmalarımı İncele ↗</a>';
   form.replaceWith(thankYou);
   thankYou.focus({preventScroll:true});
   window.buseTrack?.('generate_lead',{lead_source:'contact_form',service_type:values.service});
