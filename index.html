@@ -674,6 +674,14 @@ body[data-page="ugc-iceriklerim.html"] .ugc-instagram-cta span:nth-of-type(1){fl
 body[data-page="ugc-iceriklerim.html"] .ugc-social .ugc-footnote{font-size:12px;color:#b5c4cf;margin-top:6px}
 body[data-page="ugc-iceriklerim.html"] .ugc-contact-link{color:#fff;font-size:13px;font-weight:650;text-underline-offset:5px}
 @media(max-width:840px){body[data-page="ugc-iceriklerim.html"] .ugc-showcase{grid-template-columns:1fr;gap:30px;padding-top:29px;min-height:0}body[data-page="ugc-iceriklerim.html"] .ugc-social{padding:26px}}
+
+/* Use one video element for reliable playback without duplicate background streaming. */
+.brand-media-frame:has(video){background:#101820}
+.brand-media-frame video.brand-primary-media{position:relative;z-index:2;width:100%;height:100%;object-fit:contain;pointer-events:auto}
+.video-load-fallback{position:absolute;inset:auto 10px 10px;z-index:6;padding:12px;background:rgba(12,20,32,.94);color:#fff;text-align:center;border-radius:8px;font-size:13px}
+.video-load-fallback[hidden]{display:none!important}
+.video-load-fallback p{color:#fff;margin:0 0 8px;font-size:13px}
+.video-direct-link{color:#ffe0a0;text-decoration:underline}
 </style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
@@ -743,7 +751,36 @@ const fashionChoices=[['women','Kadın Giyim'],['men','Erkek Giyim'],['children'
 let fashionChoice=fashionChoices.some(([id])=>id===qs.get('style'))?qs.get('style'):'';
 const subcategories=el('nav','portfolio-subcategories');subcategories.setAttribute('aria-label','Moda alt kategorileri');$('.filter-bar').after(subcategories);
 function addBrandOverlay(frame){if(!frame.querySelector('.brand-watermark'))frame.append(el('span','brand-watermark','@busedigital.ai'))}
-function mediaFrame(m,alt,options={}){const frame=el(options.dialog?'div':'div',options.dialog?'brand-media-frame dialog-media-frame':'brand-media-frame');const isVideo=m.path.toLowerCase().endsWith('.mp4');if(isVideo){const blur=document.createElement('video');blur.src=m.path;blur.muted=true;blur.playsInline=true;blur.preload='none';blur.setAttribute('aria-hidden','true');blur.tabIndex=-1;blur.className='brand-blurred-media';const vid=document.createElement('video');vid.src=m.path;vid.controls=true;vid.preload='metadata';if(m.poster)vid.poster=m.poster;vid.playsInline=true;vid.setAttribute('aria-label',alt);vid.className='brand-primary-media';vid.addEventListener('play',()=>{document.querySelectorAll('video.brand-primary-media').forEach(v=>{if(v!==vid)v.pause()});blur.currentTime=vid.currentTime;blur.play().catch(()=>{})});vid.addEventListener('pause',()=>blur.pause());vid.addEventListener('seeked',()=>{try{blur.currentTime=vid.currentTime}catch{}});vid.addEventListener('ended',()=>blur.pause());frame.append(blur,vid)}else{const bg=image(m,'');bg.className='brand-blurred-media';bg.alt='';bg.setAttribute('aria-hidden','true');const photo=image(m,alt);photo.className='brand-primary-media';frame.append(bg,photo)}addBrandOverlay(frame);return frame}
+function mediaFrame(m,alt,options={}){
+ const frame=el('div',options.dialog?'brand-media-frame dialog-media-frame':'brand-media-frame');
+ const isVideo=m.path.toLowerCase().endsWith('.mp4');
+ if(isVideo){
+  const vid=document.createElement('video');
+  vid.src=m.path;
+  vid.controls=true;
+  vid.preload='metadata';
+  vid.playsInline=true;
+  vid.setAttribute('playsinline','');
+  vid.setAttribute('aria-label',alt);
+  vid.className='brand-primary-media';
+  if(m.poster&&availablePaths.has(m.poster))vid.poster=m.poster;
+  vid.addEventListener('play',()=>{document.querySelectorAll('video.brand-primary-media').forEach(v=>{if(v!==vid)v.pause()})});
+  const fallback=el('div','video-load-fallback');
+  fallback.hidden=true;
+  fallback.append(el('p','','Video oynatılamadı. Doğrudan dosyayı açmayı deneyin.'));
+  const direct=el('a','video-direct-link','Videoyu ayrı sekmede aç ↗');
+  direct.href=encodeURI(m.path);
+  direct.target='_blank';
+  direct.rel='noopener noreferrer';
+  fallback.append(direct);
+  vid.addEventListener('error',()=>{fallback.hidden=false});
+  frame.append(vid,fallback);
+ }else{
+  const bg=image(m,'');bg.className='brand-blurred-media';bg.alt='';bg.setAttribute('aria-hidden','true');
+  const photo=image(m,alt);photo.className='brand-primary-media';frame.append(bg,photo)
+ }
+ addBrandOverlay(frame);return frame
+}
 function render(){
   const chosen=filter.value,grid=$('#work-grid');grid.replaceChildren();subcategories.replaceChildren();
   if(tab==='ai'&&chosen==='fashion'){
