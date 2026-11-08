@@ -1,0 +1,57 @@
+name: Video uyumlulugu ve kapak kareleri
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/scripts/prepare_media.py'
+      - '.github/workflows/video-compatibility.yml'
+      - 'assets/media/**/*.MOV'
+      - 'assets/media/**/*.mov'
+      - 'assets/media/**/*.m4v'
+      - 'assets/media/**/*.webm'
+      - 'assets/media/**/*.mp4'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: video-compatibility-main
+  cancel-in-progress: false
+
+jobs:
+  browser-safe-videos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+      - name: Install required codecs
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+      - name: Convert videos and produce thumbnail images
+        run: python3 .github/scripts/prepare_media.py
+      - name: Commit prepared assets and corrected paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- index.html assets/media assets/posters
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Prepare compatible MP4 media, previews, and website references"
+            for attempt in 1 2 3; do
+              git pull --rebase origin main
+              if git push origin HEAD:main; then
+                exit 0
+              fi
+              sleep 3
+            done
+            echo "Could not safely publish changes" >&2
+            exit 1
+          fi
