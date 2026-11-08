@@ -1016,6 +1016,12 @@ body[data-page="hizmetlerim.html"] #work-browser .sector-choice-card .sector-vid
  font-size:clamp(16px,3.5vw,23px);font-weight:650;letter-spacing:-.02em;line-height:1.2;color:#fff;
 }
 body[data-page="hizmetlerim.html"] #work-browser .sector-choice-card .sector-video-cta{font-size:10px;color:#e8d4af}
+
+/* Sektöre özel portföy iletişim alanı */
+.sector-contact-cta{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:20px 24px;margin:20px 0 26px;border:1px solid rgba(145,128,103,.28);border-radius:16px;background:rgba(204,186,155,.09)}
+.sector-contact-cta p{margin:0;flex:1 1 290px;line-height:1.6;font-size:clamp(14px,1.3vw,17px)}
+.sector-contact-cta .button{font-size:13px;text-align:center;white-space:normal}
+@media(max-width:600px){.sector-contact-cta{padding:18px}.sector-contact-cta .button{width:100%}}
 </style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
@@ -1143,6 +1149,17 @@ function mediaFrame(m,alt,options={}){
 }
 function render(){
   const chosen=filter.value,grid=$('#work-grid');grid.replaceChildren();subcategories.replaceChildren();
+  // Sektöre özel iletişim çağrısı: yalnızca seçilen AI portföyünde görünür.
+  let sectorContact=$('#sector-contact-cta');
+  if(!sectorContact){sectorContact=document.createElement('div');sectorContact.id='sector-contact-cta';grid.insertAdjacentElement('beforebegin',sectorContact)}
+  sectorContact.replaceChildren();
+  if(tab==='ai'&&chosen&&chosen!=='all'){
+    const sectorLabel=(data.sectors.find(([key])=>key===chosen)||[])[1]||'sektörünüz';
+    const box=el('div','sector-contact-cta');
+    box.append(el('p','',sectorLabel+' sektörüne özel yapay zekâ görsel ve video projeleriniz için birlikte çalışalım.'));
+    const link=el('a','button',sectorLabel+' sektörünüz için iletişime geçin ↗');
+    link.href='#/iletisim';box.append(link);sectorContact.append(box);
+  }
   if(tab==='ai'&&chosen==='fashion'){
     subcategories.hidden=false;
     const intro=el('p','subcategory-intro','Moda koleksiyonları:');subcategories.append(intro);
