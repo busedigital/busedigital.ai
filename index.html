@@ -1159,6 +1159,19 @@ function render(){
     box.append(el('p','',sectorLabel+' sektörüne özel yapay zekâ görsel ve video projeleriniz için birlikte çalışalım.'));
     const link=el('a','button',sectorLabel+' sektörünüz için iletişime geçin ↗');
     link.href='#/iletisim';box.append(link);sectorContact.append(box);
+  }else if(tab==='animation'&&chosen){
+    const animationCopy={
+      personal:['Hayatınızdaki özel anları size özgü bir animasyon hikâyesine dönüştürelim.','Kişiye özel animasyon için iletişime geçin ↗'],
+      brand:['Markanızın hikâyesini özgün karakterler ve yaratıcı animasyonlarla anlatalım.','Markanıza özel animasyon için iletişime geçin ↗'],
+      cartoon:['Çizgi film projenizin fikrini ve karakterlerini birlikte değerlendirelim.','Çizgi film projeniz için iletişime geçin ↗']
+    };
+    const copy=animationCopy[chosen];
+    if(copy){
+      const box=el('div','sector-contact-cta');
+      box.append(el('p','',copy[0]));
+      const link=el('a','button',copy[1]);link.href='#/iletisim';
+      box.append(link);sectorContact.append(box);
+    }
   }
   if(tab==='ai'&&chosen==='fashion'){
     subcategories.hidden=false;
