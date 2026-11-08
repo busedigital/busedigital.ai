@@ -1262,6 +1262,8 @@ form.addEventListener('submit',async e=>{
 }
 }
 
+/* Add your GA4 Measurement ID (G-XXXXXXXXXX) here after creating a GA4 web data stream. */
+window.BUSE_CONFIG=Object.assign({gaMeasurementId:''},window.BUSE_CONFIG||{});
 /* GA4 starts only after a measurement ID is configured and visitor consent is granted. */
 window.buseTrack=function(name,params){
  if(typeof window.gtag==='function'&&window.buseAnalyticsEnabled){
