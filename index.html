@@ -1028,6 +1028,54 @@ body[data-page="hizmetlerim.html"] #work-browser .sector-choice-card .sector-vid
 .sector-choice-card .sector-uploaded-cover>img{width:100%;height:100%;object-fit:contain;display:block}
 .sector-choice-card .sector-uploaded-cover .brand-watermark{position:absolute;z-index:3;bottom:8px;right:8px}
 .sector-choice-card .brand-media-frame,.sector-choice-card .sector-pending-preview{aspect-ratio:16/9}
+
+/* Portfolio UX: compact discovery header and premium wide tab buttons */
+body[data-page="hizmetlerim.html"] .work-tabs,
+body[data-page="ugc-iceriklerim.html"] .work-tabs{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;
+ padding:12px;background:#18283D;border:1px solid #2B4059;border-radius:16px;
+ margin:4px 0 24px;box-shadow:0 6px 20px rgba(16,32,52,.09);
+}
+body[data-page="hizmetlerim.html"] .work-tabs a,
+body[data-page="ugc-iceriklerim.html"] .work-tabs a{
+ display:flex;justify-content:center;align-items:center;text-align:center;min-width:0;
+ min-height:58px;padding:12px 9px;border:1px solid #75849A;border-radius:10px;
+ background:#233C55;color:#F6F3ED;font-size:clamp(12px,1.05vw,15px);
+ line-height:1.35;font-weight:600;letter-spacing:.01em;transition:background .2s,border-color .2s,transform .2s;
+}
+body[data-page="hizmetlerim.html"] .work-tabs a:hover,
+body[data-page="ugc-iceriklerim.html"] .work-tabs a:hover{
+ background:#37536F;border-color:#D9C8A6;transform:translateY(-1px);color:#FFF;
+}
+body[data-page="hizmetlerim.html"] .work-tabs a[aria-current],
+body[data-page="ugc-iceriklerim.html"] .work-tabs a[aria-current]{
+ background:#E9DFCB;border:1px solid #BEA47D;color:#18283D;font-weight:750;
+ box-shadow:0 2px 8px rgba(4,18,34,.14);
+}
+body[data-page="hizmetlerim.html"] #work-grid:has(.sector-choice-grid) .sector-guide{
+ padding:12px 20px;border:1px solid #D9E1E5;border-radius:10px;
+ background:#F8FAFB;text-align:left;display:flex;align-items:center;
+ justify-content:space-between;gap:10px 20px;flex-wrap:wrap;
+}
+body[data-page="hizmetlerim.html"] #work-grid:has(.sector-choice-grid) .sector-guide .eyebrow{display:none}
+body[data-page="hizmetlerim.html"] #work-grid:has(.sector-choice-grid) .sector-guide h2{
+ font-size:clamp(17px,1.65vw,23px);margin:0;letter-spacing:-.02em;
+}
+body[data-page="hizmetlerim.html"] #work-grid:has(.sector-choice-grid) .sector-guide p:not(.eyebrow){
+ font-size:13px;line-height:1.5;max-width:none;margin:0;color:#506176;
+}
+body[data-page="hizmetlerim.html"] #work-grid:has(.sector-choice-grid){
+ row-gap:14px;
+}
+@media(max-width:850px){
+ body[data-page="hizmetlerim.html"] .work-tabs,
+ body[data-page="ugc-iceriklerim.html"] .work-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:9px}
+ body[data-page="hizmetlerim.html"] .work-tabs a,
+ body[data-page="ugc-iceriklerim.html"] .work-tabs a{min-height:52px;font-size:13px;padding:10px 7px}
+}
+@media(max-width:420px){
+ body[data-page="hizmetlerim.html"] #work-grid:has(.sector-choice-grid) .sector-guide{padding:11px 14px}
+}
 </style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
@@ -1201,7 +1249,7 @@ function render(){
     grid.append(box);
   };
   if(tab==='ai'&&!chosen){
-    guide('Çalışmalarımı sektörlere göre keşfedin','Bir sektör seçerek o alana ait tüm görsel ve videoları görüntüleyebilirsiniz.','Sektör seçimini aç ↓');
+    guide('Sektöre göre keşfet','Projeleri incelemek için bir kategori seçin.');
     const categoryGallery=el('div','sector-choice-grid');categoryGallery.setAttribute('aria-label','Sektör kategorileri');
     const samples=data.sectors.filter(([key])=>key!=='all').map(([key,label])=>({key,label,works:data.works.filter(w=>w.type==='ai'&&w.category===key&&isReady(w.id))}));
     samples.forEach(({key,label,works})=>{
