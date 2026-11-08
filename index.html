@@ -1076,7 +1076,16 @@ const isReady=id=>!!media[id]&&availablePaths.has(media[id].path);
 $$('[data-avatar]').forEach(btn=>{const av=data.avatars.find(a=>a.id===btn.dataset.avatar);if(!av)btn.remove()});
 if($('.avatar-grid')&&!$('.avatar-grid').children.length){const p=el('p','notice','Avatar görselleri yükleme aşamasında. Tamamlandığında karakter galerileri burada görünecek.');$('.avatar-grid').after(p)}
 
-$$('[data-avatar]').forEach(btn=>btn.addEventListener('click',()=>{const a=data.avatars.find(a=>a.id===btn.dataset.avatar);const wrap=el('div');wrap.append(el('p','small',`${a.age} · Kurgusal AI karakteri`));const grid=el('div','dialog-gallery');const ready=a.images.filter(isReady);ready.forEach(id=>grid.append(mediaFrame(media[id],a.name+' karakter detay fotoğrafı',{dialog:true})));if(ready.length===1)wrap.append(el('p','small','Bu karakter için şu anda bir fotoğraf yayında. Yeni portreler hazırlandığında aynı galeride gösterilecek.'));wrap.append(grid);showDialog(a.name+' — Detay galerisi',wrap,btn)}));
+$$('[data-avatar]').forEach(btn=>btn.addEventListener('click',()=>{const a=data.avatars.find(a=>a.id===btn.dataset.avatar);const wrap=el('div');wrap.append(el('p','small',`${a.age} · Kurgusal AI karakteri`));const grid=el('div','dialog-gallery');const seenMedia=new Set();
+const ready=a.images.filter(id=>{
+ if(!isReady(id))return false;
+ const item=media[id];
+ const identity=item.source_sha256||item.path.toLocaleLowerCase('tr-TR');
+ if(seenMedia.has(identity))return false;
+ seenMedia.add(identity);
+ return true;
+});
+ready.forEach(id=>grid.append(mediaFrame(media[id],a.name+' karakter detay fotoğrafı',{dialog:true})));if(ready.length===1)wrap.append(el('p','small','Bu karakter için şu anda bir fotoğraf yayında. Yeni portreler hazırlandığında aynı galeride gösterilecek.'));wrap.append(grid);showDialog(a.name+' — Detay galerisi',wrap,btn)}));
 if(!$('#work-browser'))return;
 const qs=routeParams();const valid=['ai','animation','ugc','collaborations'];const tab=document.body.dataset.page==='ugc-iceriklerim.html'?'ugc':valid.includes(qs.get('tab'))?qs.get('tab'):'ai';
 $$('[data-work-tab]').forEach(a=>{if(a.dataset.workTab===tab)a.setAttribute('aria-current','page')});
