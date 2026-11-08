@@ -993,7 +993,30 @@ body[data-page="iletisim.html"] .contact-success-link{
   display:inline-flex;margin-top:26px;padding:12px 18px;background:#162338;
   color:#FFFFFF;border-radius:6px;font-weight:600;font-size:14px;
 }
-.analytics-consent-banner{position:fixed;z-index:999;bottom:16px;left:50%;transform:translateX(-50%);width:min(560px,calc(100% - 30px));background:#162338;color:#fff;padding:18px 20px;border:1px solid #B99B71;border-radius:10px;box-shadow:0 10px 40px #0005}.analytics-consent-banner p{color:#F2F3F1;font-size:13px;line-height:1.6}.analytics-consent-banner>div{display:flex;gap:12px;justify-content:flex-end;margin-top:12px}.analytics-consent-banner button{border:1px solid #B99B71;border-radius:6px;padding:9px 15px;background:transparent;color:#fff}.analytics-consent-banner button:last-child{background:#B99B71;color:#162338;font-weight:700}</style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
+.analytics-consent-banner{position:fixed;z-index:999;bottom:16px;left:50%;transform:translateX(-50%);width:min(560px,calc(100% - 30px));background:#162338;color:#fff;padding:18px 20px;border:1px solid #B99B71;border-radius:10px;box-shadow:0 10px 40px #0005}.analytics-consent-banner p{color:#F2F3F1;font-size:13px;line-height:1.6}.analytics-consent-banner>div{display:flex;gap:12px;justify-content:flex-end;margin-top:12px}.analytics-consent-banner button{border:1px solid #B99B71;border-radius:6px;padding:9px 15px;background:transparent;color:#fff}.analytics-consent-banner button:last-child{background:#B99B71;color:#162338;font-weight:700}
+/* Mobile-safe video-only category covers: intentional design instead of blank unloaded video previews. */
+body[data-page="hizmetlerim.html"] #work-browser .sector-choice-card .sector-video-thumbnail{
+ display:grid;place-items:center;position:relative;overflow:hidden;aspect-ratio:16 / 10;width:100%;
+ border-radius:8px;color:#F5F2EC;background:linear-gradient(145deg,#142238 5%,#263e57 65%,#4d657a 100%)!important;isolation:isolate;
+}
+body[data-page="hizmetlerim.html"] #work-browser .sector-choice-card .sector-video-thumbnail::after{
+ content:"";position:absolute;inset:auto -20% -70% 10%;height:125%;border:1px solid rgba(202,171,116,.55);
+ border-radius:50%;transform:rotate(-23deg);pointer-events:none;
+}
+body[data-page="hizmetlerim.html"] #work-browser .sector-choice-card .sector-video-thumbnail-inner{
+ display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:10px;
+ width:100%;height:100%;padding:18px 14px;position:relative;z-index:1;
+}
+body[data-page="hizmetlerim.html"] #work-browser .sector-choice-card .sector-video-play{
+ width:42px;height:42px;border:1px solid #c8a96b;border-radius:50%;display:grid;
+ place-items:center;font-size:17px;color:#e2c38c;padding-left:3px;
+}
+body[data-page="hizmetlerim.html"] #work-browser .sector-choice-card .sector-video-eyebrow{font-size:8px;letter-spacing:.13em;color:#d7c6aa;line-height:1.35}
+body[data-page="hizmetlerim.html"] #work-browser .sector-choice-card .sector-video-title{
+ font-size:clamp(16px,3.5vw,23px);font-weight:650;letter-spacing:-.02em;line-height:1.2;color:#fff;
+}
+body[data-page="hizmetlerim.html"] #work-browser .sector-choice-card .sector-video-cta{font-size:10px;color:#e8d4af}
+</style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
 <a id="services-link" href="#/hizmetlerim?tab=ai" aria-haspopup="true" aria-controls="services-menu">Hizmetlerim</a>
@@ -1138,7 +1161,21 @@ function render(){
     const samples=data.sectors.filter(([key])=>key!=='all').map(([key,label])=>({key,label,works:data.works.filter(w=>w.type==='ai'&&w.category===key&&isReady(w.id))}));
     samples.forEach(({key,label,works})=>{
       const card=el('button','sector-choice-card');card.type='button';card.setAttribute('aria-label',label+' alanındaki '+works.length+' projeyi incele');
-      if(works.length){const cover=works.find(w=>!media[w.id].path.toLowerCase().match(/\.(mp4|mov|m4v|webm)$/))||works[0];const preview=mediaFrame(media[cover.id],label+' proje örneği');preview.querySelectorAll('video').forEach(v=>{v.controls=false;v.muted=true;v.setAttribute('aria-hidden','true');v.tabIndex=-1});card.append(preview)}else{const placeholder=el('div','sector-pending-preview');placeholder.append(el('span','',label),el('small','','İçerik henüz yüklenmedi'));card.append(placeholder)}
+      if(works.length){
+        const photographic=works.find(w=>!media[w.id].path.toLowerCase().match(/\.(mp4|mov|m4v|webm)$/));
+        const categoryStill=({architecture:'architecture-storyboard',food:'coca-05'})[key];
+        const still=photographic||(categoryStill&&data.works.find(w=>w.id===categoryStill&&isReady(w.id)))||null;
+        if(still){
+          card.append(mediaFrame(media[still.id],label+' proje örneği'));
+        }else{
+          const preview=el('div','sector-video-thumbnail');
+          preview.setAttribute('aria-hidden','true');
+          const lettering=el('div','sector-video-thumbnail-inner');
+          lettering.append(el('span','sector-video-play','▶'),el('span','sector-video-eyebrow','BUSE DIGITAL · AI CREATIVE STUDIO'),el('strong','sector-video-title',label),el('span','sector-video-cta','Video çalışmalarını keşfet ↗'));
+          preview.append(lettering);
+          card.append(preview);
+        }
+      }else{const placeholder=el('div','sector-pending-preview');placeholder.append(el('span','',label),el('small','','İçerik henüz yüklenmedi'));card.append(placeholder)}
       const heading=el('div','sector-choice-caption');heading.append(el('strong','',label),el('span','',works.length?works.length+' proje · Görüntüle ↗':'Medya bekleniyor ↗'));card.append(heading);
       card.addEventListener('click',()=>{filter.value=key;const q=routeParams();q.set('sector',key);q.delete('style');fashionChoice='';history.replaceState(null,'','#/'+routeName()+'?'+q);render()});
       categoryGallery.append(card)
