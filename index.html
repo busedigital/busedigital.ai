@@ -1022,7 +1022,13 @@ body[data-page="hizmetlerim.html"] #work-browser .sector-choice-card .sector-vid
 .sector-contact-cta p{margin:0;flex:1 1 290px;line-height:1.6;font-size:clamp(14px,1.3vw,17px)}
 .sector-contact-cta .button{font-size:13px;text-align:center;white-space:normal}
 @media(max-width:600px){.sector-contact-cta{padding:18px}.sector-contact-cta .button{width:100%}}
-.architecture-sector-cover{width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:12px;background:#18283D;display:flex;align-items:center;justify-content:center}.architecture-sector-cover img{display:block;width:100%;height:100%;object-fit:contain}</style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
+.architecture-sector-cover{width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:12px;background:#18283D;display:flex;align-items:center;justify-content:center}.architecture-sector-cover img{display:block;width:100%;height:100%;object-fit:contain}
+/* Kategori kapakları: sabit 16:9, görselde kırpma yok. */
+.sector-choice-card .sector-uploaded-cover{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:8px;background:#E8E6E1;display:grid;place-items:center;isolation:isolate}
+.sector-choice-card .sector-uploaded-cover>img{width:100%;height:100%;object-fit:contain;display:block}
+.sector-choice-card .sector-uploaded-cover .brand-watermark{position:absolute;z-index:3;bottom:8px;right:8px}
+.sector-choice-card .brand-media-frame,.sector-choice-card .sector-pending-preview{aspect-ratio:16/9}
+</style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
 <a id="services-link" href="#/hizmetlerim?tab=ai" aria-haspopup="true" aria-controls="services-menu">Hizmetlerim</a>
@@ -1200,30 +1206,44 @@ function render(){
     const samples=data.sectors.filter(([key])=>key!=='all').map(([key,label])=>({key,label,works:data.works.filter(w=>w.type==='ai'&&w.category===key&&isReady(w.id))}));
     samples.forEach(({key,label,works})=>{
       const card=el('button','sector-choice-card');card.type='button';card.setAttribute('aria-label',label+' alanındaki '+works.length+' projeyi incele');
-      if(works.length){
-        if(key==='architecture'){
-          // Mimari 16:9 kategori kapağı: kullanıcı tarafından yüklenen doğru görsel.
-          const cover=el('div','architecture-sector-cover');
-          const img=image({path:'assets/covers/İşletme Tanıtımı (2).png',width:1920,height:1080},'Mimari — BUSE DIGITAL kategori kapağı');
-          cover.append(img);card.append(cover);
-        }
-        const photographic=works.find(w=>!media[w.id].path.toLowerCase().match(/\.(mp4|mov|m4v|webm)$/));
-        const categoryStill=({architecture:'architecture-storyboard',food:'coca-05'})[key];
-        const still=photographic||(categoryStill&&data.works.find(w=>w.id===categoryStill&&isReady(w.id)))||null;
-        if(!card.querySelector('.architecture-sector-cover')&&still){
-          card.append(mediaFrame(media[still.id],label+' proje örneği'));
-        }else if(!card.querySelector('.architecture-sector-cover')&&works[0] && media[works[0].id].poster && availablePaths.has(media[works[0].id].poster)){
-          const poster=media[works[0].id].poster;
-          card.append(mediaFrame({path:poster,width:960,height:540},label+' video kapağı'));
-        }else if(!card.querySelector('.architecture-sector-cover')){
+      // Doğrudan yüklenen kategori kapakları. Dosya adları değiştirilmez, proje galerileri etkilenmez.
+      const coverFiles={
+        automotive:'Otomobil.png',
+        architecture:'İşletme Tanıtımı (2).png',
+        fashion:'Moda.png',
+        pets:'Evcil Hayvan.png',
+        business:'İşletme Tanıtımı.png',
+        technology:'Ev Yaşam.png',
+        beauty:'Kozmetik.png',
+        food:'Yiyecek - İçecek.png',
+        baby:'Anne ve Bebek.png',
+        home:'Mobilya.png'
+      };
+      const coverFile=coverFiles[key];
+      if(coverFile){
+        const cover=el('div','sector-uploaded-cover');
+        const photo=image({path:'assets/covers/'+coverFile,width:1920,height:1080},label+' — BUSE DIGITAL sektör kapağı');
+        cover.append(photo);addBrandOverlay(cover);card.append(cover);
+      }else if(key==='retail'&&media['altin-dokunus-3']){
+        const cover=el('div','sector-uploaded-cover');
+        cover.append(image(media['altin-dokunus-3'],label+' — Altın Dokunuş parfüm koleksiyonu'));
+        addBrandOverlay(cover);card.append(cover);
+      }else if(works.length){
+        const photographic=works.find(w=>!media[w.id].path.toLowerCase().match(/\\.(mp4|mov|m4v|webm)$/));
+        const still=photographic||null;
+        if(still)card.append(mediaFrame(media[still.id],label+' proje örneği'));
+        else if(works[0]&&media[works[0].id].poster&&availablePaths.has(media[works[0].id].poster)){
+          card.append(mediaFrame({path:media[works[0].id].poster,width:960,height:540},label+' video kapağı'));
+        }else{
           const preview=el('div','sector-video-thumbnail');
-          preview.setAttribute('aria-hidden','true');
           const lettering=el('div','sector-video-thumbnail-inner');
-          lettering.append(el('span','sector-video-play','▶'),el('span','sector-video-eyebrow','BUSE DIGITAL · AI CREATIVE STUDIO'),el('strong','sector-video-title',label),el('span','sector-video-cta','Video çalışmalarını keşfet ↗'));
-          preview.append(lettering);
-          card.append(preview);
+          lettering.append(el('span','sector-video-play','▶'),el('strong','sector-video-title',label));
+          preview.append(lettering);card.append(preview);
         }
-      }else{const placeholder=el('div','sector-pending-preview');placeholder.append(el('span','',label),el('small','','İçerik henüz yüklenmedi'));card.append(placeholder)}
+      }else{
+        const placeholder=el('div','sector-pending-preview');
+        placeholder.append(el('span','',label),el('small','','İçerik henüz yüklenmedi'));card.append(placeholder);
+      }
       const heading=el('div','sector-choice-caption');heading.append(el('strong','',label),el('span','',works.length?works.length+' proje · Görüntüle ↗':'Medya bekleniyor ↗'));card.append(heading);
       card.addEventListener('click',()=>{filter.value=key;const q=routeParams();q.set('sector',key);q.delete('style');fashionChoice='';history.replaceState(null,'','#/'+routeName()+'?'+q);render()});
       categoryGallery.append(card)
