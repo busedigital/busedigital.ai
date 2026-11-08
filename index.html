@@ -973,7 +973,27 @@ body[data-page="hizmetlerim.html"] #work-browser .sector-choice-card .brand-prim
  max-height:100%!important;width:auto!important;height:auto!important;
  }
 }
-</style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
+
+/* Contact submission confirmation — consistent with the approved navy/porcelain visual language. */
+body[data-page="iletisim.html"] .contact-success-panel{
+  padding:clamp(26px,4vw,52px);background:#F2F3F1;color:#162338;
+  border-radius:12px;border:1px solid #D9DEE0;align-self:start;outline:none;
+}
+body[data-page="iletisim.html"] .contact-success-icon{
+  display:grid;place-items:center;width:48px;height:48px;border-radius:50%;
+  background:#162338;color:#F2F3F1;font-size:26px;margin-bottom:22px;
+}
+body[data-page="iletisim.html"] .contact-success-panel h2{
+  color:#162338;font-size:clamp(26px,3vw,39px);margin-bottom:14px;
+}
+body[data-page="iletisim.html"] .contact-success-panel p{
+  color:#47586A;font-size:16px;line-height:1.65;max-width:520px;
+}
+body[data-page="iletisim.html"] .contact-success-link{
+  display:inline-flex;margin-top:26px;padding:12px 18px;background:#162338;
+  color:#FFFFFF;border-radius:6px;font-weight:600;font-size:14px;
+}
+.analytics-consent-banner{position:fixed;z-index:999;bottom:16px;left:50%;transform:translateX(-50%);width:min(560px,calc(100% - 30px));background:#162338;color:#fff;padding:18px 20px;border:1px solid #B99B71;border-radius:10px;box-shadow:0 10px 40px #0005}.analytics-consent-banner p{color:#F2F3F1;font-size:13px;line-height:1.6}.analytics-consent-banner>div{display:flex;gap:12px;justify-content:flex-end;margin-top:12px}.analytics-consent-banner button{border:1px solid #B99B71;border-radius:6px;padding:9px 15px;background:transparent;color:#fff}.analytics-consent-banner button:last-child{background:#B99B71;color:#162338;font-weight:700}</style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
 <a id="services-link" href="#/hizmetlerim?tab=ai" aria-haspopup="true" aria-controls="services-menu">Hizmetlerim</a>
@@ -1186,8 +1206,14 @@ form.addEventListener('submit',async e=>{
   try{data=await r.json()}catch{throw Error('Form servisinden geçerli yanıt alınamadı. Lütfen e-posta ile iletişime geçin.')}
   if(!r.ok||!(data.success===true||data.success==='true'))throw Error(data.message||'Gönderim tamamlanamadı. Lütfen yeniden deneyin.');
   status.className='success';
-  status.textContent='Talebiniz form sistemine ulaştı. Teşekkür ederiz.';
-  form.reset();fields();
+  status.textContent='';
+  const thankYou=document.createElement('section');
+  thankYou.className='contact-success-panel';
+  thankYou.setAttribute('role','status');
+  thankYou.innerHTML='<span class="contact-success-icon" aria-hidden="true">✓</span><h2>Talebiniz alındı!</h2><p>Projenizi bizimle paylaştığınız için teşekkür ederiz. Mesajınız iletildi; en kısa sürede e-posta üzerinden dönüş yapacağız.</p><a class="contact-success-link" href="#/hizmetlerim">Çalışmalarımı İncele ↗</a>';
+  form.replaceWith(thankYou);
+  thankYou.focus({preventScroll:true});
+  window.buseTrack?.('generate_lead',{lead_source:'contact_form',service_type:values.service});
  }catch(err){
   status.className='error';
   status.textContent=err.name==='TimeoutError'?'Bağlantı zaman aşımına uğradı; gönderim durumunu doğrulayamadık. Lütfen e-posta ile iletişime geçin.':(err.message||'Gönderim başarısız. Lütfen e-posta ile iletişime geçin.');
@@ -1196,6 +1222,43 @@ form.addEventListener('submit',async e=>{
 }
 }
 
+/* GA4 starts only after a measurement ID is configured and visitor consent is granted. */
+window.buseTrack=function(name,params){
+ if(typeof window.gtag==='function'&&window.buseAnalyticsEnabled){
+  window.gtag('event',name,params||{});
+ }
+};
+function initAnalytics(){
+ const id=(window.BUSE_CONFIG?.gaMeasurementId||'').trim();
+ if(!/^G-[A-Z0-9]+$/i.test(id))return;
+ const key='buse-analytics-consent';
+ function activate(){
+  if(window.buseAnalyticsEnabled)return;
+  window.buseAnalyticsEnabled=true;
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=function(){window.dataLayer.push(arguments)};
+  window.gtag('js',new Date());
+  window.gtag('config',id,{send_page_view:false});
+  const script=document.createElement('script');
+  script.async=true;script.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(id);
+  document.head.append(script);
+  window.buseTrack('page_view',{page_title:document.title,page_location:location.href,page_path:location.pathname+location.hash});
+ }
+ if(localStorage.getItem(key)==='accepted'){activate();return}
+ if(localStorage.getItem(key)==='rejected')return;
+ const banner=document.createElement('aside');
+ banner.className='analytics-consent-banner';
+ banner.setAttribute('aria-label','Analitik çerez tercihi');
+ banner.innerHTML='<p>Web sitemizi geliştirmek için isteğe bağlı ziyaret istatistikleri toplamak istiyoruz. Kabul etmezseniz siteyi kullanmaya devam edebilirsiniz.</p><div><button type="button" data-analytics="reject">Reddet</button><button type="button" data-analytics="accept">Kabul Et</button></div>';
+ document.body.append(banner);
+ banner.addEventListener('click',e=>{
+  const b=e.target.closest('[data-analytics]');
+  if(!b)return;
+  if(b.dataset.analytics==='accept'){localStorage.setItem(key,'accepted');activate()}
+  else{localStorage.setItem(key,'rejected')}
+  banner.remove();
+ });
+}
 function routeName(){return location.hash.slice(2).split('?')[0]||'index'}
 function routeParams(){return new URLSearchParams(location.hash.split('?')[1]||'')}
 function renderRoute(initial=false){
@@ -1207,6 +1270,7 @@ function renderRoute(initial=false){
  document.body.dataset.page=name+'.html';
  document.title=page.title;
  $('meta[name="description"]').content=page.description;
+ window.buseTrack?.('page_view',{page_title:document.title,page_location:location.href,page_path:location.pathname+location.hash});
  const active=name==='ugc-iceriklerim'?'hizmetlerim':name;
  $$('#navigation a').forEach(a=>{if(a.hash==='#/'+active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
  if(menu.getAttribute('aria-expanded')==='true')menu.click();
@@ -1219,4 +1283,5 @@ function renderRoute(initial=false){
 document.addEventListener('click',e=>{const link=e.target.closest('a');if(!link||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||link.target||link.hasAttribute('download'))return;const href=link.getAttribute('href');if(/^[a-z-]+\.html(?:\?|$)/.test(href)){e.preventDefault();location.hash='/'+href.replace('.html','').replace(/^index(?=\?|$)/,'')}});
 window.addEventListener('hashchange',()=>{if(location.hash==='#main'){document.querySelector('#main').focus();return}renderRoute()});
 renderRoute(true);
+initAnalytics();
 </script></body></html>
