@@ -1194,6 +1194,7 @@ form.addEventListener('submit',async e=>{
  }finally{button.disabled=false}
 })
 }
+}
 
 function routeName(){return location.hash.slice(2).split('?')[0]||'index'}
 function routeParams(){return new URLSearchParams(location.hash.split('?')[1]||'')}
