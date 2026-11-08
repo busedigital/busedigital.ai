@@ -682,6 +682,37 @@ body[data-page="ugc-iceriklerim.html"] .ugc-contact-link{color:#fff;font-size:13
 .video-load-fallback[hidden]{display:none!important}
 .video-load-fallback p{color:#fff;margin:0 0 8px;font-size:13px}
 .video-direct-link{color:#ffe0a0;text-decoration:underline}
+
+/* Global portfolio gallery: retain each video's full original frame. */
+#media-dialog .dialog-gallery{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;align-items:start}
+#media-dialog .dialog-gallery .dialog-media-frame:has(video){
+ aspect-ratio:auto!important;height:auto!important;max-height:none!important;
+ min-height:0;overflow:visible;display:flex;flex-direction:column;align-items:center;
+ background:#0b1019;padding:12px;border-radius:10px
+}
+#media-dialog .dialog-gallery .dialog-media-frame video.brand-primary-media{
+ display:block;position:relative;flex:none;width:auto!important;height:auto!important;
+ max-width:100%!important;max-height:calc(100dvh - 210px)!important;
+ object-fit:contain!important;aspect-ratio:auto!important;background:#000
+}
+#media-dialog .dialog-gallery .dialog-media-frame .video-fullscreen-button{
+ display:inline-flex;align-items:center;justify-content:center;min-height:44px;
+ background:#d7ad72;color:#111c2b;border:0;border-radius:6px;
+ padding:10px 18px;font:600 14px inherit;cursor:pointer;z-index:8
+}
+#media-dialog .dialog-gallery .dialog-media-frame .brand-watermark{
+ bottom:auto;top:16px;right:16px
+}
+video.brand-primary-media:fullscreen,video.brand-primary-media:-webkit-full-screen{
+ width:100vw!important;height:100vh!important;max-width:100vw!important;
+ max-height:100vh!important;object-fit:contain!important;background:#000
+}
+@media(max-width:600px){
+ #media-dialog .dialog-gallery .dialog-media-frame video.brand-primary-media{
+  max-height:calc(100dvh - 170px)!important
+ }
+ #media-dialog{width:calc(100% - 16px);padding:12px}
+}
 </style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
@@ -775,6 +806,13 @@ function mediaFrame(m,alt,options={}){
   fallback.append(direct);
   vid.addEventListener('error',()=>{fallback.hidden=false});
   frame.append(vid,fallback);
+  if(options.dialog){
+   const fullscreen=el('button','video-fullscreen-button','⛶ Videoyu tam ekran izle');
+   fullscreen.type='button';
+   fullscreen.setAttribute('aria-label','Videoyu tam ekranda oynat');
+   fullscreen.addEventListener('click',()=>{if(vid.requestFullscreen)vid.requestFullscreen().catch(()=>{});else if(vid.webkitEnterFullscreen)vid.webkitEnterFullscreen()});
+   frame.append(fullscreen)
+  }
  }else{
   const bg=image(m,'');bg.className='brand-blurred-media';bg.alt='';bg.setAttribute('aria-hidden','true');
   const photo=image(m,alt);photo.className='brand-primary-media';frame.append(bg,photo)
