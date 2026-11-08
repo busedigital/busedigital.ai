@@ -785,7 +785,8 @@ function render(){
   const chosen=filter.value,grid=$('#work-grid');grid.replaceChildren();subcategories.replaceChildren();
   if(tab==='ai'&&chosen==='fashion'){
     subcategories.hidden=false;
-    const intro=el('p','subcategory-intro','Moda koleksiyonunu seçin:');subcategories.append(intro);
+    const intro=el('p','subcategory-intro','Moda koleksiyonları:');subcategories.append(intro);
+    const allFashion=el('button','subcategory-btn','Tüm Moda');allFashion.type='button';allFashion.setAttribute('aria-pressed',String(!fashionChoice));allFashion.addEventListener('click',()=>{fashionChoice='';const q=routeParams();q.set('sector','fashion');q.delete('style');history.replaceState(null,'','#/'+routeName()+'?'+q);render()});subcategories.append(allFashion);
     fashionChoices.forEach(([key,label])=>{const btn=el('button','subcategory-btn',label);btn.type='button';btn.setAttribute('aria-pressed',String(fashionChoice===key));btn.addEventListener('click',()=>{fashionChoice=key;const q=routeParams();q.set('sector','fashion');q.set('style',key);history.replaceState(null,'','#/'+routeName()+'?'+q);render()});subcategories.append(btn)});
   }else subcategories.hidden=true;
   const guide=(heading,description,buttonText)=>{
@@ -807,9 +808,8 @@ function render(){
     });
     grid.append(categoryGallery);return
   }
-  if(tab==='ai'&&chosen==='fashion'&&!fashionChoice){guide('Moda koleksiyonunu seçin','Kadın giyim, erkek giyim, çocuk giyim veya gelinlik koleksiyonlarına yukarıdaki sekmelerden ulaşabilirsiniz.');return}
   if(tab==='animation'&&!chosen){guide('Hangi animasyon türünü incelemek istersiniz?','Kişiye özel hikâyeler, markalara özel animasyonlar ve Pilu çizgi film serisi ayrı galerilerde sunuluyor.','Animasyon türünü seç ↓');return}
-  const list=data.works.filter(w=>w.type===tab&&isReady(w.id)&&(tab==='collaborations'||chosen==='all'||w.category===chosen)&&(!(tab==='ai'&&chosen==='fashion')||w.subcategory===fashionChoice));
+  const list=data.works.filter(w=>w.type===tab&&isReady(w.id)&&(tab==='collaborations'||chosen==='all'||w.category===chosen)&&(!(tab==='ai'&&chosen==='fashion'&&fashionChoice)||w.subcategory===fashionChoice));
   $('#result-count').textContent=tab==='collaborations'?'':list.length+' çalışma';
   if(!list.length){const empty=el('div','empty-state');empty.append(el('h2','',tab==='collaborations'?'Gerçek iş birlikleri':chosen==='architecture'?'Mimari projeleri':chosen==='business'?'İşletme Tanıtımı projeleri':'Bu kategoride henüz yayınlanmış çalışma yok.'),el('p','',tab==='collaborations'?'Bu alan yalnızca doğrulanmış marka iş birlikleri için ayrılmıştır.':chosen==='architecture'||chosen==='business'?'Bu kategori hazır; ancak proje videosu henüz medya klasörüne yüklenmemiş. İçerik eklendiğinde burada sergilenecek.':'Yeni çalışmalar eklendiğinde bu koleksiyonda görünecek.'));grid.append(empty);return}
   list.forEach(w=>{
