@@ -747,6 +747,54 @@ video.brand-primary-media:fullscreen,video.brand-primary-media:-webkit-full-scre
 .brand-media-frame img.brand-primary-media{object-fit:contain!important}
 #media-dialog img.brand-primary-media:fullscreen{object-fit:contain!important;background:#000;width:100vw!important;height:100vh!important;max-height:100vh!important}
 @media(max-width:600px){#media-dialog .dialog-gallery .dialog-media-frame img.brand-primary-media,#media-dialog .dialog-gallery .dialog-media-frame video.brand-primary-media{max-height:calc(100dvh - 155px)!important}#media-dialog{width:calc(100vw - 12px);padding:8px}}
+
+/* Responsive portfolio refinement — retain existing studio palette and typography */
+#work-browser .filter-bar{display:flex;align-items:end;flex-wrap:wrap;gap:12px 18px}
+#work-browser .media-type-filters{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-inline-start:auto}
+#work-browser .media-type-btn{border:1px solid var(--line);border-radius:7px;color:var(--text);background:var(--surface);padding:10px 15px;min-height:44px;font:600 13px/1.3 inherit}
+#work-browser .media-type-btn[aria-pressed="true"]{color:var(--bg);border-color:var(--gold);background:var(--gold)}
+#work-browser .work-card{min-width:0;overflow:hidden}
+#work-browser .work-card .work-info h2{overflow-wrap:anywhere}
+#work-browser .work-card .brand-media-frame{background:var(--surface)!important}
+#work-browser .work-card .brand-media-frame img,#work-browser .work-card .brand-media-frame video{object-fit:contain!important}
+#work-browser .media-open{display:block;min-width:0;width:100%}
+#work-browser .media-open .brand-media-frame{aspect-ratio:4/5;max-height:none}
+#work-browser .work-card>.work-media-frame{max-height:75vh}
+#work-browser .work-card>.work-media-frame video{object-fit:contain!important}
+#media-dialog{color:var(--text)!important;background:var(--surface)!important;border-color:var(--line)!important}
+#media-dialog .dialog-head{background:var(--surface)!important}
+#media-dialog .dialog-gallery .dialog-media-frame{background:var(--bg)!important}
+#media-dialog .dialog-gallery .dialog-media-frame img.brand-primary-media,
+#media-dialog .dialog-gallery .dialog-media-frame video.brand-primary-media{object-fit:contain!important;width:auto!important;height:auto!important;max-width:100%!important;max-height:calc(100dvh - 160px)!important}
+#media-dialog .dialog-gallery .dialog-media-frame img.brand-primary-media{border-radius:5px}
+#media-dialog .video-fullscreen-button{background:var(--gold)!important;color:var(--bg)!important;font-family:inherit!important;font-weight:700!important;margin-top:8px}
+.work-brand-disclaimer{font-size:12px;line-height:1.55;color:var(--quiet);margin-top:12px}
+.avatar-grid .avatar-portrait img{object-fit:contain!important;background:var(--surface)}
+@media(max-width:760px){
+ .container{width:min(calc(100% - 28px),var(--max))}
+ #work-browser .filter-bar{align-items:stretch;gap:12px}
+ #work-browser .filter-field{width:100%;max-width:none}
+ #work-browser .filter-field select{width:100%;min-height:48px}
+ #work-browser .media-type-filters{width:100%;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+ #work-browser .media-type-btn{padding:10px 6px;font-size:12px}
+ #work-browser .sector-choice-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ #work-browser .sector-choice-caption{display:flex;flex-wrap:wrap;white-space:normal}
+ #work-browser .sector-choice-caption span{white-space:normal}
+ #work-browser .work-grid{grid-template-columns:minmax(0,1fr)!important;gap:18px}
+ #work-browser .work-card .brand-media-frame{max-width:100%}
+ #work-browser .work-card>.work-media-frame{max-height:none}
+ #work-browser .work-card>.work-media-frame video{max-height:65dvh;object-fit:contain!important}
+ #media-dialog{width:calc(100vw - 12px)!important;max-height:97dvh!important;padding:10px!important}
+ #media-dialog .dialog-head{top:-10px!important}
+ #media-dialog .dialog-head h2{font-size:clamp(16px,4.4vw,22px)!important;line-height:1.25}
+ #media-dialog .dialog-gallery{gap:14px!important}
+ #media-dialog .dialog-gallery .dialog-media-frame{padding:4px!important}
+ #media-dialog .dialog-gallery .dialog-media-frame img.brand-primary-media,#media-dialog .dialog-gallery .dialog-media-frame video.brand-primary-media{max-height:calc(100dvh - 175px)!important}
+ .avatar-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}
+ .avatar-caption{display:flex;flex-wrap:wrap}
+ .avatar-caption h2{font-size:17px}
+}
+@media(max-width:390px){#work-browser .sector-choice-grid{grid-template-columns:minmax(0,1fr)}}
 </style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
@@ -814,6 +862,18 @@ const filter=$('#sector-filter');const field=$('.filter-field');if(tab==='collab
 
 const fashionChoices=[['women','Kadın Giyim'],['men','Erkek Giyim'],['children','Çocuk Giyim'],['bridal','Gelinlik']];
 let fashionChoice=fashionChoices.some(([id])=>id===qs.get('style'))?qs.get('style'):'';
+let mediaTypeFilter='all';
+const filterBar=$('.filter-bar');
+if(tab==='ai'&&filterBar){
+ const types=el('div','media-type-filters');types.setAttribute('role','group');types.setAttribute('aria-label','Çalışma türüne göre filtrele');
+ [['all','Tümü'],['image','Görseller'],['video','Videolar']].forEach(([value,label])=>{
+  const btn=el('button','media-type-btn',label);btn.type='button';btn.dataset.mediaType=value;
+  btn.setAttribute('aria-pressed',String(mediaTypeFilter===value));
+  btn.addEventListener('click',()=>{mediaTypeFilter=value;types.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mediaType===value)));render()});
+  types.append(btn)
+ });
+ filterBar.append(types);
+}
 const subcategories=el('nav','portfolio-subcategories');subcategories.setAttribute('aria-label','Moda alt kategorileri');$('.filter-bar').after(subcategories);
 function addBrandOverlay(frame){if(!frame.querySelector('.brand-watermark'))frame.append(el('span','brand-watermark','@busedigital.ai'))}
 function mediaFrame(m,alt,options={}){
@@ -885,7 +945,8 @@ function render(){
     grid.append(categoryGallery);return
   }
   if(tab==='animation'&&!chosen){guide('Hangi animasyon türünü incelemek istersiniz?','Kişiye özel hikâyeler, markalara özel animasyonlar ve Pilu çizgi film serisi ayrı galerilerde sunuluyor.','Animasyon türünü seç ↓');return}
-  const list=data.works.filter(w=>w.type===tab&&isReady(w.id)&&(tab==='collaborations'||chosen==='all'||w.category===chosen)&&(!(tab==='ai'&&chosen==='fashion'&&fashionChoice)||w.subcategory===fashionChoice));
+  const isVideoMedia=m=>!!m&&/\.(mp4|mov|m4v|webm)$/i.test(m.path);
+  const list=data.works.filter(w=>w.type===tab&&isReady(w.id)&&(tab==='collaborations'||chosen==='all'||w.category===chosen)&&(!(tab==='ai'&&chosen==='fashion'&&fashionChoice)||w.subcategory===fashionChoice)&&(tab!=='ai'||mediaTypeFilter==='all'||(mediaTypeFilter==='video'?(isVideoMedia(media[w.id])||w.gallery?.some(id=>isVideoMedia(media[id]))):(!isVideoMedia(media[w.id])))));
   $('#result-count').textContent=tab==='collaborations'?'':list.length+' çalışma';
   if(!list.length){const empty=el('div','empty-state');empty.append(el('h2','',tab==='collaborations'?'Gerçek iş birlikleri':chosen==='architecture'?'Mimari projeleri':chosen==='business'?'İşletme Tanıtımı projeleri':'Bu kategoride henüz yayınlanmış çalışma yok.'),el('p','',tab==='collaborations'?'Bu alan yalnızca doğrulanmış marka iş birlikleri için ayrılmıştır.':chosen==='architecture'||chosen==='business'?'Bu kategori hazır; ancak proje videosu henüz medya klasörüne yüklenmemiş. İçerik eklendiğinde burada sergilenecek.':'Yeni çalışmalar eklendiğinde bu koleksiyonda görünecek.'));grid.append(empty);return}
   list.forEach(w=>{
@@ -906,6 +967,7 @@ function render(){
       btn.append(mediaFrame(m,w.title));btn.addEventListener('click',()=>openGallery(btn));card.append(btn)
     }
     const info=el('div','work-info');info.append(el('h2','',w.title),el('span','',w.gallery?'PROJE GALERİSİ':m.path.toLowerCase().match(/\.(mp4|mov|m4v|webm)$/)?'VİDEO':'GÖRSEL'));card.append(info);
+    if(w.id==='animation-upload-4575'&&w.description){const note=el('p','work-brand-disclaimer',w.description);card.append(note)}
     if(tab==='collaborations'&&w.description){
       const collab=el('div','collaboration-details');collab.append(el('p','',w.description));
       if(w.externalUrl){const link=el('a','collaboration-youtube-link',w.externalLabel||'Projeyi YouTube’da izle ↗');link.href=w.externalUrl;link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label',(w.externalLabel||'YouTube videosu')+' — yeni sekmede açılır');collab.append(link)}
