@@ -795,6 +795,44 @@ video.brand-primary-media:fullscreen,video.brand-primary-media:-webkit-full-scre
  .avatar-caption h2{font-size:17px}
 }
 @media(max-width:390px){#work-browser .sector-choice-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* Media no-crop contract: intrinsic image/video ratios, never cover or zoom. */
+#work-browser .work-card .brand-media-frame,
+#work-browser .work-card .media-open .brand-media-frame,
+#work-browser .work-card>.work-media-frame,
+#work-browser .work-card>.work-media-frame:has(video){
+ aspect-ratio:var(--media-aspect,4/5)!important;
+ width:100%!important;height:auto!important;max-height:none!important;
+ min-height:0!important;overflow:hidden!important;
+ background:var(--surface)!important;display:flex!important;align-items:center!important;justify-content:center!important
+}
+#work-browser .work-card .brand-media-frame>img.brand-primary-media,
+#work-browser .work-card .brand-media-frame>video.brand-primary-media{
+ width:100%!important;height:auto!important;max-width:100%!important;max-height:none!important;
+ min-width:0!important;object-fit:contain!important;object-position:center!important;
+ aspect-ratio:var(--media-aspect,4/5)!important;transform:none!important;
+}
+#work-browser .work-card .media-open{width:100%!important;min-width:0!important;display:block!important}
+#work-browser .work-card .brand-media-frame .brand-watermark{z-index:5}
+#media-dialog .dialog-gallery,
+#media-dialog .dialog-gallery .dialog-media-frame{
+ min-width:0!important;max-width:100%!important;box-sizing:border-box!important
+}
+#media-dialog .dialog-gallery .dialog-media-frame img.brand-primary-media,
+#media-dialog .dialog-gallery .dialog-media-frame video.brand-primary-media{
+ object-fit:contain!important;object-position:center!important;
+ width:auto!important;height:auto!important;max-width:100%!important;
+ max-height:calc(100dvh - 170px)!important;aspect-ratio:auto!important;
+ transform:none!important;clip-path:none!important;overflow:visible!important
+}
+#media-dialog .image-fullscreen-button{display:inline-flex;justify-content:center;align-items:center;
+ margin-top:10px;padding:10px 16px;min-height:44px;border:1px solid var(--line);
+ border-radius:6px;background:var(--gold);color:var(--bg);font-family:inherit;font-weight:700;z-index:8}
+#media-dialog img.brand-primary-media:fullscreen{width:100vw!important;height:100vh!important;max-width:100vw!important;max-height:100vh!important;object-fit:contain!important;background:#000!important}
+@media(max-width:760px){#work-browser .work-card>.work-media-frame{max-height:none!important}
+#work-browser .work-card>.work-media-frame video.brand-primary-media{max-height:none!important}
+#media-dialog .dialog-gallery .dialog-media-frame img.brand-primary-media,
+#media-dialog .dialog-gallery .dialog-media-frame video.brand-primary-media{max-height:calc(100dvh - 170px)!important}}
 </style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
@@ -913,7 +951,19 @@ function mediaFrame(m,alt,options={}){
    frame.append(fullscreen)
   }
  }else{
-  const photo=image(m,alt);photo.className='brand-primary-media';frame.append(photo)
+  const photo=image(m,alt);photo.className='brand-primary-media';
+  if(!options.dialog){
+    photo.addEventListener('load',()=>{
+      if(photo.naturalWidth&&photo.naturalHeight)frame.style.setProperty('--media-aspect',photo.naturalWidth+'/'+photo.naturalHeight);
+    },{once:true});
+  }
+  frame.append(photo);
+  if(options.dialog){
+    const full=el('button','image-fullscreen-button','⛶ Görseli tam ekran görüntüle');
+    full.type='button';
+    full.addEventListener('click',()=>{if(photo.requestFullscreen)photo.requestFullscreen().catch(()=>{})});
+    frame.append(full);
+  }
  }
  addBrandOverlay(frame);return frame
 }
