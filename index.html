@@ -930,6 +930,49 @@ body[data-page="iletisim.html"] .contact-intro-text{
  body[data-page="iletisim.html"] .contact-heading-copy .eyebrow{font-size:9px;letter-spacing:.1em;margin-bottom:6px!important}
  body[data-page="iletisim.html"] .contact-layout{padding-top:20px!important}
 }
+
+/* Approved white media mats: equal-sized portfolio cards, zero navy letterboxing, no image/video cropping. */
+body[data-page="hizmetlerim.html"] #work-browser .work-card .brand-media-frame,
+body[data-page="hizmetlerim.html"] #work-browser .work-card .media-open .brand-media-frame,
+body[data-page="hizmetlerim.html"] #work-browser .work-card>.work-media-frame,
+body[data-page="ugc-iceriklerim.html"] #work-browser .work-card .brand-media-frame,
+body[data-page="ugc-iceriklerim.html"] #work-browser .work-card>.work-media-frame{
+  background:#FFFFFF!important;
+  aspect-ratio:4 / 5!important;
+  height:auto!important;max-height:none!important;
+  width:100%!important;display:flex!important;align-items:center!important;
+  justify-content:center!important;overflow:hidden!important;
+}
+body[data-page="hizmetlerim.html"] #work-browser .work-card .brand-media-frame>img.brand-primary-media,
+body[data-page="hizmetlerim.html"] #work-browser .work-card .brand-media-frame>video.brand-primary-media,
+body[data-page="ugc-iceriklerim.html"] #work-browser .work-card .brand-media-frame>img.brand-primary-media,
+body[data-page="ugc-iceriklerim.html"] #work-browser .work-card .brand-media-frame>video.brand-primary-media{
+  display:block!important;
+  width:auto!important;height:auto!important;
+  max-width:100%!important;max-height:100%!important;
+  min-width:0!important;min-height:0!important;
+  object-fit:contain!important;object-position:center!important;
+  aspect-ratio:auto!important;background:#FFFFFF!important;
+  transform:none!important;clip-path:none!important;
+  flex:0 1 auto!important;
+}
+body[data-page="hizmetlerim.html"] #work-browser .work-card .media-open,
+body[data-page="ugc-iceriklerim.html"] #work-browser .work-card .media-open{
+ background:#FFFFFF!important;
+}
+/* Consistent presentation for sector previews without changing their overall design. */
+body[data-page="hizmetlerim.html"] #work-browser .sector-choice-card .brand-media-frame{
+ background:#FFFFFF!important;
+}
+body[data-page="hizmetlerim.html"] #work-browser .sector-choice-card .brand-primary-media{
+ object-fit:contain!important;background:#FFFFFF!important;
+}
+@media(max-width:760px){
+ body[data-page="hizmetlerim.html"] #work-browser .work-card>.work-media-frame video.brand-primary-media,
+ body[data-page="ugc-iceriklerim.html"] #work-browser .work-card>.work-media-frame video.brand-primary-media{
+ max-height:100%!important;width:auto!important;height:auto!important;
+ }
+}
 </style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
