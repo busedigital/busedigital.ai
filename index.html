@@ -1077,13 +1077,16 @@ body[data-page="hizmetlerim.html"] #work-grid:has(.sector-choice-grid){
  body[data-page="hizmetlerim.html"] #work-grid:has(.sector-choice-grid) .sector-guide{padding:11px 14px}
 }
 
-/* AI avatar category filters */
-.avatar-filter-bar{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 22px}
-.avatar-filter-button{border:1px solid rgba(165,145,115,.38);border-radius:999px;padding:11px 18px;background:transparent;color:inherit;font:inherit;font-size:14px;cursor:pointer;transition:background .2s,border-color .2s}
-.avatar-filter-button[aria-pressed="true"]{background:#c8a96b;color:#15233b;border-color:#c8a96b;font-weight:650}
-.avatar-filter-button:focus-visible{outline:3px solid #c8a96b;outline-offset:3px}
+/* AI avatar category filters: full-width navy navigation */
+body[data-page="ai-avatarlarim.html"] .avatar-filter-bar{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;width:100%;margin:24px 0 24px;background:#15233b;border:1px solid rgba(200,169,107,.36);border-radius:12px;overflow:hidden}
+body[data-page="ai-avatarlarim.html"] .avatar-filter-button{display:flex;align-items:center;justify-content:center;min-height:54px;width:100%;padding:12px 8px;border:0;border-right:1px solid rgba(255,255,255,.18);border-radius:0;background:#15233b;color:#f5f2ec;font:inherit;font-size:clamp(12px,1.3vw,15px);font-weight:550;cursor:pointer;transition:background .2s,color .2s}
+body[data-page="ai-avatarlarim.html"] .avatar-filter-button:last-child{border-right:0}
+body[data-page="ai-avatarlarim.html"] .avatar-filter-button:hover{background:#243b60}
+body[data-page="ai-avatarlarim.html"] .avatar-filter-button[aria-pressed="true"]{background:#243b60;color:#f3d59e;box-shadow:inset 0 -3px #c8a96b;font-weight:700}
+body[data-page="ai-avatarlarim.html"] .avatar-filter-button:focus-visible{outline:3px solid #c8a96b;outline-offset:-4px}
 .avatar-grid .avatar-card[hidden]{display:none!important}
 .avatar-filter-empty{padding:26px 18px;text-align:center;border:1px solid rgba(165,145,115,.28);border-radius:14px}
+@media(max-width:600px){body[data-page="ai-avatarlarim.html"] .avatar-filter-bar{grid-template-columns:repeat(2,minmax(0,1fr))}body[data-page="ai-avatarlarim.html"] .avatar-filter-button{border-bottom:1px solid rgba(255,255,255,.18);min-height:48px}body[data-page="ai-avatarlarim.html"] .avatar-filter-button:nth-child(2n){border-right:0}body[data-page="ai-avatarlarim.html"] .avatar-filter-button:last-child{grid-column:1/-1;border-bottom:0}}
 </style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
