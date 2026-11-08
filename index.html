@@ -1076,6 +1076,14 @@ body[data-page="hizmetlerim.html"] #work-grid:has(.sector-choice-grid){
 @media(max-width:420px){
  body[data-page="hizmetlerim.html"] #work-grid:has(.sector-choice-grid) .sector-guide{padding:11px 14px}
 }
+
+/* AI avatar category filters */
+.avatar-filter-bar{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 22px}
+.avatar-filter-button{border:1px solid rgba(165,145,115,.38);border-radius:999px;padding:11px 18px;background:transparent;color:inherit;font:inherit;font-size:14px;cursor:pointer;transition:background .2s,border-color .2s}
+.avatar-filter-button[aria-pressed="true"]{background:#c8a96b;color:#15233b;border-color:#c8a96b;font-weight:650}
+.avatar-filter-button:focus-visible{outline:3px solid #c8a96b;outline-offset:3px}
+.avatar-grid .avatar-card[hidden]{display:none!important}
+.avatar-filter-empty{padding:26px 18px;text-align:center;border:1px solid rgba(165,145,115,.28);border-radius:14px}
 </style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
@@ -1130,7 +1138,34 @@ const isReady=id=>!!media[id]&&availablePaths.has(media[id].path);
 $$('[data-avatar]').forEach(btn=>{const av=data.avatars.find(a=>a.id===btn.dataset.avatar);if(!av)btn.remove()});
 if($('.avatar-grid')&&!$('.avatar-grid').children.length){const p=el('p','notice','Avatar görselleri yükleme aşamasında. Tamamlandığında karakter galerileri burada görünecek.');$('.avatar-grid').after(p)}
 
-$$('[data-avatar]').forEach(btn=>btn.addEventListener('click',()=>{const a=data.avatars.find(a=>a.id===btn.dataset.avatar);const wrap=el('div');wrap.append(el('p','small',`${a.age} · Kurgusal AI karakteri`));const grid=el('div','dialog-gallery');const seenMedia=new Set();
+// AI avatar koleksiyonu filtreleri
+const avatarGrid=$('.avatar-grid');
+if(avatarGrid){
+ const categories=[['all','Tümü'],['female','Kadın'],['male','Erkek'],['child','Bebek / Çocuk'],['animal','Hayvan']];
+ const avatarTypes={duru:'female',deniz:'female',mira:'female',simay:'female',kerem:'male',ege:'child',lina:'child'};
+ const filterBar=el('nav','avatar-filter-bar');
+ filterBar.setAttribute('aria-label','Avatar kategorileri');
+ const empty=el('p','avatar-filter-empty','');
+ empty.setAttribute('role','status');empty.hidden=true;
+ const buttons=[];
+ function applyAvatarFilter(type){
+  let visible=0;
+  $('[data-avatar]',avatarGrid).forEach(card=>{
+   const match=type==='all'||avatarTypes[card.dataset.avatar]===type;
+   card.hidden=!match;if(match)visible++;
+  });
+  buttons.forEach(([key,button])=>button.setAttribute('aria-pressed',String(key===type)));
+  empty.hidden=visible>0;
+  empty.textContent=type==='animal'?'Hayvan avatarları yakında bu kategoride yer alacak.':'Bu kategoride henüz avatar bulunmuyor.';
+ }
+ categories.forEach(([key,label])=>{
+  const button=el('button','avatar-filter-button',label);
+  button.type='button';button.addEventListener('click',()=>applyAvatarFilter(key));
+  filterBar.append(button);buttons.push([key,button]);
+ });
+ avatarGrid.before(filterBar);avatarGrid.after(empty);applyAvatarFilter('all');
+}
+$('[data-avatar]').forEach(btn=>btn.addEventListener('click',()=>{const a=data.avatars.find(a=>a.id===btn.dataset.avatar);const wrap=el('div');wrap.append(el('p','small',`${a.age} · Kurgusal AI karakteri`));const grid=el('div','dialog-gallery');const seenMedia=new Set();
 const ready=a.images.filter(id=>{
  if(!isReady(id))return false;
  const item=media[id];
