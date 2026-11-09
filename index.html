@@ -1236,10 +1236,23 @@ function mediaFrame(m,alt,options={}){
  const isVideo=m.path.toLowerCase().match(/\.(mp4|mov|m4v|webm)$/);
  if(isVideo){
   const vid=document.createElement('video');
-  vid.src=m.path;
   vid.controls=true;
   vid.preload=options.dialog?'metadata':'none';
   vid.setAttribute('loading','lazy');
+  // Keep the poster visible; attach the video stream only near the viewport.
+  if(options.dialog||!('IntersectionObserver' in window)){
+    vid.src=m.path;
+  }else{
+    vid.dataset.src=m.path;
+    const observer=new IntersectionObserver((entries,watcher)=>{
+      if(entries.some(entry=>entry.isIntersecting)){
+        vid.src=vid.dataset.src;
+        delete vid.dataset.src;
+        watcher.disconnect();
+      }
+    },{rootMargin:'350px 0px'});
+    observer.observe(vid);
+  }
   vid.playsInline=true;
   vid.setAttribute('playsinline','');
   vid.setAttribute('aria-label',alt);
