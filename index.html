@@ -751,8 +751,11 @@ video.brand-primary-media:fullscreen,video.brand-primary-media:-webkit-full-scre
 /* Responsive portfolio refinement — retain existing studio palette and typography */
 #work-browser .filter-bar{display:flex;align-items:end;flex-wrap:wrap;gap:12px 18px}
 #work-browser .media-type-filters{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-inline-start:auto}
-#work-browser .media-type-btn{border:1px solid var(--line);border-radius:7px;color:var(--text);background:var(--surface);padding:10px 15px;min-height:44px;font:600 13px/1.3 inherit}
-#work-browser .media-type-btn[aria-pressed="true"]{color:var(--bg);border-color:var(--gold);background:var(--gold)}
+#work-browser .media-type-btn{border:1px solid #243A51;border-radius:7px;color:#FFFFFF;background:#243A51;padding:10px 15px;min-height:44px;font:600 13px/1.3 inherit;transition:background-color .2s ease,border-color .2s ease,color .2s ease}
+#work-browser .media-type-btn:hover:not([aria-pressed="true"]){background:#324D68;border-color:#324D68}
+#work-browser .media-type-btn[aria-pressed="true"]{color:#17263D;border-color:#17263D;background:#E8E4DC}
+#work-browser .media-type-btn[aria-pressed="true"]:hover{background:#F0ECE5;border-color:#17263D}
+#work-browser .media-type-btn:focus-visible{outline:2px solid #64788F;outline-offset:3px}
 #work-browser .work-card{min-width:0;overflow:hidden}
 #work-browser .work-card .work-info h2{overflow-wrap:anywhere}
 #work-browser .work-card .brand-media-frame{background:var(--surface)!important}
