@@ -1121,6 +1121,23 @@ body:is([data-page="iletisim.html"],[data-page="sss.html"]) .studio-faq-cta .but
 #media-dialog .project-mini-notice{font-size:12px;line-height:1.5;color:#51647A;margin:12px 0 0}
 #media-dialog .project-mini-link{display:inline-block;margin-top:12px;text-decoration:underline;color:#17263D;font-weight:600}
 @media(max-width:650px){#media-dialog .project-mini-brief{padding:14px}#media-dialog .project-mini-description{font-size:14px}}
+
+/* Compact project-detail actions and mini briefs: preserve room for media. */
+body[data-page="hizmetlerim.html"] .work-card .project-detail-btn,
+body[data-page="ugc-iceriklerim.html"] .work-card .project-detail-btn{
+ width:auto;align-self:flex-start;min-height:38px;padding:7px 13px;
+ font-size:12px;line-height:1.25;border-radius:6px;margin-top:auto;
+}
+#media-dialog .project-mini-brief{padding:12px 15px;margin:0 0 14px}
+#media-dialog .project-mini-type{font-size:10px;margin:0 0 5px}
+#media-dialog .project-mini-description{font-size:13px;line-height:1.55}
+#media-dialog .project-mini-notice{font-size:11px;line-height:1.4;margin:8px 0 0}
+@media(max-width:650px){
+ body[data-page="hizmetlerim.html"] .work-card .project-detail-btn,
+ body[data-page="ugc-iceriklerim.html"] .work-card .project-detail-btn{min-height:38px;padding:7px 11px;font-size:11px}
+ #media-dialog .project-mini-brief{padding:11px 12px}
+ #media-dialog .project-mini-description{font-size:13px}
+}
 </style></head><body data-page="index.html"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Busedigital.ai — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="" width="100" height="100" decoding="async"><span class="brand-wordmark"><strong>Busedigital<span>.ai</span></strong><small>AI CREATIVE STUDIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
