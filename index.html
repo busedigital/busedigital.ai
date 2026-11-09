@@ -1220,16 +1220,7 @@ if(avatarGrid){
  });
  avatarGrid.before(filterBar);avatarGrid.after(empty);applyAvatarFilter('all');
 }
-$$('[data-avatar]').forEach(btn=>btn.addEventListener('click',()=>{const a=data.avatars.find(a=>a.id===btn.dataset.avatar);const wrap=el('div');wrap.append(el('p','small',a.id==='buse-digital-twin'?'Gerçek fotoğraflarımdan modellenen kişisel dijital ikizim. Farklı dönemlere ait görünümlerim bu koleksiyona eklenecek.':`${a.age} · Kurgusal AI karakteri`));const grid=el('div','dialog-gallery');const seenMedia=new Set();
-const ready=a.images.filter(id=>{
- if(!isReady(id))return false;
- const item=media[id];
- const identity=item.source_sha256||item.path.toLocaleLowerCase('tr-TR');
- if(seenMedia.has(identity))return false;
- seenMedia.add(identity);
- return true;
-});
-ready.forEach(id=>grid.append(mediaFrame(media[id],a.name+' karakter detay fotoğrafı',{dialog:true})));if(ready.length===1)wrap.append(el('p','small','Bu karakter için şu anda bir fotoğraf yayında. Yeni portreler hazırlandığında aynı galeride gösterilecek.'));wrap.append(grid);showDialog(a.name+' — Detay galerisi',wrap,btn)}));
+
 if(!$('#work-browser'))return;
 const qs=routeParams();const valid=['ai','animation','ugc','collaborations'];const tab=document.body.dataset.page==='ugc-iceriklerim.html'?'ugc':valid.includes(qs.get('tab'))?qs.get('tab'):'ai';
 $$('[data-work-tab]').forEach(a=>{if(a.dataset.workTab===tab)a.setAttribute('aria-current','page')});
@@ -1546,6 +1537,37 @@ function renderRoute(initial=false){
  if(!initial){window.scrollTo({top:0,behavior:'instant'});$('#main').focus({preventScroll:true})}
 }
 document.addEventListener('click',e=>{const link=e.target.closest('a');if(!link||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||link.target||link.hasAttribute('download'))return;const href=link.getAttribute('href');if(/^[a-z-]+\.html(?:\?|$)/.test(href)){e.preventDefault();location.hash='/'+href.replace('.html','').replace(/^index(?=\?|$)/,'')}});
+// Independent, delegated avatar gallery: works across hash navigation and does not depend on portfolio filters.
+document.addEventListener('click',event=>{
+ const card=event.target.closest('button[data-avatar]');
+ if(!card)return;
+ const avatar=PORTFOLIO.avatars.find(a=>a.id===card.dataset.avatar);
+ if(!avatar)return;
+ const byId=new Map(PORTFOLIO.media.map(item=>[item.id,item]));
+ const wrap=el('div');
+ wrap.append(el('p','small',avatar.id==='buse-digital-twin'
+  ? 'Gerçek fotoğraflarımdan oluşturulan dijital ikiz koleksiyonum. Yeni iki görsel aynı döneme aittir.'
+  : avatar.age+' · Kurgusal AI karakteri'));
+ const gallery=el('div','dialog-gallery');
+ const seen=new Set();
+ avatar.images.forEach(id=>{
+  const m=byId.get(id);
+  if(!m||seen.has(m.source_sha256||m.path))return;
+  seen.add(m.source_sha256||m.path);
+  const frame=el('div','brand-media-frame dialog-media-frame');
+  const img=document.createElement('img');
+  img.src=encodeURI(m.path);img.alt=avatar.name+' — portre';
+  img.loading='eager';img.decoding='async';img.className='brand-primary-media';
+  img.addEventListener('error',()=>{
+   const fallback=el('p','media-error','Bu görsel açılamadı.');
+   frame.replaceChildren(fallback);
+  },{once:true});
+  frame.append(img);gallery.append(frame);
+ });
+ if(!gallery.children.length)gallery.append(el('p','notice','Bu avatarın görselleri henüz hazır değil.'));
+ wrap.append(gallery);
+ showDialog(avatar.name+' — Fotoğraf Galerisi',wrap,card);
+});
 window.addEventListener('hashchange',()=>{if(location.hash==='#main'){document.querySelector('#main').focus();return}renderRoute()});
 renderRoute(true);
 initAnalytics();
