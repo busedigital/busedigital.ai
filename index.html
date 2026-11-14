@@ -1603,7 +1603,7 @@ function enhanceDiscoveryHome(){
   home:'furniture-new-film',retail:'e-ticaret-canta-2',
   'cinematic-performance':'yeter-duygu-mimik-performansi'
  };
- const escapeText=v=>String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',' ' : ' '}[c]));
+ const escapeText=v=>String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  function imageFor(category){
   const m=media.find(item=>item.id===coverMediaIds[category]);
   return m?.poster || (m && /\.(?:webp|png|jpe?g)$/i.test(m.path)?m.path:null);
