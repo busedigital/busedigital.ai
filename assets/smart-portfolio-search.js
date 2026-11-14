@@ -1,10 +1,10 @@
 (()=>{'use strict';
-const nav=document.getElementById('navigation');if(!nav||document.getElementById('smart-portfolio-search'))return;
+const nav=document.getElementById('navigation');if(!nav)return;
 const normalize=s=>String(s||'').toLocaleLowerCase('tr-TR').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ı/g,'i');
 const labels={automotive:'Otomotiv',cosmetics:'Kozmetik',fashion:'Moda',food:'Gıda',pets:'Evcil Hayvan',architecture:'Mimari',technology:'Elektronik / Ev',furniture:'Mobilya',business:'İşletme Tanıtımı',retail:'E-Ticaret',personal:'Kişiye Özel Animasyon',brand:'Markaya Özel Animasyon'};
-const control=document.createElement('div');control.id='smart-portfolio-search';control.className='smart-search';
-control.innerHTML='<button type="button" class="smart-search-trigger" aria-expanded="false" aria-controls="smart-search-panel" aria-label="Akıllı Portföy Arama"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><span>Akıllı Portföy Arama</span></button><div id="smart-search-panel" class="smart-search-panel" hidden><label for="smart-search-input">Portföyde Ara</label><input id="smart-search-input" type="search" autocomplete="off" placeholder="Marka, ürün, sektör veya proje ara…"><div id="smart-search-results" class="smart-search-results" role="status" aria-live="polite"></div></div>';
-nav.append(control);
+const control=document.getElementById('smart-portfolio-search')||document.createElement('div');control.id='smart-portfolio-search';control.className='smart-search';
+if(!control.hasChildNodes())control.innerHTML='<button type="button" class="smart-search-trigger" aria-expanded="false" aria-controls="smart-search-panel" aria-label="Akıllı Portföy Arama"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><span>Akıllı Portföy Arama</span></button><div id="smart-search-panel" class="smart-search-panel" hidden><label for="smart-search-input">Portföyde Ara</label><input id="smart-search-input" type="search" autocomplete="off" placeholder="Marka, ürün, sektör veya proje ara…"><div id="smart-search-results" class="smart-search-results" role="status" aria-live="polite"></div></div>';
+if(!control.parentNode)nav.append(control);
 const trigger=control.querySelector('.smart-search-trigger'),panel=control.querySelector('.smart-search-panel'),input=control.querySelector('input'),results=control.querySelector('.smart-search-results');
 function close(){panel.hidden=true;trigger.setAttribute('aria-expanded','false')}
 function open(){panel.hidden=false;trigger.setAttribute('aria-expanded','true');render();input.focus()}
