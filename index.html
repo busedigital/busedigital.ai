@@ -1531,7 +1531,7 @@ function showDialog(title,content,trigger){opener=trigger;$('#dialog-title').tex
 function image(m,alt){const im=document.createElement('img');im.src=m.path;im.alt=alt;if(Number.isFinite(m.width)&&m.width>0)im.width=m.width;if(Number.isFinite(m.height)&&m.height>0)im.height=m.height;im.loading='lazy';im.decoding='async';im.addEventListener('error',()=>{const p=document.createElement('p');p.className='media-error';p.textContent='Görsel yüklenemedi. Lütfen sayfayı yenileyin.';im.replaceWith(p)},{once:true});return im}
 function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text)e.textContent=text;return e}
 async /* Add verified YouTube channel and video IDs here as they become available. */
-const BUSE_INFO_YOUTUBE={channelUrl:'',videos:[]};
+const BUSE_INFO_YOUTUBE={channelUrl:'https://www.youtube.com/@hicfarketmedinmi/playlists',videos:[]};
 function buildInformationAnimationSection(){
  const area=document.createElement('section');area.className='info-animations';
  const h=document.createElement('h2');h.textContent='Bilgi Animasyonları';area.append(h);
