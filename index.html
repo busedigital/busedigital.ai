@@ -1160,8 +1160,8 @@ html{scroll-padding-top:104px}
 .discovery-about .text-link{margin-top:14px}
 .discovery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 16px;margin-top:28px}
 .discovery-card{display:block;min-width:0}
-.discovery-image{display:block;aspect-ratio:4/5;background:var(--surface);overflow:hidden;border-radius:12px}
-.discovery-image img{width:100%;height:100%;object-fit:cover;transition:transform .25s}
+.discovery-image{display:block;aspect-ratio:16/9;background:#E8E6E1;overflow:hidden;border-radius:12px}
+.discovery-image img{width:100%;height:100%;object-fit:contain;transition:transform .25s}
 .discovery-card:hover .discovery-image img{transform:scale(1.035)}
 .discovery-card-name{display:flex;align-items:center;justify-content:space-between;gap:8px;font-weight:600;padding-top:12px;font-size:14px}
 .discovery-card-name>span{color:var(--gold)}
@@ -1596,16 +1596,19 @@ function enhanceDiscoveryHome(){
  if(!main || !main.querySelector('.home-services'))return;
  const media=PORTFOLIO.media;
  const imageMedia=media.filter(m=>/\.(?:webp|png|jpe?g)$/i.test(m.path));
- const coverMediaIds={
-  automotive:'auto-01',architecture:'architecture-storyboard',fashion:'fashion-new-01',
-  pets:'afrodit-image-1',business:'business-promo-01',technology:'tech-video',
-  beauty:'kiko-01',food:'food-chocolate',baby:'new-mother-baby-video',
-  home:'furniture-new-film',retail:'e-ticaret-canta-2',
-  'cinematic-performance':'yeter-duygu-mimik-performansi'
+ // Reuse the exact user-uploaded covers from the existing portfolio category browser.
+ const coverFiles={
+  automotive:'Otomobil.png',architecture:'İşletme Tanıtımı (2).png',
+  fashion:'Moda.png',pets:'Evcil Hayvan.png',business:'İşletme Tanıtımı.png',
+  technology:'Ev Yaşam.png',beauty:'Kozmetik.png',food:'Yiyecek - İçecek.png',
+  baby:'Anne ve Bebek.png',home:'Mobilya.png'
  };
  const escapeText=v=>String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  function imageFor(category){
-  const m=media.find(item=>item.id===coverMediaIds[category]);
+  if(coverFiles[category])return 'assets/covers/'+coverFiles[category];
+  // For categories without an uploaded sector cover, retain the existing gallery cover.
+  const fallbackIds={'retail':'e-ticaret-canta-2','cinematic-performance':'yeter-duygu-mimik-performansi'};
+  const m=media.find(item=>item.id===fallbackIds[category]);
   return m?.poster || (m && /\.(?:webp|png|jpe?g)$/i.test(m.path)?m.path:null);
  }
  const services=main.querySelector('.home-services');
