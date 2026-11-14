@@ -1431,6 +1431,15 @@ body[data-page="maskotlar.html"] .zensu-explore:hover,body[data-page="maskotlar.
 body[data-page="maskotlar.html"] .mascot-intro{margin-top:0;padding-top:10px}
 @media(max-width:700px){body[data-page="maskotlar.html"] .zensu-welcome{grid-template-columns:1fr;gap:2px;width:100%;padding:4px 12px 12px;margin-bottom:10px}body[data-page="maskotlar.html"] .zensu-welcome-image{width:min(100%,350px);height:clamp(250px,80vw,350px);max-width:100%;margin:0 auto}body[data-page="maskotlar.html"] .zensu-welcome-copy{text-align:center;width:100%;max-width:100%}body[data-page="maskotlar.html"] .zensu-welcome-copy>p:last-of-type{margin-bottom:14px}}
 @media(prefers-reduced-motion:reduce){body[data-page="maskotlar.html"] .zensu-explore{scroll-behavior:auto}}
+
+/* Unified centered media signature: English casing remains stable on Turkish pages. */
+#main .studio-media-stamp,#media-dialog .studio-media-stamp{position:absolute!important;left:50%!important;top:50%!important;right:auto!important;bottom:auto!important;transform:translate(-50%,-50%)!important;z-index:15!important;pointer-events:none!important;user-select:none!important;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2em;text-align:center;max-width:95%;width:max-content;font-family:Manrope,Inter,Arial,sans-serif;font-weight:750;letter-spacing:.08em;line-height:1.28;font-size:clamp(10px,1.45vw,23px);text-transform:none!important;color:rgba(255,255,255,.33)!important;text-shadow:0 1px 3px rgba(9,20,32,.55),0 0 1px rgba(9,20,32,.45);white-space:normal}
+#main .studio-media-stamp span,#media-dialog .studio-media-stamp span{display:block;white-space:nowrap}
+#main .studio-media-target,#media-dialog .studio-media-target{position:relative;isolation:isolate}
+#main .studio-media-wrap,#media-dialog .studio-media-wrap{display:block;position:relative;isolation:isolate;min-width:0;max-width:100%}
+#main .studio-media-wrap>img,#main .studio-media-wrap>video,#media-dialog .studio-media-wrap>img,#media-dialog .studio-media-wrap>video{max-width:100%}
+#main .brand-watermark,#main .mascot-watermark,#media-dialog .brand-watermark,#media-dialog .mascot-watermark{display:none!important}
+@media(max-width:600px){#main .studio-media-stamp,#media-dialog .studio-media-stamp{font-size:clamp(9px,2.4vw,15px);letter-spacing:.045em}}
 </style><style id="buse-language-styles">.buse-language-switch{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;margin-left:8px;border-left:1px solid rgba(200,169,107,.45);padding-left:15px}.buse-language-switch button{border:0;background:transparent;color:var(--text);font-size:12px;font-weight:600;letter-spacing:.05em;padding:8px 3px;opacity:.6}.buse-language-switch button.active{color:var(--gold);opacity:1;text-decoration:underline;text-underline-offset:5px}.buse-language-switch span{color:var(--muted);font-size:11px}@media(max-width:850px){.buse-language-switch{margin:12px 0 0;border-left:0;padding-left:0;align-self:flex-start}}</style><style id="buse-editorial-home">.home-editorial{padding:65px 0 45px}.home-editorial-lead{margin:18px 0 24px;max-width:670px}.home-editorial-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.home-editorial-grid>a{border:1px solid rgba(200,169,107,.32);border-radius:12px;padding:25px;background:rgba(255,255,255,.035);display:block}.home-editorial-grid span{font-size:11px;letter-spacing:.13em;color:#67C3BC}.home-editorial-grid h3{margin:12px 0 24px;font-size:21px;line-height:1.35}.home-editorial-grid small,.home-editorial-all{color:#67C3BC}.home-editorial-all{display:inline-block;margin-top:19px;text-decoration:underline;text-underline-offset:5px}@media(max-width:650px){.home-editorial{padding:40px 0 20px}.home-editorial-grid{grid-template-columns:1fr}.home-editorial-grid>a{padding:20px}}</style><style>.sm-request{max-width:790px;margin:30px auto 80px}.sm-request fieldset{border:1px solid var(--line);border-radius:12px;padding:22px;margin:20px 0;background:rgba(255,255,255,.035)}.sm-request legend{padding:0 8px;font-weight:600;color:var(--text)}.sm-option{display:flex;align-items:flex-start;gap:12px;margin:12px 0;color:var(--text);cursor:pointer}.sm-option input{accent-color:var(--gold);width:19px;height:19px;flex-shrink:0;margin-top:4px}.sm-field{display:block;margin:16px 0;color:var(--text)}.sm-field input,.sm-field textarea{display:block;width:100%;margin-top:6px;padding:12px;background:#f7f4ee;color:#182338;border:1px solid #a5a5a5;border-radius:7px}.sm-field textarea{min-height:95px}.sm-note{font-size:13px;margin:18px 0}</style><style>
 /* Social media service: match BUSE DIGITAL Navy & Soft Porcelain */
 body[data-page="sosyal-medya-yonetimi.html"]{background:#18283D;color:#F2F3F1}
@@ -1573,7 +1582,7 @@ if(tab==='ai'&&filterBar){
  filterBar.append(types);
 }
 const subcategories=el('nav','portfolio-subcategories');subcategories.setAttribute('aria-label','Moda alt kategorileri');$('.filter-bar').after(subcategories);
-function addBrandOverlay(frame){if(!frame.querySelector('.brand-watermark'))frame.append(el('span','brand-watermark','@busedigital.ai'))}
+function addBrandOverlay(frame){/* Media signatures are applied centrally by installStudioMediaStamps. */}
 function mediaFrame(m,alt,options={}){
  const frame=el('div',options.dialog?'brand-media-frame dialog-media-frame':'brand-media-frame');
  const isVideo=m.path.toLowerCase().match(/\.(mp4|mov|m4v|webm)$/);
@@ -1964,13 +1973,50 @@ function applyMascotWatermarks(){
 /* Full-body Zensu fallback and smooth in-page mascot gallery navigation. */
 document.addEventListener('error',function(e){const img=e.target;if(!(img instanceof HTMLImageElement)||!img.matches('.zensu-welcome-image img'))return;const fallback=img.dataset.fallbackSrc;if(fallback&&img.getAttribute('src')!==fallback){img.removeAttribute('data-fallback-src');img.src=fallback}},true);
 document.addEventListener('click',function(e){const button=e.target.closest('[data-zensu-scroll]');if(!button)return;const target=document.getElementById(button.dataset.zensuScroll);if(target)target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
+
+/* Center the same non-destructive, semi-transparent stamp over all project media. */
+function installStudioMediaStamps(root){
+ if(!root)return;
+ const selectors='.brand-media-frame,.mascot-art,.avatar-portrait,.editorial-image,.discovery-image,.proof-card-image,.proof-collaboration-visual,.discovery-about-photo,.zensu-welcome-image,.hero-image .hero-collage-item,.hero-collage-image,.hero-collage-photo,.sector-uploaded-cover,.featured-visual,.hero-image,.mascot-service';
+ root.querySelectorAll('img,video').forEach(media=>{
+  if(media.closest('.site-header,.site-footer,.brand-with-logo,.contact-heading-row,.social-icon,.studio-media-stamp'))return;
+  if(media.matches('img[src$=".svg"]')||media.classList.contains('contact-brand-mark')||media.classList.contains('mascot-service-thumbnail'))return;
+  let host=media.closest(selectors);
+  if(host && !root.contains(host))host=null;
+  if(!host){
+   const parent=media.parentElement;if(!parent)return;
+   if(parent.classList.contains('studio-media-wrap'))host=parent;
+   else if(parent.childElementCount===1 || Array.from(parent.children).every(el=>el===media||el.classList.contains('brand-watermark')||el.classList.contains('mascot-watermark')))host=parent;
+   else{
+    const wrap=document.createElement('span');wrap.className='studio-media-wrap';
+    parent.insertBefore(wrap,media);wrap.append(media);host=wrap;
+   }
+  }
+  if(host.classList.contains('mascot-service')){ // signature belongs to thumbnail, never the entire service card
+   let wrap=media.parentElement;
+   if(!wrap.classList.contains('studio-media-wrap')){wrap=document.createElement('span');wrap.className='studio-media-wrap';media.before(wrap);wrap.append(media)}
+   host=wrap;
+  }
+  if(host.querySelector(':scope > .studio-media-stamp'))return;
+  host.classList.add('studio-media-target');
+  const stamp=document.createElement('span');stamp.className='studio-media-stamp';
+  stamp.setAttribute('lang','en');stamp.setAttribute('translate','no');stamp.setAttribute('aria-hidden','true');
+  stamp.innerHTML='<span>BUSE DIGITAL AI</span><span>CREATIVE STUDIO</span>';
+  host.append(stamp);
+ });
+}
+function refreshStudioMediaStamps(){installStudioMediaStamps(document.getElementById('main'));installStudioMediaStamps(document.getElementById('media-dialog'))}
+let studioStampScheduled=false;
+function scheduleStudioMediaStamps(){if(studioStampScheduled)return;studioStampScheduled=true;queueMicrotask(()=>{studioStampScheduled=false;refreshStudioMediaStamps()})}
+const studioStampObserver=new MutationObserver(scheduleStudioMediaStamps);
+for(const id of ['main','media-dialog']){const root=document.getElementById(id);if(root)studioStampObserver.observe(root,{childList:true,subtree:true})}
 function renderRoute(initial=false){
  const name=routeName(),page=PAGES[name];
  if(!page){location.replace('#/');return}
  $$('video').forEach(v=>v.pause());
  if(dialog.open)closeDialog();
  $('#main').innerHTML=page.body;
- if(name==='maskotlar')applyMascotWatermarks();
+ 
  if(name==='index')enhanceDiscoveryHome();
  if(name==='maskotlar')document.querySelectorAll('#main .work-tabs a[data-work-tab="mascots"]').forEach(a=>a.setAttribute('aria-current','page'));
  addSpecialistSocialLinks(name);
@@ -1985,7 +2031,7 @@ function renderRoute(initial=false){
  closeSubmenus();
  const servicesLink=$('#services-link');
  if(['hizmetlerim','ugc-iceriklerim','egitim-akademi','sosyal-medya-yonetimi'].includes(name))servicesLink?.setAttribute('aria-current','page');
- initPortfolio();initContact();$$('#main .avatar-portrait, #main .editorial-image').forEach(frame=>{if(!frame.querySelector('.brand-watermark'))frame.append(el('span','brand-watermark','@busedigital.ai'))});
+ initPortfolio();initContact();refreshStudioMediaStamps();
  const targetSection=name==='index'?routeParams().get('section'):null;
  if(targetSection&&document.getElementById(targetSection)){requestAnimationFrame(()=>document.getElementById(targetSection)?.scrollIntoView({behavior:'smooth',block:'start'}));}
  else if(!initial){window.scrollTo({top:0,behavior:'instant'});$('#main').focus({preventScroll:true})}
