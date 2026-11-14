@@ -1596,22 +1596,17 @@ function enhanceDiscoveryHome(){
  if(!main || !main.querySelector('.home-services'))return;
  const media=PORTFOLIO.media;
  const imageMedia=media.filter(m=>/\.(?:webp|png|jpe?g)$/i.test(m.path));
- const coverHints={
-  automotive:['otomotiv/auto-01'],architecture:['mimari/'],fashion:['moda/kadin-giyim/'],
-  pets:['evcil-hayvan/Afrodit'],business:['isletme','işletme','mekan'],technology:['teknoloji','elektronik'],
-  beauty:['kozmetik/kiko-01'],food:['gida-icecek/food-'],baby:['anne-bebek','bebek'],
-  home:['mobilya','furniture'],retail:['e-ticaret/'], 'cinematic-performance':['ai-sinematik','performans']
+ const coverMediaIds={
+  automotive:'auto-01',architecture:'architecture-storyboard',fashion:'fashion-new-01',
+  pets:'afrodit-image-1',business:'business-promo-01',technology:'tech-video',
+  beauty:'kiko-01',food:'food-chocolate',baby:'new-mother-baby-video',
+  home:'furniture-new-film',retail:'e-ticaret-canta-2',
+  'cinematic-performance':'yeter-duygu-mimik-performansi'
  };
- const escapeText=v=>String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const escapeText=v=>String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',' ' : ' '}[c]));
  function imageFor(category){
-  const hint=coverHints[category]||[];
-  let found=imageMedia.find(m=>hint.some(t=>m.path.toLocaleLowerCase('tr').includes(t.toLocaleLowerCase('tr'))));
-  if(!found){
-   const work=PORTFOLIO.works.find(w=>w.type==='ai'&&w.category===category);
-   const ids=[...(work?.gallery||[]),work?.cover,work?.id].filter(Boolean);
-   found=imageMedia.find(m=>ids.includes(m.id));
-  }
-  return found?.path||'assets/media/hakkimda/about.webp';
+  const m=media.find(item=>item.id===coverMediaIds[category]);
+  return m?.poster || (m && /\.(?:webp|png|jpe?g)$/i.test(m.path)?m.path:null);
  }
  const services=main.querySelector('.home-services');
  services.id='home-services';
@@ -1620,7 +1615,7 @@ function enhanceDiscoveryHome(){
  const about='<section id="home-about" class="discovery-section discovery-about"><div class="section-title"><p class="eyebrow">HAKKIMDA</p><h2>Merhaba, <span>ben Buse.</span></h2></div><p>Yapay zekâ destekli kreatif üretim, UGC ve dijital içerik alanlarında bağımsız olarak çalışıyorum. Markaların hikâyelerini görsel dünyalara dönüştürüyorum; projelerimi uzaktan ve online yürütüyorum.</p><a class="text-link" href="#/hakkimda">Daha yakından tanıyın ↗</a></section>';
  services.insertAdjacentHTML('beforebegin',about);
  const portfolioCards=PORTFOLIO.sectors.filter(([key])=>key!=='all').map(([key,name])=>
-  '<a class="discovery-card" href="#/hizmetlerim?tab=ai&sector='+encodeURIComponent(key)+'" aria-label="'+escapeText(name)+' projelerini aç"><span class="discovery-image"><img src="'+escapeText(imageFor(key))+'" alt="'+escapeText(name)+' portföy kapağı" loading="lazy" decoding="async"></span><span class="discovery-card-name">'+escapeText(name)+' <span aria-hidden="true">↗</span></span></a>'
+  '<a class="discovery-card" href="#/hizmetlerim?tab=ai&sector='+encodeURIComponent(key)+'" aria-label="'+escapeText(name)+' projelerini aç"><span class="discovery-image">'+(imageFor(key)?'<img src="'+escapeText(imageFor(key))+'" alt="'+escapeText(name)+' portföy kapağı" loading="lazy" decoding="async" onerror="this.remove()">':'')+'</span><span class="discovery-card-name">'+escapeText(name)+' <span aria-hidden="true">↗</span></span></a>'
  ).join('');
  const portfolio='<section id="home-portfolio" class="discovery-section"><div class="section-title"><p class="eyebrow">PORTFÖYÜM / KATEGORİLER</p><h2>Yapay zekâ <span>çalışmalarım.</span></h2></div><p class="discovery-intro">Tüm sektörleri keşfedin. Bir kategoriye dokunarak o alandaki görsel ve video projelerimi inceleyin.</p><div class="discovery-grid">'+portfolioCards+'</div></section>';
  services.insertAdjacentHTML('afterend',portfolio);
