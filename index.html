@@ -1379,23 +1379,11 @@ body[data-page="ugc-iceriklerim.html"] .work-tabs a:last-child,
 body[data-page="maskotlar.html"] .work-tabs a:last-child{grid-column:1/-1}
 }
 
-/* Automatic center watermark for every mascot image, including future cards. */
+/* Automatic, accessible mascot signature overlay. */
 .mascot-card .mascot-art{position:relative;isolation:isolate}
-.mascot-card .mascot-art::after{
- content:"Buse Digital Ai\A Creative Studio";
- white-space:pre-line;
- position:absolute;inset:0;
- display:flex;align-items:center;justify-content:center;
- text-align:center;
- padding:10px;
- color:rgba(17,38,59,.22);
- font-size:clamp(13px,1.7vw,19px);
- font-weight:700;line-height:1.35;letter-spacing:.055em;
- text-transform:uppercase;
- text-shadow:0 1px 2px rgba(255,255,255,.25);
- pointer-events:none;user-select:none;z-index:2;
-}
-.mascot-card.satildi .mascot-art::after{color:rgba(17,38,59,.17)}
+.mascot-card .mascot-watermark{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:12px;text-align:center;pointer-events:none;user-select:none;font-family:inherit;font-size:clamp(14px,2vw,22px);font-weight:750;letter-spacing:.055em;line-height:1.2;text-transform:uppercase;color:rgba(15,34,55,.23);text-shadow:0 1px 1px rgba(255,255,255,.15)}
+.mascot-card .mascot-watermark span:last-child{font-size:.72em;letter-spacing:.1em}
+.mascot-card.satildi .mascot-watermark{opacity:.7}
 </style><style id="buse-language-styles">.buse-language-switch{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;margin-left:8px;border-left:1px solid rgba(200,169,107,.45);padding-left:15px}.buse-language-switch button{border:0;background:transparent;color:var(--text);font-size:12px;font-weight:600;letter-spacing:.05em;padding:8px 3px;opacity:.6}.buse-language-switch button.active{color:var(--gold);opacity:1;text-decoration:underline;text-underline-offset:5px}.buse-language-switch span{color:var(--muted);font-size:11px}@media(max-width:850px){.buse-language-switch{margin:12px 0 0;border-left:0;padding-left:0;align-self:flex-start}}</style><style id="buse-editorial-home">.home-editorial{padding:65px 0 45px}.home-editorial-lead{margin:18px 0 24px;max-width:670px}.home-editorial-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.home-editorial-grid>a{border:1px solid rgba(200,169,107,.32);border-radius:12px;padding:25px;background:rgba(255,255,255,.035);display:block}.home-editorial-grid span{font-size:11px;letter-spacing:.13em;color:#67C3BC}.home-editorial-grid h3{margin:12px 0 24px;font-size:21px;line-height:1.35}.home-editorial-grid small,.home-editorial-all{color:#67C3BC}.home-editorial-all{display:inline-block;margin-top:19px;text-decoration:underline;text-underline-offset:5px}@media(max-width:650px){.home-editorial{padding:40px 0 20px}.home-editorial-grid{grid-template-columns:1fr}.home-editorial-grid>a{padding:20px}}</style><style>.sm-request{max-width:790px;margin:30px auto 80px}.sm-request fieldset{border:1px solid var(--line);border-radius:12px;padding:22px;margin:20px 0;background:rgba(255,255,255,.035)}.sm-request legend{padding:0 8px;font-weight:600;color:var(--text)}.sm-option{display:flex;align-items:flex-start;gap:12px;margin:12px 0;color:var(--text);cursor:pointer}.sm-option input{accent-color:var(--gold);width:19px;height:19px;flex-shrink:0;margin-top:4px}.sm-field{display:block;margin:16px 0;color:var(--text)}.sm-field input,.sm-field textarea{display:block;width:100%;margin-top:6px;padding:12px;background:#f7f4ee;color:#182338;border:1px solid #a5a5a5;border-radius:7px}.sm-field textarea{min-height:95px}.sm-note{font-size:13px;margin:18px 0}</style><style>
 /* Social media service: match BUSE DIGITAL Navy & Soft Porcelain */
 body[data-page="sosyal-medya-yonetimi.html"]{background:#18283D;color:#F2F3F1}
@@ -1914,12 +1902,24 @@ function addSpecialistSocialLinks(name){
  channels.forEach(([label,url])=>{const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=label+' ↗';band.append(a)});
  main.append(band)
 }
+function applyMascotWatermarks(){
+ document.querySelectorAll('#main .mascot-card .mascot-art').forEach(art=>{
+  if(art.querySelector('.mascot-watermark'))return;
+  const overlay=document.createElement('span');
+  overlay.className='mascot-watermark';
+  overlay.setAttribute('aria-hidden','true');
+  const name=document.createElement('span');name.textContent='Buse Digital Ai';
+  const studio=document.createElement('span');studio.textContent='Creative Studio';
+  overlay.append(name,studio);art.append(overlay);
+ });
+}
 function renderRoute(initial=false){
  const name=routeName(),page=PAGES[name];
  if(!page){location.replace('#/');return}
  $$('video').forEach(v=>v.pause());
  if(dialog.open)closeDialog();
  $('#main').innerHTML=page.body;
+ if(name==='maskotlar')applyMascotWatermarks();
  if(name==='index')enhanceDiscoveryHome();
  if(name==='maskotlar')document.querySelectorAll('#main .work-tabs a[data-work-tab="mascots"]').forEach(a=>a.setAttribute('aria-current','page'));
  addSpecialistSocialLinks(name);
