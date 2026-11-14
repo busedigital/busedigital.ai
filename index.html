@@ -1980,7 +1980,7 @@ function installStudioMediaStamps(root){
  const selectors='.brand-media-frame,.mascot-art,.avatar-portrait,.editorial-image,.discovery-image,.proof-card-image,.proof-collaboration-visual,.discovery-about-photo,.zensu-welcome-image,.hero-image .hero-collage-item,.hero-collage-image,.hero-collage-photo,.sector-uploaded-cover,.featured-visual,.hero-image,.mascot-service';
  root.querySelectorAll('img,video').forEach(media=>{
   if(media.closest('.site-header,.site-footer,.brand-with-logo,.contact-heading-row,.social-icon,.studio-media-stamp'))return;
-  if(media.matches('img[src$=".svg"]')||media.classList.contains('contact-brand-mark')||media.classList.contains('mascot-service-thumbnail'))return;
+  if(media.matches('img[src$=".svg"]')||media.classList.contains('contact-brand-mark'))return;
   let host=media.closest(selectors);
   if(host && !root.contains(host))host=null;
   if(!host){
