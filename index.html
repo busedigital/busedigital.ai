@@ -1903,7 +1903,7 @@ function renderRoute(initial=false){
  if(dialog.open)closeDialog();
  $('#main').innerHTML=page.body;
  if(name==='index')enhanceDiscoveryHome();
- if(name==='maskotlar')$('#main .work-tabs a[data-work-tab="mascots"]').forEach(a=>a.setAttribute('aria-current','page'));
+ if(name==='maskotlar')document.querySelectorAll('#main .work-tabs a[data-work-tab="mascots"]').forEach(a=>a.setAttribute('aria-current','page'));
  addSpecialistSocialLinks(name);
  if(name==='sosyal-medya-yonetimi'){const wizard=$('#sm-request-form');wizard?.querySelectorAll('.sm-step[hidden] input,.sm-step[hidden] textarea,.sm-step[hidden] select').forEach(el=>{el.dataset.smWasRequired=el.required?'1':'0';el.required=false})}
  document.body.dataset.page=name+'.html';
