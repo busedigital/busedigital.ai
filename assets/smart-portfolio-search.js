@@ -16,7 +16,16 @@ function items(){
   (PORTFOLIO.works||[]).forEach(w=>{const cat=labels[w.category]||w.category||'Portföy';const tab=w.type==='animation'?'animation':w.type==='collaborations'?'collaborations':'ai';const url='#/hizmetlerim?tab='+encodeURIComponent(tab)+(w.category?'&sector='+encodeURIComponent(w.category):'')+'&project='+encodeURIComponent(w.id);add(w.title,cat,w.description||'',url,[w.id,w.type,w.category,cat].join(' '))});
   (PORTFOLIO.sectors||[]).filter(x=>x[0]!=='all').forEach(x=>add(x[1],'Sektör','Sektördeki çalışmaları inceleyin','#/hizmetlerim?tab=ai&sector='+encodeURIComponent(x[0]),x[0]));
  }
- [['AI Avatarlarım','#/ai-avatarlarim'],['UGC İçeriklerim','#/ugc-iceriklerim'],['Animasyon','#/hizmetlerim?tab=animation'],['İletişim','#/iletisim'],['Hizmetlerim','#/hizmetlerim?tab=ai'],['Web Sitesi Tasarımı','#/hizmetlerim']].forEach(x=>add(x[0],'Sayfa','',x[1],'hizmet portföy'));
+ [
+  ['Maskotlar','#/maskotlar','Hazır maskotlar, markaya özel maskot tasarımı, Zensu ve karakter animasyonları','maskot maskotlar marka maskotu maskot tasarımı karakter zensu'],
+  ['AI Avatarlarım','#/ai-avatarlarim','Dijital ikizim, kadın ve erkek avatarlar, beyaz fonlu stüdyo portreleri','avatar dijital ikiz kadın erkek portre'],
+  ['UGC İçeriklerim','#/ugc-iceriklerim','UGC video ve ürün tanıtımları','ugc ürün'],
+  ['Animasyon','#/hizmetlerim?tab=animation','Markaya ve kişiye özel animasyonlar','animasyon çizgi film'],
+  ['İşbirlikleri','#/hizmetlerim?tab=collaborations','Gerçek marka işbirlikleri','işbirliği reklam'],
+  ['İletişim','#/iletisim','Teklif ve iletişim formu','iletişim teklif başvuru'],
+  ['Hizmetlerim','#/hizmetlerim?tab=ai','Yapay zekâ görsel ve video çalışmaları','hizmet portföy reklam film'],
+  ['Web Sitesi Tasarımı','#/web-sitesi-tasarimi','Yapay zekâ destekli web sitesi tasarımı','web site tasarım']
+ ].forEach(x=>add(x[0],'Sayfa',x[2],x[1],x[3]));
  return out;
 }
 function render(){
