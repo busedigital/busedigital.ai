@@ -1,0 +1,47 @@
+name: Optimize miniature automotive cover
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/optimize-miniature-cover.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install Pillow
+        run: python -m pip install --quiet Pillow
+      - name: Convert cover and update portfolio reference
+        shell: bash
+        run: |
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          folder = Path('assets/media/otomotiv')
+          source = folder / '96634E3F-C3F9-4BB8-87A4-3B83932882ED.png'
+          target = folder / 'minik_teknisyenler_kapak.webp'
+          assert source.is_file(), f'Missing source: {source}'
+          with Image.open(source) as im:
+              im.save(target, 'WEBP', quality=82, method=6)
+          page = Path('index.html')
+          html = page.read_text(encoding='utf-8')
+          old = '"id":"automotive-miniature-technicians","path":"assets/media/otomotiv/281903518_1794840802565193.mp4","poster":"assets/media/otomotiv/96634E3F-C3F9-4BB8-87A4-3B83932882ED.png"'
+          new = old.replace('96634E3F-C3F9-4BB8-87A4-3B83932882ED.png', 'minik_teknisyenler_kapak.webp')
+          assert old in html or new in html, 'Portfolio project not found'
+          page.write_text(html.replace(old, new), encoding='utf-8')
+          print('WebP size:', target.stat().st_size)
+          PY
+      - name: Commit optimized cover and site update
+        run: |
+          git add index.html assets/media/otomotiv/minik_teknisyenler_kapak.webp
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Optimize miniature automotive cover to WebP"
+            git push
+          fi
