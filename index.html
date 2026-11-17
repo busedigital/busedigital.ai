@@ -2057,10 +2057,17 @@ function enhanceDiscoveryHome(){
 }
 function updateOnePageNavigation(){
  const links={
-  '#/hakkimda':'home-about','#/hizmetlerim?tab=ai':'home-services',
-  'blog/':'home-blog',
-  '#/sss':'home-faq'
+  '#/hakkimda':'home-about','#/hizmetlerim?tab=ai':'home-services'
  };
+ // Blog and FAQ have dedicated pages. Never redirect to hidden homepage sections.
+ const nav=document.getElementById('navigation');
+ if(nav){
+  Array.from(nav.querySelectorAll(':scope > a')).forEach(link=>{
+   const label=link.textContent.trim().toLocaleLowerCase('tr');
+   if(label==='blog')link.setAttribute('href','blog/');
+   if(label==='sss')link.setAttribute('href','#/sss');
+  });
+ }
  document.querySelectorAll('#navigation > a, #navigation > .nav-group > a').forEach(link=>{
   const href=link.getAttribute('href');
   if(links[href])link.setAttribute('href','#/index?section='+links[href]);
