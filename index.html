@@ -2493,6 +2493,40 @@ body.bd-home-redesign #home-start .hero-showcase figure picture > img{
   opacity:1!important;
   visibility:visible!important;
 }
+
+/* All-industry positioning: sector names are examples, not a service limit. */
+body.bd-home-redesign #main>#bd-sector-strip{padding-top:26px;padding-bottom:28px}
+body.bd-home-redesign #bd-sector-strip .bd-sector-unlimited{
+  margin:22px auto 0;max-width:1120px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:20px 26px;border:1px solid rgba(63,224,197,.38);
+  border-radius:18px;background:rgba(255,255,255,.045);
+}
+body.bd-home-redesign #bd-sector-strip .bd-sector-unlimited-copy{min-width:0}
+body.bd-home-redesign #bd-sector-strip .bd-sector-unlimited-label{
+  margin:0 0 6px;font:700 10px/1.4 Inter,Arial,sans-serif;
+  letter-spacing:2px;color:#3FE0C5;
+}
+body.bd-home-redesign #bd-sector-strip .bd-sector-unlimited h2{
+  margin:0 0 6px;color:#fff;font:600 clamp(21px,2.2vw,30px)/1.2 Outfit,Arial,sans-serif;
+}
+body.bd-home-redesign #bd-sector-strip .bd-sector-unlimited h2 span{color:#3FE0C5}
+body.bd-home-redesign #bd-sector-strip .bd-sector-unlimited-copy>p:last-child{
+  margin:0;color:#C9D3E0;font:400 13px/1.6 Inter,Arial,sans-serif;max-width:700px;
+}
+body.bd-home-redesign #bd-sector-strip .bd-sector-unlimited-cta{
+  flex:none;display:inline-flex;align-items:center;gap:9px;
+  padding:12px 17px;min-height:46px;background:#3FE0C5;color:#0F1A2A;
+  border-radius:999px;font:600 12px/1.35 Inter,Arial,sans-serif;
+  text-decoration:none;text-align:center;
+}
+body.bd-home-redesign #bd-sector-strip .bd-sector-unlimited-cta:hover{background:#74E8D4}
+@media(max-width:760px){
+ body.bd-home-redesign #bd-sector-strip .bd-sector-unlimited{
+  flex-direction:column;align-items:stretch;gap:15px;padding:18px;
+ }
+ body.bd-home-redesign #bd-sector-strip .bd-sector-unlimited-cta{justify-content:center}
+}
 </style><script id="bd-redesign-logic">
 (()=>{'use strict';
 const main=document.getElementById('main');
@@ -2507,6 +2541,9 @@ function apply(){
  const sectors=document.createElement('section');sectors.id='bd-sector-strip';sectors.className='bd-home-section';
  const row=document.createElement('div');row.className='bd-sector-row';const head=document.createElement('strong');head.textContent='ÇALIŞTIĞIM SEKTÖRLER';row.append(head);
  ['Otomotiv','Kozmetik','Moda','Gıda & İçecek','Mobilya','Teknoloji','E-ticaret'].forEach((name,i)=>{if(i){const star=document.createElement('span');star.className='star';star.textContent='✦';star.setAttribute('aria-hidden','true');row.append(star)}const t=document.createElement('span');t.textContent=name;row.append(t)});sectors.append(row);
+ const sectorPromo=document.createElement('div');sectorPromo.className='bd-sector-unlimited';
+ sectorPromo.innerHTML='<div class="bd-sector-unlimited-copy"><p class="bd-sector-unlimited-label">SİZİN SEKTÖRÜNÜZ DE DAHİL</p><h2>Yapay zekâyla <span>sektör sınırı yok.</span></h2><p>Otomotivden kozmetiğe, yerel işletmelerden teknolojiye… İhtiyacınız hangi alanda olursa olsun, markanıza özel reklam filmleri, görseller ve yaratıcı içerikler üretiyorum.</p></div><a class="bd-sector-unlimited-cta" href="#/iletisim">Sektörünüze özel fikir geliştirelim <span aria-hidden="true">↗</span></a>';
+ sectors.append(sectorPromo);
  const portfolio=document.createElement('section');portfolio.id='bd-featured-portfolio';portfolio.className='bd-home-section';portfolio.innerHTML='<div class="bd-portfolio-top"><div><p class="eyebrow">PORTFÖY</p><h2>Seçili kreatif çalışmalar</h2></div><a href="#/hizmetlerim?tab=ai">Tüm portföy →</a></div>';
  const grid=collab.querySelector('.proof-grid');
  if(grid){portfolio.append(grid);grid.querySelectorAll('.proof-card-tag').forEach(tag=>{const original=tag.textContent;tag.textContent=original.split('·')[0].trim();const extra=document.createElement('span');extra.className='bd-card-disclaimer';extra.textContent='Bağımsız portföy çalışması';tag.append(extra)})}
