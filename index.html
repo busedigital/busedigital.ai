@@ -2454,6 +2454,45 @@ body.bd-home-redesign .process li p{font-size:12px}
 body.bd-home-redesign #home-contact h2{font-size:clamp(30px,3.7vw,44px)}
 @media(max-width:900px){body.bd-home-redesign #main>.bd-home-section{padding-top:48px;padding-bottom:48px}body.bd-home-redesign #main>#home-start{gap:25px}body.bd-home-redesign #home-start .hero-showcase{grid-template-rows:repeat(2,150px)}}
 @media(max-width:600px){body.bd-home-redesign #main>.bd-home-section{padding-top:38px;padding-bottom:38px}body.bd-home-redesign #main>#home-start{padding-top:34px;padding-bottom:38px}body.bd-home-redesign #home-start h1{font-size:clamp(33px,8vw,43px)}body.bd-home-redesign #home-start .lead{font-size:14px}body.bd-home-redesign #home-start .hero-showcase{grid-template-rows:repeat(2,118px);gap:8px}body.bd-home-redesign #bd-featured-portfolio .proof-grid{gap:14px}}
+
+/* Hero image fix: studio-media-wrap must fill each figure on iOS and desktop.
+   Images were positioned absolute inside a zero-height media wrapper. */
+body.bd-home-redesign #home-start .hero-showcase figure{
+  position:relative!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  isolation:isolate;
+}
+body.bd-home-redesign #home-start .hero-showcase figure > .studio-media-wrap,
+body.bd-home-redesign #home-start .hero-showcase figure > .studio-media-target,
+body.bd-home-redesign #home-start .hero-showcase figure > picture{
+  display:block!important;
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+body.bd-home-redesign #home-start .hero-showcase figure img,
+body.bd-home-redesign #home-start .hero-showcase figure .studio-media-wrap > img,
+body.bd-home-redesign #home-start .hero-showcase figure picture > img{
+  position:absolute!important;
+  display:block!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:100%!important;
+  min-height:100%!important;
+  max-height:none!important;
+  max-width:none!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
 </style><script id="bd-redesign-logic">
 (()=>{'use strict';
 const main=document.getElementById('main');
