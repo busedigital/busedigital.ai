@@ -2375,6 +2375,40 @@ body.bd-home-redesign .hero-showcase figure::after,body.bd-home-redesign .proof-
 @media(max-width:900px){body.bd-home-redesign #main>.bd-home-section{padding:64px 24px}body.bd-home-redesign #main>#home-start{grid-template-columns:1fr;gap:36px;min-height:0}body.bd-home-redesign #home-start h1{font-size:clamp(38px,8vw,56px)}body.bd-home-redesign #home-collabs .proof-collaboration{grid-template-columns:1fr}body.bd-home-redesign #bd-featured-portfolio .proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))}body.bd-home-redesign .process ol{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){body.bd-home-redesign #home-start .hero-actions{flex-direction:column;align-items:stretch}body.bd-home-redesign #home-start .hero-actions .button{width:100%}body.bd-home-redesign #home-start .hero-showcase{grid-template-rows:repeat(2,140px)}body.bd-home-redesign #bd-featured-portfolio .proof-grid,body.bd-home-redesign .process ol{grid-template-columns:1fr}.bd-portfolio-top{align-items:flex-start;flex-direction:column}body.bd-home-redesign #home-contact h2{font-size:36px}}
 @media(prefers-reduced-motion:reduce){.bd-cursor-ring,.bd-cursor-dot,body.bd-home-redesign .proof-work-card img{transition:none!important;animation:none!important}}
+
+/* 2026-11-17 — Compact homepage spacing and typography only */
+body.bd-home-redesign #main>.bd-home-section{padding-top:64px;padding-bottom:64px}
+body.bd-home-redesign #main>#home-start{min-height:0;gap:38px;padding-top:58px;padding-bottom:58px}
+body.bd-home-redesign #home-start h1{font-size:clamp(37px,4.35vw,58px);line-height:1.09;margin:12px 0 17px}
+body.bd-home-redesign #home-start .lead{font-size:15px;line-height:1.6;max-width:530px}
+body.bd-home-redesign #home-start .hero-actions{margin-top:20px;gap:12px}
+body.bd-home-redesign #home-start .hero-actions .button{min-height:50px;padding:12px 20px;font-size:13px}
+body.bd-home-redesign #home-start .hero-caption{font-size:10px;letter-spacing:.1em;margin-top:14px}
+body.bd-home-redesign #home-start .hero-showcase{grid-template-rows:repeat(2,154px);gap:12px;align-self:center}
+body.bd-home-redesign #home-start .hero-showcase figure{position:relative;min-height:0}
+body.bd-home-redesign #home-start .hero-showcase figure img{position:absolute!important;inset:0;width:100%!important;height:100%!important;object-fit:cover!important;aspect-ratio:auto!important}
+body.bd-home-redesign #main>#bd-sector-strip{padding-top:18px;padding-bottom:18px}
+body.bd-home-redesign .bd-sector-row{font-size:12px;gap:9px}
+body.bd-home-redesign #main>.bd-home-section .section-title h2,body.bd-home-redesign .bd-portfolio-top h2{font-size:clamp(28px,3.15vw,40px)}
+body.bd-home-redesign .bd-portfolio-top{margin-bottom:20px}
+body.bd-home-redesign #bd-featured-portfolio .proof-grid{gap:18px}
+body.bd-home-redesign #bd-featured-portfolio .proof-card-image{aspect-ratio:5/4}
+body.bd-home-redesign #bd-featured-portfolio .proof-card-tag{padding:11px 15px 0;font-size:10px}
+body.bd-home-redesign #bd-featured-portfolio .proof-work-card strong{padding:0 15px;font-size:15px;line-height:1.35}
+body.bd-home-redesign #bd-featured-portfolio .proof-card-action{padding:0 15px;font-size:12px}
+body.bd-home-redesign #bd-featured-portfolio .proof-work-card{gap:5px;padding-bottom:15px}
+body.bd-home-redesign .bd-card-disclaimer{font-size:10px}
+body.bd-home-redesign .bd-portfolio-note{font-size:12px;margin-top:16px}
+body.bd-home-redesign #home-collabs .proof-collaboration{gap:28px}
+body.bd-home-redesign #home-collabs .proof-collaboration-copy p{font-size:14px;line-height:1.6}
+body.bd-home-redesign .process ol{gap:12px}
+body.bd-home-redesign .process li{padding:19px 15px}
+body.bd-home-redesign .process .step{font-size:32px}
+body.bd-home-redesign .process li h3{font-size:17px;margin:9px 0}
+body.bd-home-redesign .process li p{font-size:12px}
+body.bd-home-redesign #home-contact h2{font-size:clamp(30px,3.7vw,44px)}
+@media(max-width:900px){body.bd-home-redesign #main>.bd-home-section{padding-top:48px;padding-bottom:48px}body.bd-home-redesign #main>#home-start{gap:25px}body.bd-home-redesign #home-start .hero-showcase{grid-template-rows:repeat(2,150px)}}
+@media(max-width:600px){body.bd-home-redesign #main>.bd-home-section{padding-top:38px;padding-bottom:38px}body.bd-home-redesign #main>#home-start{padding-top:34px;padding-bottom:38px}body.bd-home-redesign #home-start h1{font-size:clamp(33px,8vw,43px)}body.bd-home-redesign #home-start .lead{font-size:14px}body.bd-home-redesign #home-start .hero-showcase{grid-template-rows:repeat(2,118px);gap:8px}body.bd-home-redesign #bd-featured-portfolio .proof-grid{gap:14px}}
 </style><script id="bd-redesign-logic">
 (()=>{'use strict';
 const main=document.getElementById('main');
