@@ -2624,4 +2624,65 @@ addEventListener('hashchange',schedule);schedule();
  });
 })();
 </script>
+<!-- BUSE DIGITAL navigation structure 2026-11 -->
+<style>
+#navigation .bd-nav-heading{display:block;padding:10px 13px 3px;color:#67C3BC;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+#navigation .bd-nav-cta{background:#67C3BC!important;color:#18283D!important;border-radius:8px;padding:10px 16px!important;font-weight:700!important;margin-left:auto;white-space:nowrap}
+#navigation .bd-nav-cta:hover{background:#83d6ce!important;color:#18283D!important}
+#navigation .bd-nav-cta[aria-current]:after{display:none}
+#navigation .bd-nav-dropdown{min-width:285px}
+#navigation .bd-nav-dropdown a{white-space:normal}
+@media(max-width:850px){
+ #navigation .bd-nav-cta{display:block!important;margin:12px 0 0!important;text-align:center}
+ #navigation .bd-nav-dropdown{position:static!important;width:100%;min-width:0}
+ #navigation .bd-nav-heading{padding:10px 14px 4px}
+ #navigation .nav-group>.nav-subtoggle{flex-shrink:0}
+}
+</style>
+<script>
+(function(){
+ var nav=document.getElementById('navigation');if(!nav)return;
+ var search=document.getElementById('smart-portfolio-search');
+ var groups=[
+  {id:'works-menu',name:'Çalışmalar',links:[
+   ['Yapay Zekâ İçeriklerim','#/hizmetlerim?tab=ai'],
+   ['Maskotlar','#/maskotlar'],
+   ['Animasyon','#/hizmetlerim?tab=animation'],
+   ['UGC İçeriklerim','#/ugc-iceriklerim'],
+   ['AI Avatarlarım','#/ai-avatarlarim'],
+   ['İşbirlikleri','#/isbirlikleri']]},
+  {id:'services-menu',name:'Hizmetler',sections:[
+   {name:'Ana Hizmetler',links:[
+    ['AI Reklam Filmi & Video','#/hizmetlerim?tab=ai&service=video'],
+    ['AI Ürün & Kampanya Görselleri','#/hizmetlerim?tab=ai&service=images'],
+    ['Marka Maskotu & Animasyon','#/hizmetlerim?tab=animation&service=brand']]},
+   {name:'Ek Hizmetler',links:[
+    ['Sosyal Medya Yönetimi','#/sosyal-medya-yonetimi'],
+    ['Meta Reklam Yönetimi','#/iletisim?service=Meta%20Reklam%20Y%C3%B6netimi'],
+    ['Web Sitesi Tasarımı','#/web-sitesi-tasarimi']]}]}
+ ];
+ nav.replaceChildren();
+ function link(name,href,cls){var a=document.createElement('a');a.textContent=name;a.href=href;if(cls)a.className=cls;return a}
+ groups.forEach(function(g){
+  var wrapper=document.createElement('div');wrapper.className='nav-group bd-nav-group';
+  var title=document.createElement('a');title.href='#'+g.id;title.textContent=g.name;title.setAttribute('aria-haspopup','true');title.setAttribute('aria-controls',g.id);title.setAttribute('aria-expanded','false');wrapper.append(title);
+  var toggle=document.createElement('button');toggle.type='button';toggle.className='nav-subtoggle';toggle.textContent='⌄';toggle.setAttribute('aria-label',g.name+' menüsünü aç');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-controls',g.id);wrapper.append(toggle);
+  var dropdown=document.createElement('div');dropdown.id=g.id;dropdown.className='nav-dropdown bd-nav-dropdown';dropdown.setAttribute('aria-label',g.name);
+  function appendLinks(items){items.forEach(function(item){dropdown.append(link(item[0],item[1]))})}
+  if(g.links)appendLinks(g.links);
+  if(g.sections)g.sections.forEach(function(section){var heading=document.createElement('span');heading.className='bd-nav-heading';heading.textContent=section.name;dropdown.append(heading);appendLinks(section.links)});
+  wrapper.append(dropdown);nav.append(wrapper);
+  function setOpen(open){wrapper.classList.toggle('is-expanded',open);toggle.setAttribute('aria-expanded',String(open));title.setAttribute('aria-expanded',String(open))}
+  toggle.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var opening=!wrapper.classList.contains('is-expanded');nav.querySelectorAll('.bd-nav-group').forEach(function(other){other.classList.remove('is-expanded');other.querySelector('.nav-subtoggle').setAttribute('aria-expanded','false')});setOpen(opening)});
+  title.addEventListener('click',function(e){e.preventDefault();setOpen(!wrapper.classList.contains('is-expanded'))});
+ });
+ nav.append(link('Hakkımda','#/hakkimda'));nav.append(link('Akademi','#/egitim-akademi'));nav.append(link('Blog','blog/'));nav.append(link('Teklif Al →','#/iletisim','bd-nav-cta'));
+ if(search)nav.append(search);
+ var footer=document.querySelector('.site-footer .footer-links');
+ if(footer&&!footer.querySelector('.bd-footer-faq'))footer.append(link('SSS →','#/sss','bd-footer-faq'));
+ function placeFaq(){var main=document.getElementById('main'),faq=main&&main.querySelector('#home-faq');if(faq&&faq.nextElementSibling)main.append(faq)}
+ placeFaq();
+ var scheduled=false;new MutationObserver(function(){if(scheduled)return;scheduled=true;queueMicrotask(function(){scheduled=false;placeFaq()})}).observe(document.getElementById('main'),{childList:true});
+})();
+</script>
 </body></html>
