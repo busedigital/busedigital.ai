@@ -1715,6 +1715,8 @@ const filter=$('#sector-filter');const field=$('.filter-field');if(tab==='collab
 const fashionChoices=[['women','Kadın Giyim'],['men','Erkek Giyim'],['children','Çocuk Giyim'],['bridal','Gelinlik'],['accessories','Çanta & Aksesuar']];
 let fashionChoice=fashionChoices.some(([id])=>id===qs.get('style'))?qs.get('style'):'';
 const automotiveGroups=[['vehicles','Taşıtlar (Ana Ürünler)'],['parts','Yedek Parça ve Aksam'],['accessories','Aksesuar ve Bakım Ürünleri'],['services','Hizmet ve Servis']];
+const jewelryGroups=[['altin-pirlanta','Altın & Pırlanta'],['gumus-celik','Gümüş & Çelik Takı'],['kolye-kupe-yuzuk-bileklik','Kolye, Küpe, Yüzük & Bileklik'],['e-ticaret-reklam','E-Ticaret & Reklam Kampanyaları']];
+let jewelryChoice=jewelryGroups.some(([id])=>id===qs.get('style'))?qs.get('style'):'';
 let automotiveChoice=automotiveGroups.some(([id])=>id===qs.get('style'))?qs.get('style'):'';
 let mediaTypeFilter='all';
 const filterBar=$('.filter-bar');
@@ -1830,6 +1832,12 @@ function render(){
     const intro=el('p','subcategory-intro','Moda koleksiyonları:');subcategories.append(intro);
     const allFashion=el('button','subcategory-btn','Tüm Moda');allFashion.type='button';allFashion.setAttribute('aria-pressed',String(!fashionChoice));allFashion.addEventListener('click',()=>{fashionChoice='';const q=routeParams();q.set('sector','fashion');q.delete('style');history.replaceState(null,'','#/'+routeName()+'?'+q);render()});subcategories.append(allFashion);
     fashionChoices.forEach(([key,label])=>{const btn=el('button','subcategory-btn',label);btn.type='button';btn.setAttribute('aria-pressed',String(fashionChoice===key));btn.addEventListener('click',()=>{fashionChoice=key;const q=routeParams();q.set('sector','fashion');q.set('style',key);history.replaceState(null,'','#/'+routeName()+'?'+q);render()});subcategories.append(btn)});
+  }else if(tab==='ai'&&chosen==='jewelry'){
+    subcategories.hidden=false;
+    subcategories.setAttribute('aria-label','Takı ve mücevherat alt kategorileri');
+    subcategories.append(el('p','subcategory-intro','Takı & Mücevherat koleksiyonları:'));
+    const all=el('button','subcategory-btn','Tüm Takı & Mücevherat');all.type='button';all.setAttribute('aria-pressed',String(!jewelryChoice));all.addEventListener('click',()=>{jewelryChoice='';const q=routeParams();q.set('sector','jewelry');q.delete('style');history.replaceState(null,'','#/'+routeName()+'?'+q);render()});subcategories.append(all);
+    jewelryGroups.forEach(([key,label])=>{const btn=el('button','subcategory-btn',label);btn.type='button';btn.setAttribute('aria-pressed',String(jewelryChoice===key));btn.addEventListener('click',()=>{jewelryChoice=key;const q=routeParams();q.set('sector','jewelry');q.set('style',key);history.replaceState(null,'','#/'+routeName()+'?'+q);render()});subcategories.append(btn)});
   }else if(tab==='ai'&&chosen==='automotive'){
     subcategories.hidden=false;
     subcategories.setAttribute('aria-label','Otomotiv alt kategorileri');
@@ -1904,7 +1912,7 @@ function render(){
   }
   if(tab==='animation'&&!chosen){guide('Hangi animasyon türünü incelemek istersiniz?','Kişiye özel hikâyeler, markalara özel animasyonlar ve Pilu çizgi film serisi ayrı galerilerde sunuluyor.','Animasyon türünü seç ↓');return}
   const isVideoMedia=m=>!!m&&/\.(mp4|mov|m4v|webm)$/i.test(m.path);
-  const list=data.works.filter(w=>w.type===tab&&isReady(w.id)&&(tab==='collaborations'||chosen==='all'||w.category===chosen)&&(!(tab==='ai'&&chosen==='fashion'&&fashionChoice)||w.subcategory===fashionChoice)&&(!(tab==='ai'&&chosen==='automotive'&&automotiveChoice)||w.subcategory===automotiveChoice)&&(tab!=='ai'||mediaTypeFilter==='all'||(mediaTypeFilter==='video'?(isVideoMedia(media[w.id])||w.gallery?.some(id=>isVideoMedia(media[id]))):(!isVideoMedia(media[w.id])))));
+  const list=data.works.filter(w=>w.type===tab&&isReady(w.id)&&(tab==='collaborations'||chosen==='all'||w.category===chosen)&&(!(tab==='ai'&&chosen==='fashion'&&fashionChoice)||w.subcategory===fashionChoice)&&(!(tab==='ai'&&chosen==='automotive'&&automotiveChoice)||w.subcategory===automotiveChoice)&&(!(tab==='ai'&&chosen==='jewelry'&&jewelryChoice)||w.subcategory===jewelryChoice)&&(tab!=='ai'||mediaTypeFilter==='all'||(mediaTypeFilter==='video'?(isVideoMedia(media[w.id])||w.gallery?.some(id=>isVideoMedia(media[id]))):(!isVideoMedia(media[w.id])))));
   $('#result-count').textContent=tab==='collaborations'?'':list.length+' çalışma';
   if(!list.length){const empty=el('div','empty-state');empty.append(el('h2','',tab==='collaborations'?'Gerçek iş birlikleri':chosen==='architecture'?'Mimari projeleri':chosen==='business'?'İşletme Tanıtımı projeleri':'Bu kategoride henüz yayınlanmış çalışma yok.'),el('p','',tab==='collaborations'?'Bu alan yalnızca doğrulanmış marka iş birlikleri için ayrılmıştır.':chosen==='architecture'||chosen==='business'?'Bu kategori hazır; ancak proje videosu henüz medya klasörüne yüklenmemiş. İçerik eklendiğinde burada sergilenecek.':'Yeni çalışmalar eklendiğinde bu koleksiyonda görünecek.'));grid.append(empty);return}
   list.forEach(w=>{
