@@ -1,0 +1,22 @@
+/* BUSE DIGITAL — contextual cursor, isolated from site layout */
+:root{--cursor-accent:#3FE0C5;--cursor-navy:#162338}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+ body.bd-context-cursor,body.bd-context-cursor a,body.bd-context-cursor button,body.bd-context-cursor [data-cursor]{cursor:none!important}
+ body.bd-context-cursor input,body.bd-context-cursor textarea,body.bd-context-cursor select,body.bd-context-cursor [contenteditable],body.bd-context-cursor [contenteditable] *,body.bd-context-cursor dialog,body.bd-context-cursor dialog *,body.bd-context-cursor [role=dialog],body.bd-context-cursor [role=dialog] *{cursor:auto!important}
+ body.bd-context-cursor input,body.bd-context-cursor textarea,body.bd-context-cursor [contenteditable],body.bd-context-cursor [contenteditable] *{cursor:text!important}
+ .bd-context-dot,.bd-context-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:2147483647;opacity:0;will-change:transform;transition:opacity .16s ease}
+ .bd-context-dot{width:6px;height:6px;border-radius:50%;background:var(--cursor-accent)}
+ .bd-context-ring{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1.5px solid var(--cursor-accent);background:transparent;transition:opacity .16s ease,width .3s cubic-bezier(.34,1.56,.64,1),height .3s cubic-bezier(.34,1.56,.64,1),background .3s cubic-bezier(.34,1.56,.64,1),border-color .3s}
+ .bd-context-ring.is-link{width:50px;height:50px;background:rgba(63,224,197,.18)}
+ .bd-context-ring.is-magnetic{width:58px;height:58px;background:rgba(63,224,197,.09)}
+ .bd-context-ring.is-reveal{width:90px;height:90px;background:var(--cursor-accent)}
+ .bd-context-ring>span{font:700 12px/1.1 Inter,Arial,sans-serif;color:var(--cursor-navy);display:none;white-space:nowrap}
+ .bd-context-ring.is-reveal>span{display:block}
+ .bd-context-ring.is-pressed{scale:.8;transition:scale 150ms ease,opacity .16s ease,width .3s cubic-bezier(.34,1.56,.64,1),height .3s cubic-bezier(.34,1.56,.64,1),background .3s}
+ .bd-context-ring:not(.is-pressed){scale:1;transition:scale 150ms ease,opacity .16s ease,width .3s cubic-bezier(.34,1.56,.64,1),height .3s cubic-bezier(.34,1.56,.64,1),background .3s}
+ body.bd-context-cursor [data-magnetic]{transition:translate .42s cubic-bezier(.34,1.56,.64,1);will-change:translate}
+}
+@media (pointer:coarse),(hover:none),(prefers-reduced-motion:reduce){
+ .bd-context-dot,.bd-context-ring{display:none!important}
+ body.bd-context-cursor,body.bd-context-cursor *,body.bd-context-cursor a,body.bd-context-cursor button{cursor:revert!important}
+}
