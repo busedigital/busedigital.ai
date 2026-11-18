@@ -2312,8 +2312,9 @@ switcher.addEventListener('click',event=>{
  try{localStorage.setItem('buse-language',currentLanguage)}catch(e){}
  translateTree();
 });
-const observer=new MutationObserver(()=>{if(!busy)queueMicrotask(translateTree)});
-observer.observe(document.body,{subtree:true,childList:true,characterData:true});
+let languageUpdatePending=false;
+const observer=new MutationObserver(()=>{if(busy||languageUpdatePending)return;languageUpdatePending=true;requestAnimationFrame(()=>{languageUpdatePending=false;translateTree()})});
+observer.observe(document.getElementById('main')||document.body,{subtree:false,childList:true});
 window.addEventListener('hashchange',()=>queueMicrotask(translateTree));
 translateTree();
 })();
@@ -2620,7 +2621,7 @@ addEventListener('hashchange',schedule);schedule();
  document.addEventListener('DOMContentLoaded',function(){
   normalizeLinkArrows();
   var pending=false;
-  new MutationObserver(function(){if(pending)return;pending=true;queueMicrotask(function(){pending=false;normalizeLinkArrows()})}).observe(document.body,{childList:true,subtree:true});
+  window.addEventListener('hashchange',function(){if(pending)return;pending=true;requestAnimationFrame(function(){pending=false;normalizeLinkArrows()})});
  });
 })();
 </script>
