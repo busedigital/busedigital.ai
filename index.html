@@ -2629,6 +2629,18 @@ addEventListener('hashchange',schedule);schedule();
  });
 })();
 </script>
+<style id="bd-navigation-click-fix-20261118">
+/* Keep the header and its open dropdowns above all content, pseudo-elements,
+   media overlays and portfolio cards. */
+.site-header{position:relative!important;z-index:10000!important;overflow:visible!important;isolation:isolate}
+.site-header .header-inner,#navigation,#navigation>.nav-group{overflow:visible!important}
+#navigation{position:relative!important;z-index:10001!important}
+#navigation .nav-group{position:relative}
+#navigation .nav-dropdown{z-index:10002!important;pointer-events:auto!important}
+#navigation .nav-dropdown a{position:relative!important;z-index:10003!important;pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation}
+#navigation .nav-dropdown a:hover,#navigation .nav-dropdown a:focus-visible{background:#67C3BC!important;color:#18283D!important}
+@media(max-width:850px){#navigation .nav-dropdown{position:static!important}}
+</style>
 <!-- BUSE DIGITAL navigation structure 2026-11 -->
 <style>
 #navigation .bd-nav-heading{display:block;padding:10px 13px 3px;color:#67C3BC;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
