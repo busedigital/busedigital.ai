@@ -2691,7 +2691,7 @@ addEventListener('hashchange',schedule);schedule();
   toggle.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var opening=!wrapper.classList.contains('is-expanded');nav.querySelectorAll('.bd-nav-group').forEach(function(other){other.classList.remove('is-expanded');other.querySelector('.nav-subtoggle').setAttribute('aria-expanded','false')});setOpen(opening)});
   title.addEventListener('click',function(e){e.preventDefault();setOpen(!wrapper.classList.contains('is-expanded'))});
  });
- nav.append(link('Hakkımda','#/hakkimda'));nav.append(link('Blog','blog/'));nav.append(link('AI Öğren','#/egitim-akademi'));nav.append(link('İletişim →','#/iletisim','bd-nav-cta'));
+ nav.append(link('AI Avatarlarım','#/ai-avatarlarim'));nav.append(link('Hakkımda','#/hakkimda'));nav.append(link('Blog','blog/'));nav.append(link('AI Öğren','#/egitim-akademi'));nav.append(link('İletişim →','#/iletisim','bd-nav-cta'));
  if(search)nav.append(search);
  var footer=document.querySelector('.site-footer .footer-links');
  if(footer&&!footer.querySelector('.bd-footer-faq'))footer.append(link('SSS →','#/sss','bd-footer-faq'));
