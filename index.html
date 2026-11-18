@@ -2186,8 +2186,7 @@ function installStudioMediaStamps(root){
 function refreshStudioMediaStamps(){installStudioMediaStamps(document.getElementById('main'));installStudioMediaStamps(document.getElementById('media-dialog'))}
 let studioStampScheduled=false;
 function scheduleStudioMediaStamps(){if(studioStampScheduled)return;studioStampScheduled=true;queueMicrotask(()=>{studioStampScheduled=false;refreshStudioMediaStamps()})}
-const studioStampObserver=new MutationObserver(scheduleStudioMediaStamps);
-for(const id of ['main','media-dialog']){const root=document.getElementById(id);if(root)studioStampObserver.observe(root,{childList:true,subtree:true})}
+// Media stamps are refreshed explicitly on route rendering; avoid continuous DOM scans.
 addVerifiedYouTubeFooter();
 function renderRoute(initial=false){
  const name=routeName(),page=PAGES[name];
@@ -2591,7 +2590,7 @@ addEventListener('hashchange',schedule);schedule();
  }
  document.addEventListener('DOMContentLoaded',function(){
   setupRahRunFallback(document);
-  new MutationObserver(function(){setupRahRunFallback(document)}).observe(document.body,{childList:true,subtree:true});
+  window.addEventListener('hashchange',function(){requestAnimationFrame(function(){setupRahRunFallback(document)})});
  });
 })();
 </script>
