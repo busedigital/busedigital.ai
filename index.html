@@ -2664,26 +2664,28 @@ addEventListener('hashchange',schedule);schedule();
  var nav=document.getElementById('navigation');if(!nav)return;
  var search=document.getElementById('smart-portfolio-search');
  var groups=[
-  {id:'works-menu',name:'Çalışmalar',links:[
-   ['Yapay Zekâ İçeriklerim','#/calismalarim?tab=ai'],
-   ['Maskotlar','#/maskotlar'],
-   ['Animasyon','#/calismalarim?tab=animation'],
-   ['UGC İçeriklerim','#/ugc-iceriklerim'],
-   ['AI Avatarlarım','#/ai-avatarlarim'],
-   ['İşbirlikleri','#/isbirlikleri']]},
-  {id:'services-menu',name:'Hizmetler',links:[
-   ['AI Reklam Filmi & Video','#/calismalarim?tab=ai'],
-   ['AI Ürün & Kampanya Görselleri','#/calismalarim?tab=ai'],
-   ['Marka Maskotu & Animasyon','#/maskotlar'],
-   ['Sosyal Medya Yönetimi','#/sosyal-medya-yonetimi'],
-   ['Meta Reklam Yönetimi','#/iletisim'],
-   ['Web Sitesi Tasarımı','#/web-sitesi-tasarimi']]}
+  {id:'works-menu',name:'Çalışmalarım',links:[
+   ['Yapay Zekâ Çalışmalarım','#/calismalarim?tab=ai'],
+   ['Animasyon Çalışmalarım','#/calismalarim?tab=animation'],
+   ['UGC Çalışmalarım','#/ugc-iceriklerim'],
+   ['Maskot Çalışmalarım','#/maskotlar'],
+   ['İş Birliklerim','#/calismalarim?tab=collaborations']]},
+  {id:'services-menu',name:'Hizmetlerim',links:[
+   ['Tüm Hizmetlerim','#/hizmetlerim'],
+   ['AI Reklam Filmi & Video','#/ai-reklam-filmi'],
+   ['AI Ürün & Kampanya Görselleri','#/ai-urun-gorselleri'],
+   ['Kişiye Özel Animasyon','#/kisiye-ozel-animasyon'],
+   ['Markaya Özel Animasyon & Maskot','#/marka-maskotu-animasyon'],
+   ['UGC İçerik Üretimi','#/ugc-hizmeti'],
+   ['Sosyal Medya Yönetimi','#/sosyal-medya-hizmeti'],
+   ['Meta Reklam Yönetimi','#/meta-reklam-hizmeti'],
+   ['Web Sitesi Tasarımı','#/web-tasarim-hizmeti']]}
  ];
  nav.replaceChildren();
  function link(name,href,cls){var a=document.createElement('a');a.textContent=name;a.href=href;if(cls)a.className=cls;return a}
  groups.forEach(function(g){
   var wrapper=document.createElement('div');wrapper.className='nav-group bd-nav-group';
-  var title=document.createElement('a');title.href='#'+g.id;title.textContent=g.name;title.setAttribute('aria-haspopup','true');title.setAttribute('aria-controls',g.id);title.setAttribute('aria-expanded','false');wrapper.append(title);
+  var title=document.createElement('a');title.href=g.id==='services-menu'?'#/hizmetlerim':'#/calismalarim';title.textContent=g.name;title.setAttribute('aria-haspopup','true');title.setAttribute('aria-controls',g.id);title.setAttribute('aria-expanded','false');wrapper.append(title);
   var toggle=document.createElement('button');toggle.type='button';toggle.className='nav-subtoggle';toggle.textContent='⌄';toggle.setAttribute('aria-label',g.name+' menüsünü aç');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-controls',g.id);wrapper.append(toggle);
   var dropdown=document.createElement('div');dropdown.id=g.id;dropdown.className='nav-dropdown bd-nav-dropdown';dropdown.setAttribute('aria-label',g.name);
   function appendLinks(items){items.forEach(function(item){dropdown.append(link(item[0],item[1]))})}
@@ -2692,7 +2694,7 @@ addEventListener('hashchange',schedule);schedule();
   wrapper.append(dropdown);nav.append(wrapper);
   function setOpen(open){wrapper.classList.toggle('is-expanded',open);toggle.setAttribute('aria-expanded',String(open));title.setAttribute('aria-expanded',String(open))}
   toggle.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var opening=!wrapper.classList.contains('is-expanded');nav.querySelectorAll('.bd-nav-group').forEach(function(other){other.classList.remove('is-expanded');other.querySelector('.nav-subtoggle').setAttribute('aria-expanded','false')});setOpen(opening)});
-  title.addEventListener('click',function(e){e.preventDefault();setOpen(!wrapper.classList.contains('is-expanded'))});
+  title.addEventListener('click',function(){nav.querySelectorAll('.bd-nav-group').forEach(function(other){other.classList.remove('is-expanded');other.querySelector('.nav-subtoggle')?.setAttribute('aria-expanded','false')})});
  });
  nav.append(link('AI Avatarlarım','#/ai-avatarlarim'));nav.append(link('Hakkımda','#/hakkimda'));nav.append(link('Blog','blog/'));nav.append(link('AI Öğren','#/egitim-akademi'));nav.append(link('İletişim →','#/iletisim','bd-nav-cta'));
  if(search)nav.append(search);
