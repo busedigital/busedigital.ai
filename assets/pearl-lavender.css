@@ -195,3 +195,9 @@ html body.bd-home-redesign #main #home-start .hero-actions .button:not(.button-q
 html body.bd-home-redesign #main #home-collabs .proof-actions .button{background:#76618F!important;color:#FFFFFF!important}
 html body.bd-home-redesign #main #home-contact .button{background:#FFFFFF!important;border-color:#FFFFFF!important;color:#675879!important}
 @media(max-width:900px){html body[data-page] #navigation,html body[data-page] #navigation .nav-dropdown{background:#FFFFFF!important;color:#675879!important}}
+
+/* Pearl Lavender — top navigation strip */
+html body[data-page] .site-header,html body.bd-home-redesign .site-header,html body.bd-home-redesign[data-page="index.html"] .site-header{background:#EAE4F0!important;border-bottom:1px solid #D8CDE2!important;color:#675879!important}
+html body[data-page] .site-header .brand-wordmark strong,html body[data-page] .site-header .brand-wordmark strong span,html body[data-page] .site-header .brand-wordmark small,html body[data-page] .site-header #navigation a:not(.bd-nav-cta),html body[data-page] .site-header #navigation .nav-subtoggle{color:#675879!important}
+html body[data-page] .site-header #navigation .bd-nav-cta{background:#76618F!important;color:white!important}
+@media(max-width:900px){html body[data-page] .site-header,html body.bd-home-redesign .site-header{background:#EAE4F0!important}}
