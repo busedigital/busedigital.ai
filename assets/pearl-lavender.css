@@ -1,0 +1,75 @@
+/* BUSE DIGITAL — Pearl Lavender unified visual system, 2026-11-19 */
+:root{color-scheme:light;--bg:#FAFAF8;--surface:#FFFFFF;--text:#675879;--gold:#76618F;--muted:#76618F;--line:#EAE4F0;--quiet:#595560;--cream:#FAFAF8;--cream-light:#FFFFFF;--cream-ink:#675879;--pearl:#FAFAF8;--lavender:#675879;--lavender-cta:#76618F;--lavender-soft:#EAE4F0;--body-ink:#55565C}
+html{color-scheme:light}
+body,body[data-page],body[data-page="index.html"]{background:#FAFAF8;color:#675879}
+body p,body li,body small,body .muted{color:#55565C}
+body h1,body h2,body h3,body h4,body .section-title,body .brand{color:#675879}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #76618F;outline-offset:3px}
+::selection{background:#EAE4F0;color:#675879}
+.site-header,body[data-page="index.html"] .site-header{background:rgba(250,250,248,.98);border-bottom:1px solid #EAE4F0;box-shadow:0 2px 14px rgba(103,88,121,.035)}
+.site-header .brand,.site-header .brand strong,.site-header .brand-wordmark,.site-header .brand-wordmark strong,.site-header .brand-wordmark span,.site-header .brand small,#navigation a,#navigation button{color:#675879}
+#navigation a:hover,#navigation a[aria-current],.brand>span,.eyebrow,.dash{color:#76618F}
+.menu-toggle span{background:#675879}
+#navigation .nav-dropdown{background:#FFFFFF;border:1px solid #EAE4F0;box-shadow:0 15px 35px rgba(80,60,90,.12)}
+#navigation .nav-dropdown a{color:#675879}
+#navigation .nav-dropdown a:hover,#navigation .nav-dropdown a:focus-visible,#navigation .nav-dropdown a[aria-current]{background:#EAE4F0;color:#675879}
+#navigation .nav-subtoggle{color:#675879}
+.button,.btn-primary,.bd-service-cta,.project-detail-btn,.academy-join,.contact-submit,button[type="submit"]{background:#76618F!important;color:#FFFFFF!important;border-color:#76618F!important;border-radius:999px}
+.button:hover,.bd-service-cta:hover,.project-detail-btn:hover,button[type="submit"]:hover{background:#675879!important;color:#FFFFFF!important}
+.button-quiet,.button-outline,.bd-service-links a{background:#FFFFFF!important;color:#675879!important;border:1px solid #B5A5C5!important;border-radius:999px}
+#main a.text-link,#main a.email-link,footer a:not(.button):not(.brand),.text-link,.email-link{color:#675879!important}
+input:not([type="checkbox"]):not([type="radio"]),textarea,select,.filter-bar select{background:#FFFFFF!important;color:#42394C!important;border:1px solid #CFC2D9!important;border-radius:12px}
+input::placeholder,textarea::placeholder{color:#746A7A}
+input[type="checkbox"],input[type="radio"]{accent-color:#76618F}
+dialog,.modal,.modal-content{background:#FFFFFF;color:#675879}
+.close-dialog{color:#675879}
+body[data-page="index.html"] .hero,body[data-page="index.html"] .home-services,body[data-page="index.html"] .featured,body[data-page="index.html"] .process,body[data-page="index.html"] .home-contact{color:#675879}
+body[data-page="index.html"] .hero::before,body[data-page="index.html"] .home-services::before,body[data-page="index.html"] .home-contact::before,body[data-page="index.html"] .process::before,body[data-page="index.html"] .featured::before{background:#FAFAF8!important}
+body[data-page="index.html"] .hero h1,body[data-page="index.html"] .hero h2,body[data-page="index.html"] .hero p,body[data-page="index.html"] .home-services h2,body[data-page="index.html"] .home-services h3,body[data-page="index.html"] .process h2,body[data-page="index.html"] .process h3,body[data-page="index.html"] .home-contact h2,body[data-page="index.html"] .featured h2{color:#675879!important}
+body[data-page="index.html"] .hero .eyebrow,body[data-page="index.html"] .home-services .eyebrow,body[data-page="index.html"] .process .eyebrow,body[data-page="index.html"] .home-contact .eyebrow{color:#76618F}
+body[data-page="index.html"] .hero .button,body[data-page="index.html"] .home-contact .button{background:#76618F!important;color:white!important;border-color:#76618F!important}
+body[data-page="index.html"] .hero .button-quiet{background:transparent!important;color:#675879!important;border-color:#B5A5C5!important}
+body[data-page="index.html"] .hero-image img{background:#F1EEF4}
+body[data-page="index.html"] .service-grid li,body[data-page="index.html"] .process li,body[data-page="index.html"] .discovery-card{background:#FFFFFF!important;color:#675879;border:1px solid #EAE4F0;border-radius:16px}
+body[data-page="index.html"] .service-grid li h3,body[data-page="index.html"] .service-grid li p,body[data-page="index.html"] .process li h3,body[data-page="index.html"] .process li p{color:#675879}
+body[data-page="index.html"] .process li:not(:last-child)::after{background:#C6B8D2}
+.featured-card,.avatar-card,.work-card,.portfolio-card,.project-card,.discovery-card,.media-open,.featured-visual,.avatar-portrait{border-color:#EAE4F0}
+body[data-page="hizmetlerim.html"],body[data-page="ugc-iceriklerim.html"],body[data-page="hakkimda.html"],body[data-page="ai-avatarlarim.html"],body[data-page="iletisim.html"]{background:#FAFAF8!important}
+body[data-page="hizmetlerim.html"] #main,body[data-page="ugc-iceriklerim.html"] #main,body[data-page="hakkimda.html"] .editorial,body[data-page="ai-avatarlarim.html"] .avatar-toolbar{background:#FAFAF8!important;color:#675879}
+body[data-page="hizmetlerim.html"] .work-card,body[data-page="ugc-iceriklerim.html"] .work-card,.work-card,.avatar-card,.avatar-toolbar,.service-grid li,.academy-article,.academy-conclusion{background:#FFFFFF!important;color:#675879;border-color:#EAE4F0}
+.work-card h3,.work-card p,.academy-article h2,.academy-article p,.academy-conclusion p{color:#675879}
+body[data-page="iletisim.html"] .contact-intro,body[data-page="iletisim.html"] .contact-intro::before{background:#F2EFF5!important}
+.contact-brand-mark{background:#EAE4F0!important;color:#675879!important}
+.form-group,.form-field,.contact-layout{color:#675879}
+.academy-feature,.academy-mentoring{background:#F2EFF5!important;color:#675879!important}
+.academy-feature p,.academy-mentoring p{color:#55565C}
+.site-footer,footer.site-footer{background:#675879!important;border-color:#675879!important}
+.site-footer p,.site-footer small,.site-footer h2,.site-footer h3,.site-footer .footer-inner,.site-footer a,.site-footer .social-links a{color:#FFFFFF!important}
+#main .bd-personal{color:#675879}
+#main .bd-personal .bd-hero{background:linear-gradient(125deg,#FFFFFF,#F4F1F7)!important;border-color:#EAE4F0}
+#main .bd-personal .bd-card,#main .bd-personal .bd-end{background:#FFFFFF!important;border-color:#EAE4F0;color:#675879}
+#main .bd-personal h1,#main .bd-personal h2,#main .bd-personal h3,#main .bd-personal p,#main .bd-personal li,#main .bd-personal .bd-service-lead,#main .bd-personal .bd-faq summary{color:#675879!important}
+#main .bd-personal .bd-section,#main .bd-personal .bd-faq details,#main .bd-personal .bd-extra td,#main .bd-personal .bd-extra th{border-color:#EAE4F0}
+#main .bd-personal .bd-extra th{background:#F2EFF5;color:#675879}
+#main .bd-personal .bd-extra td{color:#55565C}
+#main .bd-personal .bd-price,#main .bd-personal .eyebrow,#main .bd-personal a:not(.bd-btn){color:#675879!important}
+#main .bd-personal .bd-featured{border-color:#76618F}
+#main .bd-personal .bd-tag,#main .bd-personal .bd-steps .bd-card::before{background:#EAE4F0;color:#675879}
+#main .bd-personal .bd-btn{background:#76618F!important;border-color:#76618F!important;color:#FFFFFF!important}
+#main .bd-personal .bd-btn.secondary{background:#FFFFFF!important;border-color:#B5A5C5!important;color:#675879!important}
+#main .bd-personal .bd-faq details{background:#FFFFFF}
+#main .bd-personal .bd-end{background:#F2EFF5!important}
+#main .bd-personal .bd-end p{color:#55565C!important}
+@media(max-width:760px){.site-header{background:#FAFAF8!important}#navigation{background:#FAFAF8;color:#675879}#navigation .nav-dropdown{box-shadow:none}}
+/* Traditional standalone pages use a separate body structure. */
+body:not([data-page]){background:#FAFAF8;color:#675879}
+body:not([data-page]) header{background:#FFFFFF;color:#675879;border-bottom:1px solid #EAE4F0}
+body:not([data-page]) header a,body:not([data-page]) header nav a{color:#675879}
+body:not([data-page]) main{color:#675879}
+body:not([data-page]) main h1,body:not([data-page]) main h2,body:not([data-page]) main h3{color:#675879}
+body:not([data-page]) main a:not(.bd-service-cta){color:#675879}
+body:not([data-page]) .eyebrow{color:#76618F}
+body:not([data-page]) .bd-service-links a{background:#FFFFFF;color:#675879;border-color:#EAE4F0}
+body:not([data-page]) footer{background:#675879;color:#FFFFFF}
+body:not([data-page]) footer a{color:#FFFFFF}
+body:not([data-page]) .bd-service-cta{display:inline-flex;align-items:center;justify-content:center;min-height:48px}
