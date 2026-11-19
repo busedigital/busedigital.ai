@@ -2104,7 +2104,7 @@ function enhanceDiscoveryHome(){
  const portfolioCards=PORTFOLIO.sectors.filter(([key])=>key!=='all').slice(0,4).map(([key,name])=>
   '<a class="discovery-card" href="#/calismalarim?tab=ai&sector='+encodeURIComponent(key)+'" aria-label="'+escapeText(name)+' projelerini aç"><span class="discovery-image">'+(imageFor(key)?'<img src="'+escapeText(imageFor(key))+'" alt="'+escapeText(name)+' portföy kapağı" loading="lazy" decoding="async" onerror="this.remove()">':'')+'</span><span class="discovery-card-name">'+escapeText(name)+' <span aria-hidden="true">↗</span></span></a>'
  ).join('');
- const portfolio='<section id="home-portfolio" class="discovery-section"><div class="section-title"><p class="eyebrow">ÇALIŞMALARIM / KATEGORİLER</p><h2>Yapay zekâ <span>portföyümüz.</span></h2></div><p class="discovery-intro">Tüm sektörleri keşfedin. Bir kategoriye dokunarak ilgili görsel ve video projelerimi inceleyin.</p><div class="discovery-grid">'+portfolioCards+'</div></section>';
+ const portfolio='<section id="home-portfolio" class="discovery-section"><div class="section-title"><p class="eyebrow">ÇALIŞMALARIM / KATEGORİLER</p><h2>Yapay zekâ <span>portföyümüz.</span></h2></div><p class="discovery-intro">Tüm sektörleri keşfedin. Bir kategoriye dokunarak ilgili görsel ve video projelerimi inceleyin.</p><div class="discovery-grid">'+portfolioCards+'</div><a class="button bd-all-works" href="#/calismalarim">Tüm çalışmalar</a></section>';
  services.insertAdjacentHTML('afterend',portfolio);
  const sections=[
   ['home-animation','Animasyon Çalışmalarım','Karakterler, özgün hikâyeler ve marka animasyonları.','#/calismalarim?tab=animation','Animasyonları keşfet ↗'],
