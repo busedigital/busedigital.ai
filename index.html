@@ -2569,7 +2569,7 @@ function apply(){
  const note=document.createElement('p');note.className='bd-portfolio-note';note.textContent='Bu projeler stüdyonun bağımsız portföy üretimleridir; ilgili markalarla resmî iş birliği anlamına gelmez.';portfolio.append(note);
  collab.querySelector('.proof-selected-heading')?.remove();
  const st=process.querySelector('.section-title');if(st)st.innerHTML='<p class="eyebrow">SÜREÇ</p><h2>Fikirden teslime beş adım</h2>';
- closing.innerHTML='<p class="eyebrow">BİRLİKTE ÇALIŞALIM</p><h2>Markanız için ilk konsepti <span>birlikte</span> çıkaralım.</h2><a href="#/iletisim" class="button">Ücretsiz Fikir Al</a><p style="margin-top:20px">Birebir çalışma · Ortalama 3–5 iş günü*</p><p style="font-size:12px;margin-top:8px">* Süre, standart kapsamlı işler için tahminidir; proje ve revizyona göre değişebilir.</p>';
+ closing.innerHTML='<p class="eyebrow">BİRLİKTE ÇALIŞALIM</p><h2>Markanız için ilk konsepti <span>birlikte</span> çıkaralım.</h2><a href="#/iletisim" class="button">Ücretsiz Fikir Al →</a><p style="margin-top:20px">Birebir çalışma · Ortalama 3–5 iş günü*</p><p style="font-size:12px;margin-top:8px">* Süre, standart kapsamlı işler için tahminidir; proje ve revizyona göre değişebilir.</p>';
  for(const el of [hero,sectors,portfolio,collab,process,closing])el.classList.add('bd-home-section');
  hero.after(sectors,portfolio,collab,process,closing);
  const allowed=new Set([hero,sectors,portfolio,collab,process,closing]);Array.from(main.children).forEach(el=>{if(el.tagName==='SECTION'&&!allowed.has(el))el.hidden=true});
