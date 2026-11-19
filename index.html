@@ -2664,13 +2664,14 @@ addEventListener('hashchange',schedule);schedule();
  var nav=document.getElementById('navigation');if(!nav)return;
  var search=document.getElementById('smart-portfolio-search');
  var groups=[
-  {id:'works-menu',name:'Çalışmalarım',links:[
+  {id:'works-menu',name:'Çalışmalar',links:[
    ['Yapay Zekâ Çalışmalarım','#/calismalarim?tab=ai'],
    ['Animasyon Çalışmalarım','#/calismalarim?tab=animation'],
    ['UGC Çalışmalarım','#/ugc-iceriklerim'],
-   ['Maskot Çalışmalarım','#/maskotlar'],
+   ['Maskotlar','#/maskotlar'],
+   ['AI Avatarlarım','#/ai-avatarlarim'],
    ['İş Birliklerim','#/calismalarim?tab=collaborations']]},
-  {id:'services-menu',name:'Hizmetlerim',links:[
+  {id:'services-menu',name:'Hizmetler',links:[
    ['Tüm Hizmetlerim','/hizmetlerim.html'],
    ['AI Reklam Filmi & Video','/ai-reklam.html'],
    ['AI Ürün & Kampanya Görselleri','/ai-urun-gorselleri.html'],
@@ -2696,7 +2697,7 @@ addEventListener('hashchange',schedule);schedule();
   toggle.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var opening=!wrapper.classList.contains('is-expanded');nav.querySelectorAll('.bd-nav-group').forEach(function(other){other.classList.remove('is-expanded');other.querySelector('.nav-subtoggle').setAttribute('aria-expanded','false')});setOpen(opening)});
   title.addEventListener('click',function(){nav.querySelectorAll('.bd-nav-group').forEach(function(other){other.classList.remove('is-expanded');other.querySelector('.nav-subtoggle')?.setAttribute('aria-expanded','false')})});
  });
- nav.append(link('AI Avatarlarım','#/ai-avatarlarim'));nav.append(link('Hakkımda','#/hakkimda'));nav.append(link('Blog','blog/'));nav.append(link('AI Öğren','#/egitim-akademi'));nav.append(link('İletişim →','#/iletisim','bd-nav-cta'));
+ nav.append(link('Hakkımda','#/hakkimda'));nav.append(link('AI Öğren','#/egitim-akademi'));nav.append(link('Blog','blog/'));nav.append(link('İletişim →','#/iletisim','bd-nav-cta'));
  if(search)nav.append(search);
  var footer=document.querySelector('.site-footer .footer-links');
  if(footer&&!footer.querySelector('.bd-footer-faq'))footer.append(link('SSS →','#/sss','bd-footer-faq'));
