@@ -139,3 +139,59 @@ html body.bd-home-redesign #home-contact .button:hover{background:#EAE4F0!import
 html body.bd-home-redesign .site-footer{background:#675879!important;color:#FFFFFF!important}
 html body.bd-home-redesign .site-footer a,html body.bd-home-redesign .site-footer p{color:#FFFFFF!important}
 @media(max-width:900px){html body.bd-home-redesign #navigation{background:#FFFFFF!important}html body.bd-home-redesign .site-header{background:#FFFFFF!important}}
+
+/* PEARL LAVENDER: all route typography and header audit */
+:root{--gold:#76618F!important;--muted:#76618F!important;--bd-cream:#FAFAF8;--bd-bright:#76618F;--bd-teal:#76618F}
+html body[data-page] .brand-wordmark strong,
+html body[data-page] .brand-wordmark strong span,
+html body[data-page] .brand-wordmark small{color:#675879!important}
+html body[data-page] #navigation .bd-nav-cta,
+html body.bd-home-redesign #navigation .bd-nav-cta{background:#76618F!important;border:1px solid #76618F!important;color:#FFFFFF!important;border-radius:12px!important}
+html body[data-page] #navigation .bd-nav-cta:hover,
+html body.bd-home-redesign #navigation .bd-nav-cta:hover{background:#675879!important;color:#FFFFFF!important}
+html body[data-page] #navigation .bd-nav-heading{color:#675879!important}
+html body[data-page] .smart-search-trigger,
+html body[data-page] #smart-search-trigger{background:#FFFFFF!important;color:#675879!important;border:1.5px solid #76618F!important;border-radius:999px!important}
+html body[data-page] .smart-search-trigger *,
+html body[data-page] #smart-search-trigger *{color:#675879!important;stroke:#76618F}
+html body[data-page] #smart-search-panel{background:#FFFFFF!important;color:#675879!important;border-color:#EAE4F0!important}
+html body[data-page] #smart-search-panel label,
+html body[data-page] #smart-search-results{color:#675879!important}
+html body[data-page] #main .page-intro h1,
+html body[data-page] #main .page-intro h1 span,
+html body[data-page] #main .page-intro .eyebrow{color:#675879!important;opacity:1!important}
+html body[data-page] #main .page-intro .lead,
+html body[data-page] #main .page-intro p.lead{color:#55565C!important;opacity:1!important}
+html body[data-page] #main .work-tabs a{color:#675879!important;border-color:#DDD4E4!important;background:#FFFFFF!important}
+html body[data-page] #main .work-tabs a:hover,
+html body[data-page] #main .work-tabs a[aria-current],
+html body[data-page] #main .work-tabs a[aria-current="page"]{color:#FFFFFF!important;border-color:#76618F!important;background:#76618F!important}
+html body[data-page] #main .filter-bar,
+html body[data-page] #main .filter-bar label,
+html body[data-page] #main .work-label{color:#675879!important}
+html body[data-page] #main .work-card h3,
+html body[data-page] #main .work-card strong,
+html body[data-page] #main .work-card .work-title{color:#675879!important}
+html body[data-page] #main .work-card p,
+html body[data-page] #main .work-card small,
+html body[data-page] #main .work-card .work-summary{color:#55565C!important}
+html body[data-page] #main .eyebrow,
+html body[data-page] #main h1 span,
+html body[data-page] #main h2 span,
+html body[data-page] #main .step,
+html body[data-page] #main .service-number,
+html body[data-page] #main .featured-category,
+html body[data-page] #main .proof-verified,
+html body[data-page] #main .proof-card-action,
+html body[data-page] #main .discovery-card-name>span{color:#675879!important}
+html body[data-page] #main p:not(.eyebrow):not(.badge),
+html body[data-page] #main .lead{color:#55565C}
+html body[data-page] #main .button,
+html body[data-page] #main a.button{background:#76618F!important;border-color:#76618F!important;color:#FFFFFF!important}
+html body[data-page] #main .button.button-quiet,
+html body[data-page] #main .button.button-outline{background:#FFFFFF!important;border-color:#76618F!important;color:#675879!important}
+html body.bd-home-redesign #main #home-start .hero-actions .button-quiet{background:#76618F!important;border-color:#76618F!important;color:#FFFFFF!important}
+html body.bd-home-redesign #main #home-start .hero-actions .button:not(.button-quiet){background:#FFFFFF!important;border-color:#76618F!important;color:#675879!important}
+html body.bd-home-redesign #main #home-collabs .proof-actions .button{background:#76618F!important;color:#FFFFFF!important}
+html body.bd-home-redesign #main #home-contact .button{background:#FFFFFF!important;border-color:#FFFFFF!important;color:#675879!important}
+@media(max-width:900px){html body[data-page] #navigation,html body[data-page] #navigation .nav-dropdown{background:#FFFFFF!important;color:#675879!important}}
