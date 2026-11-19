@@ -2236,6 +2236,10 @@ function renderRoute(initial=false){
  const servicesLink=$('#services-link');
  if(['hizmetlerim','ugc-iceriklerim','egitim-akademi','sosyal-medya-yonetimi','web-sitesi-tasarimi'].includes(name))servicesLink?.setAttribute('aria-current','page');
  initPortfolio();initContact();refreshStudioMediaStamps();
+ $('#main').querySelectorAll('a[href="#/iletisim"],a[href="/index.html#/iletisim"]').forEach(function(a){
+  a.textContent='Ücretsiz Teklif Al →';
+  a.classList.add('bd-contact-action');
+ });
  const targetSection=name==='index'?routeParams().get('section'):null;
  if(targetSection&&document.getElementById(targetSection)){requestAnimationFrame(()=>document.getElementById(targetSection)?.scrollIntoView({behavior:'smooth',block:'start'}));}
  else if(!initial){window.scrollTo({top:0,behavior:'instant'});$('#main').focus({preventScroll:true})}
@@ -2595,7 +2599,7 @@ function apply(){
  const description=hero.querySelector('.hero-copy .lead');
  if(description)description.textContent='Yapay zekâ ile reklam filmi, ürün görseli ve sosyal medya içeriği üretiyor; hesaplarınızı ve Meta reklamlarınızı yönetiyorum.';
  const actions=hero.querySelectorAll('.hero-actions a');
- if(actions[0]){actions[0].textContent='Ücretsiz Teklif Al';actions[0].href='#/iletisim'}
+ if(actions[0]){actions[0].textContent='Ücretsiz Teklif Al →';actions[0].href='#/iletisim'}
  if(actions[1]){actions[1].textContent='Çalışmalarımı Gör';actions[1].href='#/index?section=bd-featured-portfolio'}
  const services=document.createElement('section');services.id='home-services';services.className='bd-home-section bd-conversion-services';
  services.innerHTML='<div class="bd-section-heading"><p class="eyebrow">HİZMETLER</p><h2>Ne yapıyorum?</h2><p>Markanızın ihtiyacına uygun kreatif üretim ve dijital yönetim hizmetleri.</p></div><div class="bd-conversion-service-grid">'+categories.map(([name,desc,href,ic])=>'<a class="bd-conversion-service-card" href="'+href+'"><span class="bd-conversion-service-icon">'+icon(ic)+'</span><h3>'+name+'</h3><p>'+desc+'</p><span class="bd-card-link">Hizmeti incele <span aria-hidden="true">→</span></span></a>').join('')+'</div>';
@@ -2658,7 +2662,7 @@ function apply(){
  ['Uzaktan çalışıyor musunuz?','Evet. Proje görüşmeleri ve teslim süreçleri uzaktan yürütülebilir.']
  ].map(([q,a])=>'<details><summary>'+q+'</summary><p>'+a+'</p></details>').join('')+'</div>';
  closing.classList.add('bd-home-section','bd-conversion-closing');
- closing.innerHTML='<p class="eyebrow">BİRLİKTE ÇALIŞALIM</p><h2>Markanıza özel bir fikir geliştirelim.</h2><p>Projenizi anlatın; kapsamına uygun bir teklif hazırlayayım.</p><a href="#/iletisim" class="button">Ücretsiz Teklif Al</a>';
+ closing.innerHTML='<p class="eyebrow">BİRLİKTE ÇALIŞALIM</p><h2>Markanıza özel bir fikir geliştirelim.</h2><p>Projenizi anlatın; kapsamına uygun bir teklif hazırlayayım.</p><a href="#/iletisim" class="button">Ücretsiz Teklif Al →</a>';
  const previous=Array.from(main.children);
  main.replaceChildren(hero,services,portfolio,trust,process,about,faq,closing);
  previous.filter(x=>!main.contains(x)).forEach(x=>{if(x.tagName==='VIDEO')x.pause?.()});
@@ -2786,6 +2790,8 @@ addEventListener('hashchange',schedule);schedule();
  if(!cta){cta=a('Ücretsiz Teklif Al','#/iletisim','bd-header-offer');cta.id='bd-header-offer';header.append(cta)}
  cta.href='#/iletisim';cta.textContent='Ücretsiz Teklif Al';
  header.append(toggle);
+ const footerLinks=document.querySelector('.site-footer .footer-links');
+ if(footerLinks&&!footerLinks.querySelector('.bd-academy-footer'))footerLinks.append(a('AI Öğren / Akademi','#/egitim-akademi','bd-academy-footer'));
  navigation.addEventListener('click',event=>{
   if(event.target.closest('a')){navigation.querySelectorAll('.is-expanded').forEach(group=>group.classList.remove('is-expanded'));navigation.querySelectorAll('.bd-nav-trigger').forEach(btn=>btn.setAttribute('aria-expanded','false'))}
  });
