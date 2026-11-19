@@ -236,3 +236,51 @@ html body[data-page="index.html"] #main #home-contact p[style]{color:#55565C!imp
 html body[data-page="index.html"] #main #home-contact a.button,
 html body[data-page="index.html"] #main #home-contact .button{background:#76618F!important;border:1px solid #76618F!important;color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;opacity:1!important}
 html body[data-page="index.html"] #main #home-contact a.button:hover{background:#675879!important;border-color:#675879!important}
+
+/* Pearl Lavender — cross-page visual repair: 2026-11-19 */
+/* AI avatars: visible active tab, readable inactive tab */
+html body[data-page="ai-avatarlarim.html"] #main .avatar-filter-bar{background:#EAE4F0!important;border:1px solid #C8B8D5!important}
+html body[data-page="ai-avatarlarim.html"] #main .avatar-filter-button{background:#F2EFF5!important;color:#675879!important;border-color:#D4C7DE!important;box-shadow:none!important;min-height:48px}
+html body[data-page="ai-avatarlarim.html"] #main .avatar-filter-button:hover{background:#EAE4F0!important;color:#675879!important}
+html body[data-page="ai-avatarlarim.html"] #main .avatar-filter-button[aria-pressed="true"]{background:#76618F!important;color:#FFFFFF!important;box-shadow:inset 0 -3px #675879!important}
+html body[data-page="ai-avatarlarim.html"] #main .avatar-toolbar p,
+html body[data-page="ai-avatarlarim.html"] #main .avatar-toolbar strong,
+html body[data-page="ai-avatarlarim.html"] #main .avatar-toolbar span{color:#55565C!important}
+/* Muse and Cembo feature is a light card, never a white-on-white panel */
+html body[data-page] #main .muse-cembo-feature{background:#F2EFF5!important;border:1px solid #EAE4F0!important;color:#675879!important}
+html body[data-page] #main .muse-cembo-feature h2,
+html body[data-page] #main .muse-cembo-feature h3,
+html body[data-page] #main .muse-cembo-feature strong,
+html body[data-page] #main .muse-cembo-feature .eyebrow{color:#675879!important;opacity:1!important}
+html body[data-page] #main .muse-cembo-feature p,
+html body[data-page] #main .muse-cembo-feature p.muted,
+html body[data-page] #main .muse-cembo-feature p a:not(.button){color:#55565C!important;opacity:1!important}
+html body[data-page] #main .muse-cembo-feature a.button{background:#76618F!important;border-color:#76618F!important;color:#FFFFFF!important}
+/* Mascot welcome light panel */
+html body[data-page="maskotlar.html"] #main .zensu-welcome{background:#F2EFF5!important;border:1px solid #EAE4F0!important;color:#675879!important}
+html body[data-page="maskotlar.html"] #main .zensu-welcome-copy h2,
+html body[data-page="maskotlar.html"] #main .zensu-welcome-copy h2 span,
+html body[data-page="maskotlar.html"] #main .zensu-welcome-copy .eyebrow{color:#675879!important}
+html body[data-page="maskotlar.html"] #main .zensu-welcome-copy p{color:#55565C!important}
+html body[data-page="maskotlar.html"] #main .zensu-welcome-image{background:#FAFAF8!important}
+/* UGC social block and captions */
+html body[data-page="ugc-iceriklerim.html"] #main .ugc-social{background:#675879!important;color:#FFFFFF!important;border:1px solid #675879!important}
+html body[data-page="ugc-iceriklerim.html"] #main .ugc-social h2,
+html body[data-page="ugc-iceriklerim.html"] #main .ugc-social h3,
+html body[data-page="ugc-iceriklerim.html"] #main .ugc-social .eyebrow,
+html body[data-page="ugc-iceriklerim.html"] #main .ugc-social .ugc-instagram-icon,
+html body[data-page="ugc-iceriklerim.html"] #main .ugc-social .ugc-contact-link{color:#FFFFFF!important}
+html body[data-page="ugc-iceriklerim.html"] #main .ugc-social p,
+html body[data-page="ugc-iceriklerim.html"] #main .ugc-social .ugc-footnote{color:#F3EDF7!important;opacity:1!important}
+html body[data-page="ugc-iceriklerim.html"] #main .ugc-instagram-cta{background:#FFFFFF!important;color:#675879!important;border:1px solid #FFFFFF!important}
+html body[data-page="ugc-iceriklerim.html"] #main .ugc-instagram-cta *{color:#675879!important}
+html body[data-page="ugc-iceriklerim.html"] #main .ugc-showcase-copy h1,
+html body[data-page="ugc-iceriklerim.html"] #main .ugc-showcase-copy h1 span{color:#675879!important}
+/* Footer icon contrast */
+html body[data-page] footer.site-footer{background:#675879!important;color:#FFFFFF!important}
+html body[data-page] footer.site-footer .footer-brand strong,
+html body[data-page] footer.site-footer .footer-brand span,
+html body[data-page] footer.site-footer .footer-links a,
+html body[data-page] footer.site-footer .footer-links a svg,
+html body[data-page] footer.site-footer .footer-links .social-icon{color:#FFFFFF!important;stroke:#FFFFFF!important;opacity:1!important}
+html body[data-page] footer.site-footer .footer-links a:hover{color:#EAE4F0!important}
