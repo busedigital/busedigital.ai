@@ -2600,7 +2600,7 @@ function apply(){
  if(description)description.textContent='Yapay zekâ ile reklam filmi, ürün görseli ve sosyal medya içeriği üretiyor; hesaplarınızı ve Meta reklamlarınızı yönetiyorum.';
  const actions=hero.querySelectorAll('.hero-actions a');
  if(actions[0]){actions[0].textContent='Ücretsiz Teklif Al →';actions[0].href='#/iletisim'}
- if(actions[1]){actions[1].textContent='Çalışmalarımı Gör';actions[1].href='#/index?section=bd-featured-portfolio'}
+ if(actions[1]){actions[1].textContent='Çalışmalarımı Gör →';actions[1].href='#/index?section=bd-featured-portfolio'}
  const services=document.createElement('section');services.id='home-services';services.className='bd-home-section bd-conversion-services';
  services.innerHTML='<div class="bd-section-heading"><p class="eyebrow">HİZMETLER</p><h2>Ne yapıyorum?</h2><p>Markanızın ihtiyacına uygun kreatif üretim ve dijital yönetim hizmetleri.</p></div><div class="bd-conversion-service-grid">'+categories.map(([name,desc,href,ic])=>'<a class="bd-conversion-service-card" href="'+href+'"><span class="bd-conversion-service-icon">'+icon(ic)+'</span><h3>'+name+'</h3><p>'+desc+'</p><span class="bd-card-link">Hizmeti incele <span aria-hidden="true">→</span></span></a>').join('')+'</div>';
  const portfolio=document.createElement('section');portfolio.id='bd-featured-portfolio';portfolio.className='bd-home-section bd-conversion-portfolio';
