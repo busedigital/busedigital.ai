@@ -179,3 +179,12 @@ body .bd-standalone-header .bd-standalone-mobile{display:none}
  body .bd-standalone-header .bd-standalone-mobile-menu strong{padding:8px 10px 0;font-size:12px;color:#675879}
 }
 @media(max-width:420px){body .bd-standalone-brand img{width:36px;height:36px}body .bd-standalone-brand span{font-size:12px}body .bd-standalone-brand small{font-size:7px}body .bd-standalone-header .bd-standalone-offer{font-size:10px;padding:8px 9px}}
+
+/* Combined digital management service detail */
+body #main .bd-combined-management{background:#F2EFF5;border:1px solid #EAE4F0;border-radius:16px;padding:clamp(20px,3vw,32px);margin:16px 0 32px;color:#675879}
+body #main .bd-combined-management h2,body #main .bd-combined-management h3{color:#675879!important}
+body #main .bd-combined-management-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:18px}
+body #main .bd-combined-management-grid article{background:#FFFFFF;border:1px solid #EAE4F0;border-radius:13px;padding:20px}
+body #main .bd-combined-management-grid p{color:#55565C!important;font-size:14px}
+body #main .bd-combined-management-grid a{color:#675879;text-decoration:underline;font-weight:700}
+@media(max-width:650px){body #main .bd-combined-management-grid{grid-template-columns:1fr}}
