@@ -143,3 +143,6 @@ body.bd-conversion-layout .bd-conversion-work-grid .proof-work-card strong{color
 /* Consistent single-arrow CTA labels */
 html body #main a.bd-contact-action::after,html body #main a.bd-contact-action::before{content:none!important}
 html body #main a.bd-contact-action{min-height:44px}
+
+/* 375px header fitting */
+@media(max-width:420px){body .site-header .brand-with-logo{gap:5px!important}body .site-header .brand-with-logo img{width:36px!important;height:36px!important}body .site-header .brand-wordmark strong{font-size:13px!important}body .site-header .brand-wordmark small{font-size:6px!important;letter-spacing:.05em!important}body .site-header .bd-header-offer{min-height:44px;padding:9px 10px!important;font-size:10px!important}body .site-header .menu-toggle{width:44px!important;min-width:44px!important;height:44px!important;min-height:44px!important;padding:10px!important}}
