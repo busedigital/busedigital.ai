@@ -2552,28 +2552,101 @@ const main=document.getElementById('main');
 if(!main)return;
 const isHome=()=>{const h=location.hash;return !h||h==='#/'||h.startsWith('#/index')};
 function apply(){
- const hero=main.querySelector('#home-start'),collab=main.querySelector('#home-collabs'),process=main.querySelector('.process'),closing=main.querySelector('#home-contact');
- if(!isHome()||!hero||!collab||!process||!closing){document.body.classList.remove('bd-home-redesign');return}
+ const hero=main.querySelector('#home-start');
+ const collab=main.querySelector('#home-collabs');
+ const process=main.querySelector('.process');
+ const closing=main.querySelector('#home-contact');
+ const about=main.querySelector('#home-about');
+ if(!isHome()||!hero||!collab||!process||!closing||!about){document.body.classList.remove('bd-home-redesign');return}
  if(hero.dataset.bdRedesigned)return;
  hero.dataset.bdRedesigned='1';
- document.body.classList.add('bd-home-redesign');
- const sectors=document.createElement('section');sectors.id='bd-sector-strip';sectors.className='bd-home-section';
- const row=document.createElement('div');row.className='bd-sector-row';const head=document.createElement('strong');head.textContent='ÇALIŞTIĞIM SEKTÖRLER';row.append(head);
- ['Otomotiv','Kozmetik','Moda','Gıda & İçecek','Mobilya','Teknoloji','E-ticaret'].forEach((name,i)=>{if(i){const star=document.createElement('span');star.className='star';star.textContent='✦';star.setAttribute('aria-hidden','true');row.append(star)}const t=document.createElement('span');t.textContent=name;row.append(t)});sectors.append(row);
- const sectorPromo=document.createElement('div');sectorPromo.className='bd-sector-unlimited';
- sectorPromo.innerHTML='<div class="bd-sector-unlimited-copy"><p class="bd-sector-unlimited-label">SİZİN SEKTÖRÜNÜZ DE DAHİL</p><h2>Yapay zekâyla <span>sektör sınırı yok.</span></h2><p>Otomotivden kozmetiğe, yerel işletmelerden teknolojiye… İhtiyacınız hangi alanda olursa olsun, markanıza özel reklam filmleri, görseller ve yaratıcı içerikler üretiyorum.</p></div><a class="bd-sector-unlimited-cta" href="#/iletisim">Sektörünüze özel fikir geliştirelim <span aria-hidden="true">→</span></a>';
- sectors.append(sectorPromo);
- const portfolio=document.createElement('section');portfolio.id='bd-featured-portfolio';portfolio.className='bd-home-section';portfolio.innerHTML='<div class="bd-portfolio-top"><div><p class="eyebrow">PORTFÖY</p><h2>Seçili kreatif çalışmalar</h2></div><a href="#/calismalarim?tab=ai">Tüm portföy →</a></div>';
+ document.body.classList.add('bd-home-redesign','bd-conversion-layout');
+ const categories=[
+  ['AI Reklam Filmi & Video','AI destekli reklam filmleri, Reels ve UGC içeriklerini hazırlıyorum.','#/ai-reklam-filmi','clapperboard','video'],
+  ['AI Ürün & Kampanya Görselleri','Ürünlerinizi farklı kampanya konseptleriyle öne çıkarıyorum.','#/ai-urun-kampanya-gorselleri','image','product'],
+  ['Animasyon, Maskot & AI Avatar','Markanıza veya sevdiklerinize özel karakterler ve hikâyeler tasarlıyorum.','#/calismalarim?tab=animation','sparkles','animation'],
+  ['Sosyal Medya & Meta Reklam Yönetimi','İçerik planlama, hesap yönetimi ve Meta reklam süreçlerini yürütüyorum.','#/sosyal-medya-yonetimi','megaphone','social'],
+  ['Web Sitesi Tasarımı','Mobil uyumlu, sade ve hedef odaklı web siteleri tasarlıyorum.','#/web-sitesi-tasarimi','monitor','web']
+ ];
+ const icons={
+ clapperboard:'<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 11h18M7 7l3-4m4 4 3-4"/>',
+ image:'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m4 18 5-5 4 4 3-3 4 4"/>',
+ sparkles:'<path d="m12 2 2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2L12 2Z"/>',
+ megaphone:'<path d="M3 10v4h4l11 5V5L7 10H3Zm4 4 2 6"/>',
+ monitor:'<rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 22h8m-4-4v4"/>'
+ };
+ const icon=k=>'<svg viewBox="0 0 24 24" width="27" height="27" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+icons[k]+'</svg>';
+ hero.querySelector('.hero-copy>.eyebrow')?.replaceChildren(document.createTextNode('AI REKLAM & İÇERİK STÜDYOSU'));
+ const description=hero.querySelector('.hero-copy .lead');
+ if(description)description.textContent='Yapay zekâ ile reklam filmi, ürün görseli ve sosyal medya içeriği üretiyor; hesaplarınızı ve Meta reklamlarınızı yönetiyorum.';
+ const actions=hero.querySelectorAll('.hero-actions a');
+ if(actions[0]){actions[0].textContent='Ücretsiz Teklif Al';actions[0].href='#/iletisim'}
+ if(actions[1]){actions[1].textContent='Çalışmalarımı Gör';actions[1].href='#/index?section=bd-featured-portfolio'}
+ const services=document.createElement('section');services.id='home-services';services.className='bd-home-section bd-conversion-services';
+ services.innerHTML='<div class="bd-section-heading"><p class="eyebrow">HİZMETLER</p><h2>Ne yapıyorum?</h2><p>Markanızın ihtiyacına uygun kreatif üretim ve dijital yönetim hizmetleri.</p></div><div class="bd-conversion-service-grid">'+categories.map(([name,desc,href,ic])=>'<a class="bd-conversion-service-card" href="'+href+'"><span class="bd-conversion-service-icon">'+icon(ic)+'</span><h3>'+name+'</h3><p>'+desc+'</p><span class="bd-card-link">Hizmeti incele <span aria-hidden="true">→</span></span></a>').join('')+'</div>';
+ const portfolio=document.createElement('section');portfolio.id='bd-featured-portfolio';portfolio.className='bd-home-section bd-conversion-portfolio';
+ portfolio.innerHTML='<div class="bd-section-heading"><p class="eyebrow">SEÇİLİ İŞLER</p><h2>Çalışmalarım</h2><p>Markalar ve bireysel müşteriler için ürettiğim örnek çalışmaları keşfedin.</p></div><div class="bd-five-filters" role="group" aria-label="Çalışma kategorileri">'+categories.map((v,i)=>'<button type="button" class="bd-five-filter" data-bd-filter="'+v[4]+'" aria-pressed="'+(i===0?'true':'false')+'">'+v[0]+'</button>').join('')+'</div>';
  const grid=collab.querySelector('.proof-grid');
- if(grid){portfolio.append(grid);grid.querySelectorAll('.proof-card-tag').forEach(tag=>{const original=tag.textContent;tag.textContent=original.split('·')[0].trim();const extra=document.createElement('span');extra.className='bd-card-disclaimer';extra.textContent='Bağımsız portföy çalışması';tag.append(extra)})}
- const note=document.createElement('p');note.className='bd-portfolio-note';note.textContent='Bu projeler stüdyonun bağımsız portföy üretimleridir; ilgili markalarla resmî iş birliği anlamına gelmez.';portfolio.append(note);
- collab.querySelector('.proof-selected-heading')?.remove();
- const st=process.querySelector('.section-title');if(st)st.innerHTML='<p class="eyebrow">SÜREÇ</p><h2>Fikirden teslime beş adım</h2>';
- closing.innerHTML='<p class="eyebrow">BİRLİKTE ÇALIŞALIM</p><h2>Markanız için ilk konsepti <span>birlikte</span> çıkaralım.</h2><a href="#/iletisim" class="button">Ücretsiz Fikir Al →</a><p style="margin-top:20px">Birebir çalışma · Ortalama 3–5 iş günü*</p><p style="font-size:12px;margin-top:8px">* Süre, standart kapsamlı işler için tahminidir; proje ve revizyona göre değişebilir.</p>';
- for(const el of [hero,sectors,portfolio,collab,process,closing])el.classList.add('bd-home-section');
- hero.after(sectors,portfolio,collab,process,closing);
- const allowed=new Set([hero,sectors,portfolio,collab,process,closing]);Array.from(main.children).forEach(el=>{if(el.tagName==='SECTION'&&!allowed.has(el))el.hidden=true});
- portfolio.querySelectorAll('.proof-card-image').forEach(e=>e.dataset.bdView='1');collab.querySelectorAll('.proof-collaboration-visual').forEach(e=>e.dataset.bdView='1');
+ if(grid){
+  grid.classList.add('bd-conversion-work-grid');
+  const items=Array.from(grid.children);
+  items.forEach((item,i)=>item.dataset.bdCategory=i===0?'video':'product');
+  const extra=[
+   ['assets/media/animasyon/animation-stories.webp','3D animasyon hikâyesi','#/calismalarim?tab=animation','animation'],
+   ['assets/media/animasyon/animation-wedding.webp','Düğün ve kişiye özel animasyon','#/calismalarim?tab=animation','animation'],
+   ['assets/media/avatarlar/avatar-mira-studio-card.webp','AI avatar karakter tasarımı','#/ai-avatarlarim','animation']
+  ];
+  extra.forEach(([src,title,href,category])=>{
+   const a=document.createElement('a');a.className='proof-work-card';a.href=href;a.dataset.bdCategory=category;
+   a.innerHTML='<span class="proof-card-image"><img loading="lazy" decoding="async" src="'+src+'" alt="'+title+'"></span><span class="proof-card-tag">Konsept çalışma</span><strong>'+title+'</strong><span class="proof-card-action">Projeyi incele</span>';
+   grid.append(a);
+  });
+  portfolio.append(grid);
+ }
+ const note=document.createElement('p');note.className='bd-portfolio-note';note.textContent='Konsept projeler bağımsız portföy çalışmalarıdır; ilgili markalarla resmî iş birliği değildir.';portfolio.append(note);
+ const empty=document.createElement('div');empty.className='bd-work-empty';empty.hidden=true;portfolio.append(empty);
+ const all=document.createElement('a');all.className='bd-all-works';all.href='#/calismalarim?tab=ai';all.textContent='Tüm çalışmalar';portfolio.append(all);
+ function setFilter(key){
+  portfolio.querySelectorAll('.bd-five-filter').forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.bdFilter===key)));
+  const cards=portfolio.querySelectorAll('.proof-work-card');
+  let visible=0;
+  cards.forEach(card=>{card.hidden=card.dataset.bdCategory!==key;if(!card.hidden)visible++});
+  empty.hidden=visible>0;
+  if(!visible){
+   const cat=categories.find(x=>x[4]===key);
+   empty.replaceChildren();
+   const p=document.createElement('p');p.textContent='Bu kategoriye ait seçili çalışmalar henüz eklenmedi. Hizmet kapsamını inceleyebilirsiniz.';
+   const a=document.createElement('a');a.href=cat[2];a.textContent=cat[0]+' hizmetini incele';empty.append(p,a);
+  }
+ }
+ portfolio.querySelectorAll('.bd-five-filter').forEach(btn=>btn.addEventListener('click',()=>setFilter(btn.dataset.bdFilter)));
+ setFilter('video');
+ const trust=collab;
+ trust.id='home-trust';trust.classList.add('bd-home-section','bd-conversion-trust');
+ trust.querySelector('.proof-selected-heading')?.remove();
+ const heading=trust.querySelector('.section-title');
+ if(heading)heading.innerHTML='<p class="eyebrow">GÜVEN & İŞ BİRLİKLERİ</p><h2>Gerçek iş birlikleri, özgün üretimler.</h2>';
+ const socialProof=document.createElement('div');socialProof.className='bd-conversion-trust-placeholders';
+ socialProof.innerHTML='<div><h3>İş birliği markaları</h3><p>Doğrulanmış iş birliği logoları eklenecek.</p></div><div><h3>Müşteri yorumları</h3><p>Gerçek müşteri yorumları geldikçe burada paylaşılacak.</p></div><div><h3>Proje sonuçları</h3><p>Doğrulanmış proje ve performans rakamları eklenecek.</p></div>';
+ trust.append(socialProof);
+ const st=process.querySelector('.section-title');if(st)st.innerHTML='<p class="eyebrow">NASIL ÇALIŞIYORUM?</p><h2>Beş adımda tamamlıyorum.</h2>';
+ process.id='home-process';process.classList.add('bd-home-section','bd-conversion-process');
+ about.classList.add('bd-home-section','bd-conversion-about');
+ about.querySelectorAll('.discovery-about-copy>p').forEach((p,i)=>{if(i>1)p.remove()});
+ const aboutTitle=about.querySelector('.discovery-about-copy .section-title h2');if(aboutTitle)aboutTitle.textContent='Merhaba, ben Buse.';
+ const faq=document.createElement('section');faq.id='home-faq';faq.className='bd-home-section bd-conversion-faq';
+ faq.innerHTML='<div class="bd-section-heading"><p class="eyebrow">SIKÇA SORULAN SORULAR</p><h2>Merak edilenler</h2></div><div class="bd-faq-list">'+[
+ ['Hangi alanlarda hizmet veriyorsunuz?','AI reklam filmi, ürün görselleri, UGC, animasyon, avatar, sosyal medya ve Meta reklam yönetimi ile web sitesi tasarımı alanlarında çalışıyorum.'],
+ ['Projem için nasıl teklif alabilirim?','Ücretsiz Teklif Al butonundan iletişim formuna ulaşabilir, projenizin kapsamını yazabilirsiniz.'],
+ ['Teslim süresi ne kadar?','Standart kapsamdaki birçok üretimde ortalama 3–5 iş günü öngörüyorum. Süre projenin kapsamına ve revizyona göre değişebilir.'],
+ ['Kişiye özel animasyon hazırlıyor musunuz?','Evet. Doğum günü, cinsiyet partisi, evlilik teklifi ve özel günler için kişiye özel animasyon hazırlıyorum.'],
+ ['Uzaktan çalışıyor musunuz?','Evet. Proje görüşmeleri ve teslim süreçleri uzaktan yürütülebilir.']
+ ].map(([q,a])=>'<details><summary>'+q+'</summary><p>'+a+'</p></details>').join('')+'</div>';
+ closing.classList.add('bd-home-section','bd-conversion-closing');
+ closing.innerHTML='<p class="eyebrow">BİRLİKTE ÇALIŞALIM</p><h2>Markanıza özel bir fikir geliştirelim.</h2><p>Projenizi anlatın; kapsamına uygun bir teklif hazırlayayım.</p><a href="#/iletisim" class="button">Ücretsiz Teklif Al</a>';
+ const previous=Array.from(main.children);
+ main.replaceChildren(hero,services,portfolio,trust,process,about,faq,closing);
+ previous.filter(x=>!main.contains(x)).forEach(x=>{if(x.tagName==='VIDEO')x.pause?.()});
 }
 let scheduled=false;function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(()=>{scheduled=false;apply()})}
 new MutationObserver(()=>{if(isHome()&&main.querySelector('#home-start:not([data-bd-redesigned])'))schedule()}).observe(main,{childList:true});
