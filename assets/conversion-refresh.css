@@ -139,3 +139,7 @@ body.bd-conversion-layout .bd-conversion-work-grid .proof-card-action{color:#675
 body.bd-conversion-layout .bd-conversion-work-grid .proof-card-tag{color:#675879!important}
 body.bd-conversion-layout .bd-conversion-work-grid .proof-work-card strong{color:#675879!important}
 @media(max-width:650px){body .bd-unified-animation{margin-top:28px}body .bd-animation-links .button{width:100%;justify-content:center}}
+
+/* Consistent single-arrow CTA labels */
+html body #main a.bd-contact-action::after,html body #main a.bd-contact-action::before{content:none!important}
+html body #main a.bd-contact-action{min-height:44px}
