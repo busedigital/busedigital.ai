@@ -284,3 +284,54 @@ html body[data-page] footer.site-footer .footer-links a,
 html body[data-page] footer.site-footer .footer-links a svg,
 html body[data-page] footer.site-footer .footer-links .social-icon{color:#FFFFFF!important;stroke:#FFFFFF!important;opacity:1!important}
 html body[data-page] footer.site-footer .footer-links a:hover{color:#EAE4F0!important}
+
+/* LAYOUT NORMALIZATION — About, avatar and closing CTA */
+:root{--bd-content-width:1200px;--bd-gutter:clamp(18px,4vw,32px)}
+/* Preserve hero and portfolio; independently constrain the About block to matching content width. */
+html body[data-page="index.html"] #main section#home-about.discovery-about{
+box-sizing:border-box!important;
+width:min(var(--bd-content-width),calc(100% - 2 * var(--bd-gutter)))!important;
+max-width:var(--bd-content-width)!important;
+margin:48px auto 52px!important;
+padding:0!important;
+display:grid!important;
+grid-template-columns:minmax(230px,330px) minmax(0,1fr)!important;
+gap:clamp(24px,4vw,54px)!important;
+align-items:center!important;
+}
+html body[data-page="index.html"] #main #home-about .discovery-about-photo{width:100%!important;max-width:330px!important;justify-self:start!important;margin:0!important;align-self:center!important}
+html body[data-page="index.html"] #main #home-about .discovery-about-copy{min-width:0!important;max-width:760px!important;text-align:left!important;justify-self:start!important}
+html body[data-page="index.html"] #main #home-about .discovery-about-copy .section-title{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;gap:8px!important;margin:0 0 17px!important;text-align:left!important;width:100%!important}
+html body[data-page="index.html"] #main #home-about .discovery-about-copy .section-title .eyebrow{margin:0!important;text-align:left!important}
+html body[data-page="index.html"] #main #home-about .discovery-about-copy .section-title h2{margin:0!important;line-height:1.16!important;max-width:100%!important;text-align:left!important}
+html body[data-page="index.html"] #main #home-about .discovery-about-copy>p{margin:0 0 12px!important;max-width:740px!important}
+html body[data-page="index.html"] #main #home-about .discovery-about-copy .text-link{margin-top:7px!important}
+/* Avatar catalogue: use the same content frame as other sections. */
+html body[data-page="ai-avatarlarim.html"] #main{
+box-sizing:border-box!important;
+width:min(var(--bd-content-width),calc(100% - 2 * var(--bd-gutter)))!important;
+max-width:var(--bd-content-width)!important;
+margin-left:auto!important;margin-right:auto!important;
+padding-left:0!important;padding-right:0!important;
+}
+html body[data-page="ai-avatarlarim.html"] #main .avatar-page-intro{
+max-width:900px!important;padding:32px 0 10px!important;margin:0!important;text-align:left!important}
+html body[data-page="ai-avatarlarim.html"] #main .avatar-toolbar{margin-top:10px!important;margin-bottom:20px!important;max-width:100%!important}
+html body[data-page="ai-avatarlarim.html"] #main .avatar-grid{gap:20px!important}
+html body[data-page="ai-avatarlarim.html"] #main .avatar-card{min-width:0}
+/* Closing CTA: keep heading, button and notes on a single centered axis. */
+html body[data-page="index.html"] #main section#home-contact{
+display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;
+padding-left:var(--bd-gutter)!important;padding-right:var(--bd-gutter)!important;
+}
+html body[data-page="index.html"] #main #home-contact h2,
+html body[data-page="index.html"] #main #home-contact h2 span{
+text-align:center!important;margin-left:auto!important;margin-right:auto!important}
+html body[data-page="index.html"] #main #home-contact .button{align-self:center!important;margin-left:auto!important;margin-right:auto!important}
+html body[data-page="index.html"] #main #home-contact p{max-width:900px!important;margin-left:auto!important;margin-right:auto!important;text-align:center!important}
+@media(max-width:760px){
+html body[data-page="index.html"] #main section#home-about.discovery-about{grid-template-columns:minmax(0,1fr)!important;gap:18px!important;margin:26px auto 34px!important}
+html body[data-page="index.html"] #main #home-about .discovery-about-photo{max-width:300px!important;justify-self:center!important}
+html body[data-page="index.html"] #main #home-about .discovery-about-copy .section-title h2{font-size:clamp(27px,7vw,38px)!important}
+html body[data-page="ai-avatarlarim.html"] #main .avatar-grid{gap:12px!important}
+}
