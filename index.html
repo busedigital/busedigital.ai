@@ -2605,10 +2605,10 @@ function apply(){
  if(grid){
   grid.classList.add('bd-conversion-work-grid');
   const items=Array.from(grid.children);
-  items.forEach((item,i)=>item.dataset.bdCategory=i===0?'video':'product');
+  items.forEach(item=>item.dataset.bdCategory='product');
   const extra=[
+   ['/assets/posters/f5dfd7d339d8c2aec7.jpg','raHun — Kelebek müzik klibi','https://youtu.be/Dx8DjWQzU_w','video'],
    ['assets/media/animasyon/animation-stories.webp','3D animasyon hikâyesi','#/calismalarim?tab=animation','animation'],
-   ['assets/media/animasyon/animation-wedding.webp','Düğün ve kişiye özel animasyon','#/calismalarim?tab=animation','animation'],
    ['assets/media/avatarlar/avatar-mira-studio-card.webp','AI avatar karakter tasarımı','#/ai-avatarlarim','animation']
   ];
   extra.forEach(([src,title,href,category])=>{
@@ -2625,7 +2625,7 @@ function apply(){
   portfolio.querySelectorAll('.bd-five-filter').forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.bdFilter===key)));
   const cards=portfolio.querySelectorAll('.proof-work-card');
   let visible=0;
-  cards.forEach(card=>{card.hidden=card.dataset.bdCategory!==key;if(!card.hidden)visible++});
+  cards.forEach(card=>{card.hidden=key!=='all'&&card.dataset.bdCategory!==key;if(!card.hidden)visible++});
   empty.hidden=visible>0;
   if(!visible){
    const cat=categories.find(x=>x[4]===key);
@@ -2635,14 +2635,14 @@ function apply(){
   }
  }
  portfolio.querySelectorAll('.bd-five-filter').forEach(btn=>btn.addEventListener('click',()=>setFilter(btn.dataset.bdFilter)));
- setFilter('video');
+ setFilter('all');
  const trust=collab;
  trust.id='home-trust';trust.classList.add('bd-home-section','bd-conversion-trust');
  trust.querySelector('.proof-selected-heading')?.remove();
  const heading=trust.querySelector('.section-title');
  if(heading)heading.innerHTML='<p class="eyebrow">GÜVEN & İŞ BİRLİKLERİ</p><h2>Gerçek iş birlikleri, özgün üretimler.</h2>';
  const socialProof=document.createElement('div');socialProof.className='bd-conversion-trust-placeholders';
- socialProof.innerHTML='<div><h3>İş birliği markaları</h3><p>Doğrulanmış iş birliği logoları eklenecek.</p></div><div><h3>Müşteri yorumları</h3><p>Gerçek müşteri yorumları geldikçe burada paylaşılacak.</p></div><div><h3>Proje sonuçları</h3><p>Doğrulanmış proje ve performans rakamları eklenecek.</p></div>';
+ socialProof.innerHTML='<div><h3>İş birliği logoları</h3><p>Doğrulanmış iş birliği logoları eklenecek.</p></div><div><h3>Gerçek müşteri yorumları</h3><p>[Müşteri yorumu 1] · [İsim]</p><p>[Müşteri yorumu 2] · [İsim]</p><p>[Müşteri yorumu 3] · [İsim]</p></div><div><h3>Doğrulanmış sonuçlar</h3><p>[Tamamlanan proje sayısı]</p><p>[Performans verisi]</p></div>';
  trust.append(socialProof);
  const st=process.querySelector('.section-title');if(st)st.innerHTML='<p class="eyebrow">NASIL ÇALIŞIYORUM?</p><h2>Beş adımda tamamlıyorum.</h2>';
  process.id='home-process';process.classList.add('bd-home-section','bd-conversion-process');
