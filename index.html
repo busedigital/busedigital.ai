@@ -2720,68 +2720,89 @@ addEventListener('hashchange',schedule);schedule();
 #navigation .nav-dropdown a:hover,#navigation .nav-dropdown a:focus-visible{background:#76618F!important;color:#FFFFFF!important}
 @media(max-width:850px){#navigation .nav-dropdown{position:static!important}}
 </style>
-<!-- BUSE DIGITAL navigation structure 2026-11 -->
-<style>
-#navigation .bd-nav-heading{display:block;padding:10px 13px 3px;color:#76618F;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
-#navigation .bd-nav-cta{background:#76618F!important;color:#FFFFFF!important;border-radius:8px;padding:10px 16px!important;font-weight:700!important;margin-left:auto;white-space:nowrap}
-#navigation .bd-nav-cta:hover{background:#675879!important;color:#18283D!important}
-#navigation .bd-nav-cta[aria-current]:after{display:none}
-#navigation .bd-nav-dropdown{min-width:285px}
-#navigation .bd-nav-dropdown a{white-space:normal}
-@media(max-width:850px){
- #navigation .bd-nav-cta{display:block!important;margin:12px 0 0!important;text-align:center}
- #navigation .bd-nav-dropdown{position:static!important;width:100%;min-width:0}
- #navigation .bd-nav-heading{padding:10px 14px 4px}
- #navigation .nav-group>.nav-subtoggle{flex-shrink:0}
-}
-</style>
-
-
-<script>
+<!-- BUSE DIGITAL navigation: unified five-category conversion menu -->
+<script id="bd-conversion-navigation">
 (function(){
- var nav=document.getElementById('navigation');if(!nav)return;
- var search=document.getElementById('smart-portfolio-search');
- var groups=[
-  {id:'works-menu',name:'Çalışmalar',links:[
-   ['Yapay Zekâ Çalışmalarım','#/calismalarim?tab=ai'],
-   ['Animasyon Çalışmalarım','#/calismalarim?tab=animation'],
-   ['UGC Çalışmalarım','#/ugc-iceriklerim'],
-   ['Maskotlar','#/maskotlar'],
-   ['AI Avatarlarım','#/ai-avatarlarim'],
-   ['İş Birliklerim','#/calismalarim?tab=collaborations']]},
-  {id:'services-menu',name:'Hizmetler',links:[
-   ['Tüm Hizmetlerim','/hizmetlerim.html'],
-   ['AI Reklam Filmi & Video','/ai-reklam.html'],
-   ['AI Ürün & Kampanya Görselleri','/ai-urun-gorselleri.html'],
-   ['Kişiye Özel Animasyon','#/kisiye-ozel-animasyon'],
-   ['Markaya Özel Animasyon & Maskot','/marka-animasyon.html'],
-   ['UGC İçerik Üretimi','/ugc.html'],
-   ['Sosyal Medya Yönetimi','/sosyal-medya.html'],
-   ['Meta Reklam Yönetimi','/meta-reklam.html'],
-   ['Web Sitesi Tasarımı','/web-tasarimi.html']]}
+ const navigation=document.getElementById('navigation');
+ const header=document.querySelector('.site-header .header-inner');
+ const toggle=document.querySelector('.menu-toggle');
+ const main=document.getElementById('main');
+ if(!navigation||!header||!main)return;
+ const categories=[
+  ['AI Reklam Filmi & Video','/ai-reklam.html','#/calismalarim?tab=ai'],
+  ['AI Ürün & Kampanya Görselleri','/ai-urun-gorselleri.html','#/calismalarim?tab=ai'],
+  ['Animasyon, Maskot & AI Avatar','#/animasyon-maskot-avatar','#/calismalarim?tab=animation'],
+  ['Sosyal Medya & Meta Reklam Yönetimi','#/sosyal-medya-yonetimi','#/sosyal-medya-yonetimi'],
+  ['Web Sitesi Tasarımı','#/web-sitesi-tasarimi','#/web-sitesi-tasarimi']
  ];
- nav.replaceChildren();
- function link(name,href,cls){var a=document.createElement('a');a.textContent=name;a.href=href;if(cls)a.className=cls;return a}
- groups.forEach(function(g){
-  var wrapper=document.createElement('div');wrapper.className='nav-group bd-nav-group';
-  var title=document.createElement('a');title.href=g.id==='services-menu'?'#/hizmetlerim':'#/calismalarim';title.textContent=g.name;title.setAttribute('aria-haspopup','true');title.setAttribute('aria-controls',g.id);title.setAttribute('aria-expanded','false');wrapper.append(title);
-  var toggle=document.createElement('button');toggle.type='button';toggle.className='nav-subtoggle';toggle.textContent='⌄';toggle.setAttribute('aria-label',g.name+' menüsünü aç');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-controls',g.id);wrapper.append(toggle);
-  var dropdown=document.createElement('div');dropdown.id=g.id;dropdown.className='nav-dropdown bd-nav-dropdown';dropdown.setAttribute('aria-label',g.name);
-  function appendLinks(items){items.forEach(function(item){dropdown.append(link(item[0],item[1]))})}
-  if(g.links)appendLinks(g.links);
-  if(g.sections)g.sections.forEach(function(section){var heading=document.createElement('span');heading.className='bd-nav-heading';heading.textContent=section.name;dropdown.append(heading);appendLinks(section.links)});
-  wrapper.append(dropdown);nav.append(wrapper);
-  function setOpen(open){wrapper.classList.toggle('is-expanded',open);toggle.setAttribute('aria-expanded',String(open));title.setAttribute('aria-expanded',String(open))}
-  toggle.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var opening=!wrapper.classList.contains('is-expanded');nav.querySelectorAll('.bd-nav-group').forEach(function(other){other.classList.remove('is-expanded');other.querySelector('.nav-subtoggle').setAttribute('aria-expanded','false')});setOpen(opening)});
-  title.addEventListener('click',function(){nav.querySelectorAll('.bd-nav-group').forEach(function(other){other.classList.remove('is-expanded');other.querySelector('.nav-subtoggle')?.setAttribute('aria-expanded','false')})});
+ const chevron='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+ const a=(label,href,cls)=>{const x=document.createElement('a');x.textContent=label;x.href=href;if(cls)x.className=cls;return x};
+ const search=document.getElementById('smart-portfolio-search');
+ const searchParking=document.createElement('div');
+ searchParking.id='bd-search-parking';searchParking.hidden=true;
+ document.body.append(searchParking);
+ if(search)searchParking.append(search);
+ navigation.replaceChildren();
+ [['Hizmetler',1],['Çalışmalar',2]].forEach(([label,column],i)=>{
+  const group=document.createElement('div');group.className='nav-group bd-nav-group';
+  const trigger=document.createElement('button');trigger.type='button';trigger.className='bd-nav-trigger';
+  trigger.innerHTML='<span>'+label+'</span>'+chevron;
+  trigger.setAttribute('aria-expanded','false');trigger.setAttribute('aria-controls','bd-menu-'+i);
+  const submenu=document.createElement('div');submenu.className='nav-dropdown bd-nav-dropdown';submenu.id='bd-menu-'+i;
+  categories.forEach(item=>submenu.append(a(item[0],item[column])));
+  group.append(trigger,submenu);navigation.append(group);
+  trigger.addEventListener('click',function(event){
+   event.preventDefault();event.stopPropagation();
+   const willOpen=trigger.getAttribute('aria-expanded')!=='true';
+   navigation.querySelectorAll('.bd-nav-trigger').forEach(btn=>{btn.setAttribute('aria-expanded','false');btn.parentElement.classList.remove('is-expanded')});
+   trigger.setAttribute('aria-expanded',String(willOpen));group.classList.toggle('is-expanded',willOpen);
+  });
  });
- nav.append(link('Hakkımda','#/hakkimda'));nav.append(link('AI Öğren','#/egitim-akademi'));nav.append(link('Blog','blog/'));nav.append(link('İletişim →','#/iletisim','bd-nav-cta'));
- if(search)nav.append(search);
- var footer=document.querySelector('.site-footer .footer-links');
- if(footer&&!footer.querySelector('.bd-footer-faq'))footer.append(link('SSS →','#/sss','bd-footer-faq'));
- function placeFaq(){var main=document.getElementById('main'),faq=main&&main.querySelector('#home-faq');if(faq&&faq.nextElementSibling)main.append(faq)}
- placeFaq();
- var scheduled=false;new MutationObserver(function(){if(scheduled)return;scheduled=true;queueMicrotask(function(){scheduled=false;placeFaq()})}).observe(document.getElementById('main'),{childList:true});
+ navigation.append(a('Hakkımda','#/hakkimda'),a('Blog','blog/'));
+ const academy=a('AI Öğren / Akademi','#/egitim-akademi','bd-nav-academy');
+ const blogMenu=document.createElement('div');blogMenu.className='nav-group bd-blog-group';
+ const blogTrigger=document.createElement('button');blogTrigger.className='bd-blog-chevron';blogTrigger.type='button';
+ blogTrigger.innerHTML=chevron;blogTrigger.setAttribute('aria-label','Blog ve eğitim bağlantılarını aç');
+ const blogDropdown=document.createElement('div');blogDropdown.className='nav-dropdown';
+ blogDropdown.append(academy);
+ blogMenu.append(blogTrigger,blogDropdown);navigation.append(blogMenu);
+ blogTrigger.addEventListener('click',()=>blogMenu.classList.toggle('is-expanded'));
+ let cta=header.querySelector('#bd-header-offer');
+ if(!cta){cta=a('Ücretsiz Teklif Al','#/iletisim','bd-header-offer');cta.id='bd-header-offer';header.append(cta)}
+ cta.href='#/iletisim';cta.textContent='Ücretsiz Teklif Al';
+ header.append(toggle);
+ navigation.addEventListener('click',event=>{
+  if(event.target.closest('a')){navigation.querySelectorAll('.is-expanded').forEach(group=>group.classList.remove('is-expanded'));navigation.querySelectorAll('.bd-nav-trigger').forEach(btn=>btn.setAttribute('aria-expanded','false'))}
+ });
+ document.addEventListener('click',event=>{if(!navigation.contains(event.target))navigation.querySelectorAll('.is-expanded').forEach(group=>group.classList.remove('is-expanded'))});
+ function updateWorks(){
+  const isWorks=location.hash.startsWith('#/calismalarim');
+  const container=main.querySelector('#work-browser')||main.querySelector('.work-tabs');
+  if(isWorks&&container){
+   let bar=main.querySelector('.bd-five-work-nav');
+   if(!bar){
+    bar=document.createElement('nav');bar.className='bd-five-work-nav';bar.setAttribute('aria-label','Çalışma kategorileri');
+    categories.forEach(item=>bar.append(a(item[0],item[2])));
+    const pageIntro=main.querySelector('.page-intro');
+    (pageIntro||container).after(bar);
+   }
+  }
+  if(search){
+   if(isWorks){
+    let mount=main.querySelector('#bd-works-search');
+    if(!mount){mount=document.createElement('div');mount.id='bd-works-search';(main.querySelector('.bd-five-work-nav')||main.querySelector('.page-intro')||main).after(mount)}
+    if(search.parentElement!==mount)mount.append(search);
+   }else if(search.parentElement!==searchParking){searchParking.append(search)}
+  }
+ }
+ let scheduled=false;
+ function schedule(){
+  if(scheduled)return;scheduled=true;
+  requestAnimationFrame(()=>{scheduled=false;updateWorks()})
+ }
+ new MutationObserver(schedule).observe(main,{childList:true,subtree:false});
+ window.addEventListener('hashchange',schedule);
+ schedule();
 })();
 </script>
 </body></html>
