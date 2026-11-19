@@ -2576,7 +2576,7 @@ function apply(){
  const process=main.querySelector('.process');
  const closing=main.querySelector('#home-contact');
  const about=main.querySelector('#home-about');
- if(!isHome()||!hero||!collab||!process||!closing||!about){document.body.classList.remove('bd-home-redesign');return}
+ if(!isHome()||!hero||!collab||!process||!closing||!about){document.body.classList.remove('bd-home-redesign','bd-conversion-layout');return}
  if(hero.dataset.bdRedesigned)return;
  hero.dataset.bdRedesigned='1';
  document.body.classList.add('bd-home-redesign','bd-conversion-layout');
