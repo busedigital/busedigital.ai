@@ -335,3 +335,13 @@ html body[data-page="index.html"] #main #home-about .discovery-about-photo{max-w
 html body[data-page="index.html"] #main #home-about .discovery-about-copy .section-title h2{font-size:clamp(27px,7vw,38px)!important}
 html body[data-page="ai-avatarlarim.html"] #main .avatar-grid{gap:12px!important}
 }
+
+/* Accessibility-only pearl-lavender text contrast corrections */
+body[data-page="sosyal-medya-yonetimi.html"] .sm-info h2,body[data-page="sosyal-medya-yonetimi.html"] .sm-info h3,body[data-page="sosyal-medya-yonetimi.html"] .sm-step-title,body[data-page="sosyal-medya-yonetimi.html"] .sm-progress{color:#675879!important}
+body[data-page="iletisim.html"] .bc-terms h2,body[data-page="iletisim.html"] .bc-next h2{color:#675879!important}
+body[data-page="iletisim.html"] .bc-terms dt,body[data-page="iletisim.html"] .bc-terms dd,body[data-page="iletisim.html"] .bc-next strong,body[data-page="iletisim.html"] .bc-next p{color:#2E2A36!important}
+body[data-page="iletisim.html"] .bc-card .bc-group legend,body[data-page="iletisim.html"] .bc-card .bc-consent a,body[data-page="iletisim.html"] .bc-card .bc-kvkk-row a{color:#CFC6E0!important}
+body[data-page="iletisim.html"] .bc-card .bc-count,body[data-page="iletisim.html"] .bc-card .bc-notice{color:#B8C2D1!important}
+body[data-page="sss.html"] .studio-faq-heading h2{color:#675879!important}
+body[data-page="egitim-akademi.html"] .academy-feature h2{color:#675879!important}
+@media(max-width:767px){.eyebrow{font-size:max(12px,1em)!important}.hero-caption,.hero-caption span,#bd-featured-portfolio .proof-card .eyebrow,#bd-featured-portfolio .proof-card .badge{font-size:12px!important}}
