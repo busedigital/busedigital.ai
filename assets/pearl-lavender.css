@@ -201,3 +201,20 @@ html body[data-page] .site-header,html body.bd-home-redesign .site-header,html b
 html body[data-page] .site-header .brand-wordmark strong,html body[data-page] .site-header .brand-wordmark strong span,html body[data-page] .site-header .brand-wordmark small,html body[data-page] .site-header #navigation a:not(.bd-nav-cta),html body[data-page] .site-header #navigation .nav-subtoggle{color:#675879!important}
 html body[data-page] .site-header #navigation .bd-nav-cta{background:#76618F!important;color:white!important}
 @media(max-width:900px){html body[data-page] .site-header,html body.bd-home-redesign .site-header{background:#EAE4F0!important}}
+
+/* HEADER HOTFIX: readable lavender navigation */
+html body[data-page="index.html"].bd-home-redesign > header.site-header,
+html body[data-page="index.html"] > header.site-header,
+html body[data-page] > header.site-header{background-color:#E3D8EE!important;background-image:none!important;border-bottom:1px solid #CEBEDD!important;box-shadow:0 2px 10px rgba(103,88,121,.07)!important}
+html body[data-page] > header.site-header .header-inner{background:transparent!important}
+html body[data-page] > header.site-header .brand-wordmark,
+html body[data-page] > header.site-header .brand-wordmark strong,
+html body[data-page] > header.site-header .brand-wordmark strong span,
+html body[data-page] > header.site-header .brand-wordmark small,
+html body[data-page] > header.site-header #navigation > a:not(.bd-nav-cta),
+html body[data-page] > header.site-header #navigation > .nav-group > a{color:#675879!important}
+html body[data-page] > header.site-header #navigation a.bd-nav-cta,
+html body[data-page].bd-home-redesign > header.site-header #navigation a.bd-nav-cta{background:#76618F!important;background-image:none!important;border:1px solid #76618F!important;color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;text-shadow:none!important;opacity:1!important}
+html body[data-page] > header.site-header #navigation a.bd-nav-cta:hover{background:#675879!important;color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important}
+html body[data-page] > header.site-header .smart-search-trigger{background:#FFFFFF!important;color:#675879!important;border:1px solid #76618F!important}
+@media(max-width:900px){html body[data-page] > header.site-header,html body[data-page] > header.site-header #navigation{background:#E3D8EE!important}}
