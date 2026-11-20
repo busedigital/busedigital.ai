@@ -2665,6 +2665,7 @@ body.bd-home-redesign #bd-sector-strip .bd-sector-unlimited-cta:hover{background
  if(search)searchParking.append(search);
  navigation.replaceChildren();
  [['Hizmetler',1],['Portföy',2]].forEach(([label,column],i)=>{
+  if(label==='Portföy'){navigation.append(a('Portföy','#/calismalarim','bd-portfolio-direct-link'));return;}
   const group=document.createElement('div');group.className='nav-group bd-nav-group';
   const trigger=document.createElement('button');trigger.type='button';trigger.className='bd-nav-trigger';
   trigger.innerHTML='<span>'+label+'</span>'+chevron;
@@ -2700,6 +2701,7 @@ body.bd-home-redesign #bd-sector-strip .bd-sector-unlimited-cta:hover{background
  document.addEventListener('click',event=>{if(!navigation.contains(event.target))navigation.querySelectorAll('.is-expanded').forEach(group=>group.classList.remove('is-expanded'))});
  function updateWorks(){
   const isWorks=location.hash.startsWith('#/calismalarim');
+  if(isWorks){const intro=main.querySelector('.page-intro');if(intro){const eyebrow=intro.querySelector('.eyebrow');if(eyebrow)eyebrow.textContent='PORTFÖY KATEGORİLERİ';const title=intro.querySelector('h1');if(title)title.textContent='Portföyümü Keşfedin';}}
   const container=main.querySelector('#work-browser')||main.querySelector('.work-tabs');
   if(isWorks&&container){
    let bar=main.querySelector('.bd-five-work-nav');
