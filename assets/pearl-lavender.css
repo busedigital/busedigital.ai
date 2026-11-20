@@ -345,3 +345,10 @@ body[data-page="iletisim.html"] .bc-card .bc-count,body[data-page="iletisim.html
 body[data-page="sss.html"] .studio-faq-heading h2{color:#675879!important}
 body[data-page="egitim-akademi.html"] .academy-feature h2{color:#675879!important}
 @media(max-width:767px){.eyebrow{font-size:max(12px,1em)!important}.hero-caption,.hero-caption span,#bd-featured-portfolio .proof-card .eyebrow,#bd-featured-portfolio .proof-card .badge{font-size:12px!important}}
+
+/* 2026-11-20: Service-page sitemap footer links must remain visible on lavender. */
+html body footer.site-footer.bd-site-map-footer .bd-footer-grid a:not(.button):not(.brand),
+html body footer.site-footer.bd-site-map-footer .bd-footer-social a:not(.button):not(.brand){color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;opacity:1!important;visibility:visible!important}
+html body footer.site-footer.bd-site-map-footer .bd-footer-grid a:hover{color:#F2EAF8!important;-webkit-text-fill-color:#F2EAF8!important;text-decoration:underline}
+html body footer.site-footer.bd-site-map-footer .bd-footer-grid nav{display:flex;flex-direction:column;align-items:flex-start;gap:0}
+html body footer.site-footer.bd-site-map-footer .bd-footer-grid nav a{display:inline-flex;min-height:40px;align-items:center}
