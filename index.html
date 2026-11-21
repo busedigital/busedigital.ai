@@ -1879,6 +1879,15 @@ html body[data-page="calismalarim.html"] #main .bd-five-work-nav{margin-top:14px
 html body[data-page="calismalarim.html"] #main .bd-five-work-nav a{min-height:36px!important;padding:7px 12px!important;font-size:12.5px!important}
 }
 html body[data-page="calismalarim.html"] #main .bd-search-hint{margin:6px 2px 0;font-size:13px;line-height:1.45;color:#5d5068}
+</style><style id="bd-stamp-minimal-20261121">
+/* Tüm görsellerde tek tip, minimal imza: sağ alt köşe */
+html body #main .studio-media-stamp,html body.bd-home-redesign #main .studio-media-stamp,html body #media-dialog .studio-media-stamp{display:flex!important;left:auto!important;top:auto!important;right:10px!important;bottom:10px!important;transform:none!important;align-items:flex-end!important;text-align:right!important;gap:0!important;width:auto!important;max-width:60%!important;font-family:Manrope,Inter,Arial,sans-serif!important;font-size:10px!important;font-weight:600!important;letter-spacing:.04em!important;line-height:1.25!important;color:rgba(255,255,255,.88)!important;text-shadow:0 1px 3px rgba(0,0,0,.55)!important;opacity:1!important}
+html body #main .studio-media-stamp span,html body #media-dialog .studio-media-stamp span{display:block;white-space:nowrap}
+html body #main .studio-media-wrap:has(video) .studio-media-stamp,html body #main .studio-media-target:has(video[controls]) .studio-media-stamp{bottom:46px!important}
+html body.bd-home-redesign #main #home-start .studio-media-stamp,html body #main #home-start .studio-media-stamp{display:none!important}
+html body.bd-home-redesign .hero-showcase figure::after,html body.bd-home-redesign .proof-card-image::after,html body.bd-home-redesign .proof-collaboration-visual::after{content:none!important}
+@media(max-width:600px){html body #main .studio-media-stamp,html body #media-dialog .studio-media-stamp{font-size:9px!important;right:8px!important;bottom:8px!important}}
+html body #main #bd-new-portfolio .mascot .side .studio-media-stamp{display:none!important}html body #main #bd-new-portfolio .mascot > .studio-media-wrap{display:block!important;height:100%!important;overflow:hidden}html body #main #bd-new-portfolio .mascot > .studio-media-wrap > img{height:100%!important;width:100%!important;object-fit:cover}
 </style></head><body data-page="index.html" class="bd-home-redesign bd-conversion-layout"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Buse Digital — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="Buse Digital logo" width="66" height="66" decoding="async"><span class="brand-wordmark"><strong>Buse Digital</strong><small>AI Creative Studio</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
@@ -1998,8 +2007,8 @@ if(!$('#work-browser'))return;
 const qs=routeParams();const valid=['ai','animation','ugc','collaborations'];const tab=document.body.dataset.page==='ugc-iceriklerim.html'?'ugc':valid.includes(qs.get('tab'))?qs.get('tab'):'ai';
 $$('[data-work-tab]').forEach(a=>{if(a.dataset.workTab===tab)a.setAttribute('aria-current','page')});
 const desc=$('#work-description');
-if(tab==='ugc'){desc.append(el('p','notice','Reklam veya marka iş birliği değildir. Bu videolar bağımsız UGC portföy örnekleridir.'));desc.append(el('p','', 'Bir ürünü anlatırken günlük hayatın içinden, samimi ve anlaşılır bir dil kullanmayı seviyorum. Ürünü merkeze alan doğal çekimleri; özenli kadraj, ışık ve sade bir anlatımla birleştiriyorum. Buradaki videolar, çekim ve içerik üretim yaklaşımımı keşfetmeniz için hazırladığım örneklerdir.'))}
-else if(tab==='ai'){desc.append(el('p','notice','Bu çalışmalar bağımsız kreatif portföy örnekleridir; resmî marka iş birliği değildir.'))}
+if(tab==='ugc'){desc.append(el('p','notice','Bu videolar, UGC yaklaşımımı gösteren örnek çalışmalardır; marka iş birliği değildir.'));desc.append(el('p','', 'Bir ürünü anlatırken günlük hayatın içinden, samimi ve anlaşılır bir dil kullanmayı seviyorum. Ürünü merkeze alan doğal çekimleri; özenli kadraj, ışık ve sade bir anlatımla birleştiriyorum. Buradaki videolar, çekim ve içerik üretim yaklaşımımı keşfetmeniz için hazırladığım örneklerdir.'))}
+else if(tab==='ai'){desc.append(el('p','notice','Yapay zekâ ile neler üretebileceğimi gösteren örnek çalışmalar. Adı geçen markalarla resmî iş birliği yoktur.'))}
 else if(tab==='ai')desc.append(el('p','','Yaratıcılığın sektörü yoktur. Buse Digital, yapay zekâ destekli görsel ve video üretimini her sektörden markanın ihtiyaçlarına uyarlayarak özgün dijital projeler geliştirir. Aşağıdaki kategoriler çalışmalarımdan örnekler sunar; sunduğum hizmetler bu sektörlerle sınırlı değildir.'));
 else if(tab==='animation')desc.append(el('p','','Kişisel anılardan marka hikâyelerine, karakterlerle hayat bulan anlatımlar.'));
 if(tab==='animation'){const feature=el('section','muse-cembo-feature');feature.style.cssText='margin:24px 0;padding:26px;border:1px solid #EAE4F0;border-radius:12px;background:#F2EFF5;color:#675879';feature.innerHTML='<p class="eyebrow">ÖZGÜN ANİMASYON SERİSİ</p><h2 style="font-size:clamp(26px,3vw,40px)">Muse &amp; Cembo</h2><p>Özgün karakter tasarımı, senaryo ve yapay zekâ destekli animasyonlarla oluşturduğum sosyal medya serisi.</p><p><strong>375.391 izlenme</strong> · <strong>2,3 B profil ziyareti</strong> · <strong>+431 yeni takipçi</strong> — son 30 gün. Kitlenin %82,2’si kadın, en yoğun yaş grubu 25–34.</p><p>Markanızı ürün yerleştirmeyle seriye dahil edebilirim.</p><p class="muted">21.11.2026 tarihli veriler · Kaynak: @evreninanimasyonu Instagram Profesyonel Pano.</p><p><a href="https://www.instagram.com/evreninanimasyonu/" target="_blank" rel="noopener">Muse &amp; Cembo serisini Instagram’da keşfedin ↗</a></p><h3>Markanızın da kendi animasyon karakteri olabilir!</h3><p>Markanıza özel karakter tasarımı, özgün hikâye kurgusu ve animasyon üretimiyle ürün ve hizmetlerinizi yaratıcı bir anlatımla buluşturalım.</p><a class="button" href="#/iletisim">Projeniz İçin İletişime Geçin →</a>';desc.append(feature)}
@@ -2214,9 +2223,9 @@ function render(){
     const openGallery=(trigger)=>{
       const wrap=el('div','project-gallery-wrap');
       const summary=el('div','project-mini-brief');
-      summary.append(el('p','project-mini-type',w.type==='collaborations'?'GERÇEK İŞ BİRLİĞİ':w.type==='ugc'?'BAĞIMSIZ UGC PORTFÖYÜ':w.type==='animation'?'ANİMASYON PORTFÖYÜ':'BAĞIMSIZ KREATİF PORTFÖY'));
+      summary.append(el('p','project-mini-type',w.type==='collaborations'?'GERÇEK İŞ BİRLİĞİ':w.type==='ugc'?'UGC PORTFÖYÜ':w.type==='animation'?'ANİMASYON PORTFÖYÜ':'KREATİF PORTFÖY'));
       summary.append(el('p','project-mini-description',w.description||'Kreatif portföy çalışması.'));
-      if(w.type==='ai'||w.type==='ugc'||w.type==='animation')summary.append(el('p','project-mini-notice','Resmî marka reklamı veya iş birliği değildir; aksi ayrıca belirtilir.'));
+      if(w.type==='ai'||w.type==='ugc'||w.type==='animation')/* tekrar eden uyarı kaldırıldı */;
       if(w.id==='canta-aksesuar-video'){const related=el('a','project-related-link','Ürün Görsellerini İncele ↗');related.href='#/calismalarim?tab=ai&sector=retail&project=e-ticaret-canta-2';summary.append(el('p','project-related-note','Bu koleksiyona ait ürün fotoğrafları ve e-ticaret odaklı görseller E-Ticaret kategorisinde yer alıyor.'),related)}
       if(w.externalUrl){const link=el('a','project-mini-link',w.externalLabel||'Projeyi izle ↗');link.href=w.externalUrl;link.target='_blank';link.rel='noopener noreferrer';summary.append(link)}
       wrap.append(summary);
@@ -2237,7 +2246,7 @@ function render(){
       const collab=el('div','collaboration-details');collab.append(el('p','',w.description));
       if(w.externalUrl){const link=el('a','collaboration-youtube-link',w.externalLabel||'Projeyi YouTube’da izle ↗');link.href=w.externalUrl;link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label',(w.externalLabel||'YouTube videosu')+' — yeni sekmede açılır');collab.append(link)}
       card.append(collab);
-    }else card.append(el('p','work-label',tab==='ugc'?'Bağımsız UGC örneği · Reklam / iş birliği değildir':tab==='animation'?(w.id==='animation-upload-4575'?'Bağımsız Atasay konsepti · Resmî reklam / iş birliği değildir':'Bağımsız animasyon portföyü'):'Konsept çalışma · Resmî marka iş birliği değildir'));
+    }else card.append(el('p','work-label',tab==='ugc'?'UGC örneği':tab==='animation'?(w.id==='animation-upload-4575'?'Atasay · örnek reklam animasyonu':'Animasyon'):'Yapay zekâ prodüksiyonu'));
     if(w.id==='canta-aksesuar-video'){const note=el('p','project-related-note','Bu koleksiyona ait ürün fotoğrafları E-Ticaret kategorisinde yer alıyor.');const link=el('a','project-related-link','Ürün Görsellerini İncele ↗');link.href='#/calismalarim?tab=ai&sector=retail&project=e-ticaret-canta-2';card.append(note,link)}
     const detail=el('button','project-detail-btn','Detay için tıkla ↗');detail.type='button';detail.setAttribute('aria-label',w.title+' — detay ve proje galerisi');detail.addEventListener('click',()=>openGallery(detail));card.append(detail)
     grid.append(card);
@@ -2388,7 +2397,7 @@ function installStudioMediaStamps(root){
  if(!root)return;
  const selectors='.brand-media-frame,.mascot-art,.avatar-portrait,.editorial-image,.discovery-image,.proof-card-image,.proof-collaboration-visual,.discovery-about-photo,.zensu-welcome-image,.hero-image .hero-collage-item,.hero-collage-image,.hero-collage-photo,.sector-uploaded-cover,.featured-visual,.hero-image,.mascot-service';
  root.querySelectorAll('img,video').forEach(media=>{
-  if(media.closest('.site-header,.site-footer,.brand-with-logo,.contact-heading-row,.social-icon,.studio-media-stamp'))return;
+  if(media.closest('.site-header,.site-footer,.brand-with-logo,.contact-heading-row,.social-icon,.studio-media-stamp,#home-start'))return;
   if(media.matches('img[src$=".svg"]')||media.classList.contains('contact-brand-mark'))return;
   let host=media.closest(selectors);
   if(host && !root.contains(host))host=null;
@@ -2410,7 +2419,7 @@ function installStudioMediaStamps(root){
   host.classList.add('studio-media-target');
   const stamp=document.createElement('span');stamp.className='studio-media-stamp';
   stamp.setAttribute('lang','en');stamp.setAttribute('translate','no');stamp.setAttribute('aria-hidden','true');
-  stamp.innerHTML='<span>Buse Digital AI Creative Studio</span><span>CREATIVE STUDIO</span>';
+  stamp.innerHTML='<span>Buse Digital AI</span><span>Creative Studio</span>';
   host.append(stamp);
  });
 }
@@ -2975,4 +2984,7 @@ body.bd-home-redesign #bd-sector-strip .bd-sector-unlimited-cta:hover{background
  if(document.readyState!=='loading')scan(); else document.addEventListener('DOMContentLoaded',scan);
  new MutationObserver(scan).observe(document.documentElement,{childList:true,subtree:true});
 })();
+</script><script id="bd-stamp-observer-20261121">
+/* Sonradan yüklenen portföy kartlarına da imza eklensin */
+(function(){var m=document.getElementById('main');if(!m||typeof scheduleStudioMediaStamps!=='function')return;var t=null;new MutationObserver(function(){clearTimeout(t);t=setTimeout(function(){try{scheduleStudioMediaStamps()}catch(e){}},120)}).observe(m,{childList:true,subtree:true});})();
 </script></body></html>
