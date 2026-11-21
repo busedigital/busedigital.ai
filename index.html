@@ -1735,6 +1735,39 @@ body[data-page="index.html"] #home-start .bd-approved-signature{position:absolut
 body[data-page="index.html"] #home-start .bd-approved-signature span{display:block;width:35px;height:2px;background:#fff;margin:0 0 12px}
 @media(max-width:1050px){body.bd-home-redesign[data-page="index.html"] #main > #home-start.bd-approved-hero{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)!important}body[data-page="index.html"] #home-start .bd-approved-wordmark{font-size:3.8vw!important}body[data-page="index.html"] #home-start .bd-approved-promise{font-size:clamp(21px,2.5vw,30px)!important}}
 @media(max-width:760px){body.bd-home-redesign[data-page="index.html"] #main > #home-start.bd-approved-hero{display:flex!important;flex-direction:column!important;gap:0!important}body[data-page="index.html"] #home-start .bd-approved-copy{order:1!important;padding:26px 14px 24px!important}body[data-page="index.html"] #home-start .bd-approved-category{font-size:9px!important;letter-spacing:.08em!important;margin-bottom:28px!important}body[data-page="index.html"] #home-start .bd-approved-wordmark{font-size:clamp(22px,6.5vw,49px)!important;letter-spacing:-.1em!important;margin-bottom:28px!important}body[data-page="index.html"] #home-start.bd-approved-hero h1{font-size:clamp(42px,8vw,60px)!important}body[data-page="index.html"] #home-start .bd-approved-promise{font-size:clamp(22px,5vw,32px)!important}body[data-page="index.html"] #home-start .bd-approved-service-line{font-size:9px!important;letter-spacing:.12em!important;margin-bottom:30px!important}body[data-page="index.html"] #home-start .bd-approved-service-line span{flex-basis:26px!important}body[data-page="index.html"] #home-start .bd-approved-description{font-size:15px!important}body[data-page="index.html"] #home-start .bd-approved-actions{width:100%!important;flex-direction:column!important;align-items:stretch!important}body[data-page="index.html"] #home-start .bd-approved-actions a{width:100%!important}body[data-page="index.html"] #home-start .bd-approved-portrait{order:2!important;grid-column:auto!important;grid-row:auto!important;aspect-ratio:4/4.2!important;min-height:0!important;width:100%!important}body[data-page="index.html"] #home-start .bd-approved-portrait:before{display:none!important}body[data-page="index.html"] #home-start .bd-approved-portrait img{object-position:center 22%!important}body[data-page="index.html"] #home-start .bd-approved-signature{font-size:16px!important;right:14px!important;bottom:15px!important}}
+</style><style id="bd-approved-portrait-grid-repair-20261121">
+/* Approved newspaper visual is a real grid cell, rendered independently of legacy image wrappers. */
+html body.bd-home-redesign[data-page="index.html"] #main > #home-start.bd-approved-hero{
+display:grid!important;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr)!important;
+grid-template-rows:minmax(580px,auto)!important;gap:0!important;
+position:relative!important;isolation:isolate!important;overflow:hidden!important;
+}
+html body.bd-home-redesign[data-page="index.html"] #main > #home-start.bd-approved-hero > .bd-approved-copy{
+grid-column:1!important;grid-row:1!important;min-width:0!important;position:relative!important;z-index:2!important;
+}
+html body.bd-home-redesign[data-page="index.html"] #main > #home-start.bd-approved-hero > .bd-approved-portrait{
+display:none!important;
+}
+html body.bd-home-redesign[data-page="index.html"] #main > #home-start.bd-approved-hero::after{
+content:""!important;display:block!important;grid-column:2!important;grid-row:1!important;
+position:relative!important;inset:auto!important;z-index:1!important;opacity:1!important;
+width:100%!important;min-width:0!important;min-height:580px!important;height:100%!important;
+background:#592b3b url("/assets/busedigital-gazete-web.webp") center 22%/cover no-repeat!important;
+visibility:visible!important;transform:none!important;pointer-events:none!important;
+}
+@media(max-width:760px){
+html body.bd-home-redesign[data-page="index.html"] #main > #home-start.bd-approved-hero{
+display:flex!important;flex-direction:column!important;grid-template-columns:none!important;grid-template-rows:none!important;
+}
+html body.bd-home-redesign[data-page="index.html"] #main > #home-start.bd-approved-hero > .bd-approved-copy{
+order:1!important;width:100%!important;grid-column:auto!important;grid-row:auto!important;
+}
+html body.bd-home-redesign[data-page="index.html"] #main > #home-start.bd-approved-hero::after{
+order:2!important;grid-column:auto!important;grid-row:auto!important;display:block!important;
+width:100%!important;height:auto!important;min-height:0!important;aspect-ratio:4/4.5!important;
+background-position:center 23%!important;
+}
+}
 </style></head><body data-page="index.html" class="bd-home-redesign bd-conversion-layout"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Buse Digital — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="Buse Digital logo" width="66" height="66" decoding="async"><span class="brand-wordmark"><strong>Buse Digital</strong><small>AI Creative Studio</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
