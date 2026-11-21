@@ -1778,6 +1778,13 @@ html body[data-page="index.html"] main#main > #home-services .bd-card-link{margi
 #bd-new-portfolio .item .media{order:4!important}
 #bd-new-portfolio .item p{order:5;margin-top:4px!important}
 #bd-new-portfolio .item,#bd-new-portfolio .item.rev{gap:8px!important}
+</style><style id="bd-consent-slim-20261121">
+html body .analytics-consent-banner{left:0!important;right:0!important;bottom:0!important;transform:none!important;width:100%!important;max-width:none!important;border:0!important;border-top:1px solid #e3d9ea!important;border-radius:0!important;background:rgba(255,255,255,.97)!important;color:#3d2e4d!important;box-shadow:0 -6px 24px -12px rgba(60,30,80,.35)!important;padding:10px max(16px,calc((100% - 1200px)/2))!important;display:flex!important;align-items:center!important;gap:10px 18px!important;flex-wrap:wrap!important;backdrop-filter:blur(8px)}
+html body .analytics-consent-banner p{margin:0!important;flex:1 1 320px;color:#4a3a57!important;font-size:13px!important;line-height:1.45!important}
+html body .analytics-consent-banner p a{color:#76618F!important;text-decoration:underline;font-weight:600}
+html body .analytics-consent-banner>div{margin:0!important;gap:8px!important;flex:none}
+html body .analytics-consent-banner button{padding:7px 14px!important;font-size:13px!important;min-height:36px;border-radius:999px!important;color:#5f4b78!important;border:1px solid #cdbfd9!important;background:#fff!important;cursor:pointer}
+html body .analytics-consent-banner button:last-child{background:#76618F!important;border-color:#76618F!important;color:#fff!important}
 </style></head><body data-page="index.html" class="bd-home-redesign bd-conversion-layout"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Buse Digital — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="Buse Digital logo" width="66" height="66" decoding="async"><span class="brand-wordmark"><strong>Buse Digital</strong><small>AI Creative Studio</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
@@ -2216,7 +2223,7 @@ function initAnalytics(){
  const banner=document.createElement('aside');
  banner.className='analytics-consent-banner';
  banner.setAttribute('aria-label','Analitik çerez tercihi');
- banner.innerHTML='<p>Web sitemizi geliştirmek için isteğe bağlı ziyaret istatistikleri toplamak istiyoruz. Kabul etmezseniz siteyi kullanmaya devam edebilirsiniz.</p><div><button type="button" data-analytics="reject">Reddet</button><button type="button" data-analytics="accept">Kabul Et</button></div>';
+ banner.innerHTML='<p>Siteyi geliştirmek için Google Analytics çerezleriyle ziyaret istatistiği toplamak istiyoruz. <a href="/kvkk.html">Ayrıntılar</a></p><div><button type="button" data-analytics="reject">Reddet</button><button type="button" data-analytics="accept">Kabul Et</button></div>';
  document.body.append(banner);
  banner.addEventListener('click',e=>{
   const b=e.target.closest('[data-analytics]');
