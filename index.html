@@ -1878,6 +1878,7 @@ html body[data-page="calismalarim.html"] #main .page-intro p:not(.eyebrow){font-
 html body[data-page="calismalarim.html"] #main .bd-five-work-nav{margin-top:14px!important;gap:6px!important}
 html body[data-page="calismalarim.html"] #main .bd-five-work-nav a{min-height:36px!important;padding:7px 12px!important;font-size:12.5px!important}
 }
+html body[data-page="calismalarim.html"] #main .bd-search-hint{margin:6px 2px 0;font-size:13px;line-height:1.45;color:#5d5068}
 </style></head><body data-page="index.html" class="bd-home-redesign bd-conversion-layout"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Buse Digital — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="Buse Digital logo" width="66" height="66" decoding="async"><span class="brand-wordmark"><strong>Buse Digital</strong><small>AI Creative Studio</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
@@ -2945,7 +2946,7 @@ body.bd-home-redesign #bd-sector-strip .bd-sector-unlimited-cta:hover{background
    if(isWorks){
     let mount=main.querySelector('#bd-works-search');
     if(!mount){mount=document.createElement('div');mount.id='bd-works-search';(main.querySelector('.bd-five-work-nav')||main.querySelector('.page-intro')||main).after(mount)}
-    if(search.parentElement!==mount)mount.append(search);
+    if(search.parentElement!==mount)mount.append(search);if(!mount.querySelector('.bd-search-hint')){const hint=document.createElement('p');hint.className='bd-search-hint';hint.textContent='Merak ettiğiniz sektörü ya da ürünü yazın; örneğin kozmetik, otomotiv, moda veya gıda.';mount.append(hint)}
    }else if(search.parentElement!==searchParking){searchParking.append(search)}
   }
  }
