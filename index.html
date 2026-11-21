@@ -1879,15 +1879,18 @@ html body[data-page="calismalarim.html"] #main .bd-five-work-nav{margin-top:14px
 html body[data-page="calismalarim.html"] #main .bd-five-work-nav a{min-height:36px!important;padding:7px 12px!important;font-size:12.5px!important}
 }
 html body[data-page="calismalarim.html"] #main .bd-search-hint{margin:6px 2px 0;font-size:13px;line-height:1.45;color:#5d5068}
-</style><style id="bd-stamp-minimal-20261121">
-/* Tüm görsellerde tek tip, minimal imza: sağ alt köşe */
-html body #main .studio-media-stamp,html body.bd-home-redesign #main .studio-media-stamp,html body #media-dialog .studio-media-stamp{display:flex!important;left:auto!important;top:auto!important;right:10px!important;bottom:10px!important;transform:none!important;align-items:flex-end!important;text-align:right!important;gap:0!important;width:auto!important;max-width:60%!important;font-family:Manrope,Inter,Arial,sans-serif!important;font-size:10px!important;font-weight:600!important;letter-spacing:.04em!important;line-height:1.25!important;color:rgba(255,255,255,.88)!important;text-shadow:0 1px 3px rgba(0,0,0,.55)!important;opacity:1!important}
-html body #main .studio-media-stamp span,html body #media-dialog .studio-media-stamp span{display:block;white-space:nowrap}
-html body #main .studio-media-wrap:has(video) .studio-media-stamp,html body #main .studio-media-target:has(video[controls]) .studio-media-stamp{bottom:46px!important}
+</style><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<style id="bd-stamp-minimal-20261121">
+/* Tek tip imza: görsellere gömülü "BUSE DIGITAL — AI CREATIVE STUDIO" imzasının aynısı, ortada */
+html body #main .studio-media-stamp,html body.bd-home-redesign #main .studio-media-stamp,html body #media-dialog .studio-media-stamp{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:.35em!important;position:absolute!important;left:50%!important;top:55%!important;right:auto!important;bottom:auto!important;transform:translate(-50%,-50%)!important;width:auto!important;max-width:92%!important;text-align:center!important;font-family:Montserrat,Manrope,Arial,sans-serif!important;font-weight:300!important;font-size:var(--sig,14px)!important;line-height:1!important;letter-spacing:0!important;color:rgba(255,255,255,.82)!important;text-shadow:0 1px 2px rgba(0,0,0,.25)!important;opacity:1!important;pointer-events:none!important;z-index:15!important;text-transform:none!important}
+html body #main .studio-media-stamp .bd-sig-name,html body #media-dialog .studio-media-stamp .bd-sig-name{display:block;font-size:1em;letter-spacing:.2em;padding-left:.2em;white-space:nowrap}
+html body #main .studio-media-stamp .bd-sig-sub,html body #media-dialog .studio-media-stamp .bd-sig-sub{display:flex;align-items:center;gap:.7em;font-size:.36em;font-weight:400;letter-spacing:.32em;white-space:nowrap}
+html body #main .studio-media-stamp .bd-sig-sub i,html body #media-dialog .studio-media-stamp .bd-sig-sub i{display:block;width:5.5em;height:1px;background:currentColor;opacity:.85}
 html body.bd-home-redesign #main #home-start .studio-media-stamp,html body #main #home-start .studio-media-stamp{display:none!important}
+html body #main #bd-new-portfolio .mascot .side .studio-media-stamp{display:none!important}
+html body #main #bd-new-portfolio .mascot > .studio-media-wrap{display:block!important;height:100%!important;overflow:hidden}
+html body #main #bd-new-portfolio .mascot > .studio-media-wrap > img{height:100%!important;width:100%!important;object-fit:cover}
 html body.bd-home-redesign .hero-showcase figure::after,html body.bd-home-redesign .proof-card-image::after,html body.bd-home-redesign .proof-collaboration-visual::after{content:none!important}
-@media(max-width:600px){html body #main .studio-media-stamp,html body #media-dialog .studio-media-stamp{font-size:9px!important;right:8px!important;bottom:8px!important}}
-html body #main #bd-new-portfolio .mascot .side .studio-media-stamp{display:none!important}html body #main #bd-new-portfolio .mascot > .studio-media-wrap{display:block!important;height:100%!important;overflow:hidden}html body #main #bd-new-portfolio .mascot > .studio-media-wrap > img{height:100%!important;width:100%!important;object-fit:cover}
 </style></head><body data-page="index.html" class="bd-home-redesign bd-conversion-layout"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Buse Digital — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="Buse Digital logo" width="66" height="66" decoding="async"><span class="brand-wordmark"><strong>Buse Digital</strong><small>AI Creative Studio</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
@@ -2398,7 +2401,7 @@ function installStudioMediaStamps(root){
  const selectors='.brand-media-frame,.mascot-art,.avatar-portrait,.editorial-image,.discovery-image,.proof-card-image,.proof-collaboration-visual,.discovery-about-photo,.zensu-welcome-image,.hero-image .hero-collage-item,.hero-collage-image,.hero-collage-photo,.sector-uploaded-cover,.featured-visual,.hero-image,.mascot-service';
  root.querySelectorAll('img,video').forEach(media=>{
   if(media.closest('.site-header,.site-footer,.brand-with-logo,.contact-heading-row,.social-icon,.studio-media-stamp,#home-start'))return;
-  if(media.matches('img[src$=".svg"]')||media.classList.contains('contact-brand-mark'))return;
+  if(media.matches('img[src$=".svg"]')||media.classList.contains('contact-brand-mark'))return;if(/muse-cembo|ruffles-|c54c515d24520bf1d6|Marka(%20| )Animasyon/i.test([media.getAttribute('src'),media.getAttribute('data-src'),media.getAttribute('poster'),media.currentSrc].join(' ')))return;
   let host=media.closest(selectors);
   if(host && !root.contains(host))host=null;
   if(!host){
@@ -2419,7 +2422,7 @@ function installStudioMediaStamps(root){
   host.classList.add('studio-media-target');
   const stamp=document.createElement('span');stamp.className='studio-media-stamp';
   stamp.setAttribute('lang','en');stamp.setAttribute('translate','no');stamp.setAttribute('aria-hidden','true');
-  stamp.innerHTML='<span>Buse Digital AI</span><span>Creative Studio</span>';
+  stamp.innerHTML='<span class="bd-sig-name">BUSE DIGITAL</span><span class="bd-sig-sub"><i></i>AI CREATIVE STUDIO<i></i></span>';
   host.append(stamp);
  });
 }
@@ -2987,4 +2990,8 @@ body.bd-home-redesign #bd-sector-strip .bd-sector-unlimited-cta:hover{background
 </script><script id="bd-stamp-observer-20261121">
 /* Sonradan yüklenen portföy kartlarına da imza eklensin */
 (function(){var m=document.getElementById('main');if(!m||typeof scheduleStudioMediaStamps!=='function')return;var t=null;new MutationObserver(function(){clearTimeout(t);t=setTimeout(function(){try{scheduleStudioMediaStamps()}catch(e){}},120)}).observe(m,{childList:true,subtree:true});})();
+</script><script id="bd-sig-size-20261121">
+(function(){if(!('ResizeObserver' in window))return;function drawnW(h){var m=h.querySelector('img,video');var w=h.clientWidth;if(!m)return w;var mw=m.clientWidth||w,mh=m.clientHeight,nw=m.naturalWidth||m.videoWidth,nh=m.naturalHeight||m.videoHeight;var fit=getComputedStyle(m).objectFit;if(nw&&nh&&mh&&fit==='contain'){mw=Math.min(mw,mh*nw/nh)}return Math.min(w,mw)}var ro=new ResizeObserver(function(es){es.forEach(function(e){var w=drawnW(e.target);e.target.style.setProperty('--sig',Math.max(9,Math.min(40,w*0.052))+'px')})});document.addEventListener('loadedmetadata',function(ev){var h=ev.target.closest&&ev.target.closest('.studio-media-target');if(h)h.style.setProperty('--sig',Math.max(9,Math.min(40,drawnW(h)*0.052))+'px')},true);document.addEventListener('load',function(ev){var h=ev.target.closest&&ev.target.closest('.studio-media-target');if(h)h.style.setProperty('--sig',Math.max(9,Math.min(40,drawnW(h)*0.052))+'px')},true);
+function scan(){document.querySelectorAll('.studio-media-target').forEach(function(h){if(!h.dataset.sigObs){h.dataset.sigObs='1';ro.observe(h)}})}
+scan();var t;new MutationObserver(function(){clearTimeout(t);t=setTimeout(scan,150)}).observe(document.getElementById('main')||document.body,{childList:true,subtree:true});})();
 </script></body></html>
