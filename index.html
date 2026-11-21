@@ -2304,7 +2304,7 @@ updateOnePageNavigation();
 /* One brand, one primary social channel; niche accounts remain in relevant service content. */
 function addSpecialistSocialLinks(name){
  const main=document.getElementById('main');if(!main)return;
- const channels=name==='ugc-iceriklerim'?[['@evrendeva.v','https://www.instagram.com/evrendeva.v/']]:name==='calismalarim'?[['@evreninanimasyonu','https://www.instagram.com/evreninanimasyonu/']]:[];
+ const channels=name==='ugc-iceriklerim'?[['@evrendeva.v','https://www.instagram.com/evrendeva.v/']]:(name==='calismalarim'&&/tab=animation/.test(location.hash))?[['@evreninanimasyonu','https://www.instagram.com/evreninanimasyonu/']]:[];
  if(!channels.length)return;
  const band=document.createElement('aside');band.className='specialist-channels';
  const title=document.createElement('strong');title.textContent='İlgili içerik hesapları';band.append(title);
