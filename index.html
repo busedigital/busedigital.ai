@@ -1769,6 +1769,15 @@ html body[data-page="index.html"] main#main > #home-services .bd-card-link{margi
 #bd-new-portfolio .bd-ba .lbl{z-index:3;font-size:11px;letter-spacing:.12em;font-weight:600;border-radius:6px;padding:6px 9px}
 #bd-new-portfolio .bd-ba .lbl.r{left:calc(50% + 15px)!important;right:auto!important}
 #bd-new-portfolio .item:has(.bd-ba) p:last-child{display:none!important}
+
+/* Kartlarda başlık görselin üstünde, açıklama altında */
+#bd-new-portfolio .item > :not(.media){display:contents!important}
+#bd-new-portfolio .item .tag{order:1;align-self:flex-start}
+#bd-new-portfolio .item .kind{order:2;margin-top:0!important}
+#bd-new-portfolio .item h3{order:3;margin:0 0 4px!important}
+#bd-new-portfolio .item .media{order:4!important}
+#bd-new-portfolio .item p{order:5;margin-top:4px!important}
+#bd-new-portfolio .item,#bd-new-portfolio .item.rev{gap:8px!important}
 </style></head><body data-page="index.html" class="bd-home-redesign bd-conversion-layout"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Buse Digital — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="Buse Digital logo" width="66" height="66" decoding="async"><span class="brand-wordmark"><strong>Buse Digital</strong><small>AI Creative Studio</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
