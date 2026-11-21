@@ -2919,7 +2919,7 @@ body.bd-home-redesign #bd-sector-strip .bd-sector-unlimited-cta:hover{background
    let bar=main.querySelector('.bd-five-work-nav');
    if(!bar){
     bar=document.createElement('nav');bar.className='bd-five-work-nav';bar.setAttribute('aria-label','Çalışma kategorileri');
-    categories.filter(item=>item[2].indexOf('#/calismalarim')===0).forEach(item=>bar.append(a(item[0],item[2])));
+    [['AI Reklam Filmi & Video','#/calismalarim?tab=ai'],['AI Ürün & Kampanya Görselleri','#/calismalarim?tab=ai'],['Animasyon & Maskot','#/calismalarim?tab=animation'],['AI Avatar','#/ai-avatarlarim']].forEach(item=>bar.append(a(item[0],item[1])));
     const pageIntro=main.querySelector('.page-intro');
     (pageIntro||container).after(bar);
    }
