@@ -91,7 +91,9 @@ for item in data["media"]:
     if original in changes:
         item["path"] = changes[original]
     target = item["path"]
-    if target in posters:
+    if item.get("posterCustom") and item.get("poster") and (ROOT / item["poster"]).exists():
+        pass  # hand-made cover image: keep it
+    elif target in posters:
         item["poster"] = posters[target]
     elif item.get("poster") and not (ROOT / item["poster"]).exists():
         item.pop("poster")
