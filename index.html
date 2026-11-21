@@ -1735,6 +1735,36 @@ body[data-page="index.html"] #home-start .bd-approved-signature{position:absolut
 body[data-page="index.html"] #home-start .bd-approved-signature span{display:block;width:35px;height:2px;background:#fff;margin:0 0 12px}
 @media(max-width:1050px){body.bd-home-redesign[data-page="index.html"] #main > #home-start.bd-approved-hero{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)!important}body[data-page="index.html"] #home-start .bd-approved-wordmark{font-size:3.8vw!important}body[data-page="index.html"] #home-start .bd-approved-promise{font-size:clamp(21px,2.5vw,30px)!important}}
 @media(max-width:760px){body.bd-home-redesign[data-page="index.html"] #main > #home-start.bd-approved-hero{display:flex!important;flex-direction:column!important;gap:0!important}body[data-page="index.html"] #home-start .bd-approved-copy{order:1!important;padding:26px 14px 24px!important}body[data-page="index.html"] #home-start .bd-approved-category{font-size:9px!important;letter-spacing:.08em!important;margin-bottom:28px!important}body[data-page="index.html"] #home-start .bd-approved-wordmark{font-size:clamp(22px,6.5vw,49px)!important;letter-spacing:-.1em!important;margin-bottom:28px!important}body[data-page="index.html"] #home-start.bd-approved-hero h1{font-size:clamp(42px,8vw,60px)!important}body[data-page="index.html"] #home-start .bd-approved-promise{font-size:clamp(22px,5vw,32px)!important}body[data-page="index.html"] #home-start .bd-approved-service-line{font-size:9px!important;letter-spacing:.12em!important;margin-bottom:30px!important}body[data-page="index.html"] #home-start .bd-approved-service-line span{flex-basis:26px!important}body[data-page="index.html"] #home-start .bd-approved-description{font-size:15px!important}body[data-page="index.html"] #home-start .bd-approved-actions{width:100%!important;flex-direction:column!important;align-items:stretch!important}body[data-page="index.html"] #home-start .bd-approved-actions a{width:100%!important}body[data-page="index.html"] #home-start .bd-approved-portrait{order:2!important;grid-column:auto!important;grid-row:auto!important;aspect-ratio:4/4.2!important;min-height:0!important;width:100%!important}body[data-page="index.html"] #home-start .bd-approved-portrait:before{display:none!important}body[data-page="index.html"] #home-start .bd-approved-portrait img{object-position:center 22%!important}body[data-page="index.html"] #home-start .bd-approved-signature{font-size:16px!important;right:14px!important;bottom:15px!important}}
+</style><style id="bd-approved-portrait-visibility-preview">
+/* Isolated preview fix: portrait must occupy the second column and remain visible. */
+body.bd-home-redesign[data-page="index.html"] #main > #home-start.bd-approved-hero{
+display:grid!important;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr)!important;
+grid-template-rows:auto!important;align-items:stretch!important;overflow:hidden!important;
+}
+body.bd-home-redesign[data-page="index.html"] #main > #home-start.bd-approved-hero > .bd-approved-portrait{
+display:block!important;position:relative!important;grid-column:2!important;grid-row:1!important;
+width:100%!important;height:auto!important;min-height:610px!important;min-width:0!important;
+opacity:1!important;visibility:visible!important;overflow:hidden!important;z-index:1!important;
+background:#602c3d url('/assets/busedigital-gazete-web.webp') center 27% / cover no-repeat!important;
+}
+body.bd-home-redesign[data-page="index.html"] #main > #home-start.bd-approved-hero > .bd-approved-portrait > img{
+display:block!important;position:absolute!important;inset:0!important;width:100%!important;
+height:100%!important;object-fit:cover!important;object-position:center 27%!important;
+opacity:1!important;visibility:visible!important;z-index:1!important;
+}
+body.bd-home-redesign[data-page="index.html"] #main > #home-start.bd-approved-hero > .bd-approved-portrait > .bd-approved-signature{
+display:block!important;position:absolute!important;right:20px!important;bottom:22px!important;
+z-index:3!important;opacity:1!important;visibility:visible!important;
+}
+@media(max-width:760px){
+body.bd-home-redesign[data-page="index.html"] #main > #home-start.bd-approved-hero{
+display:flex!important;flex-direction:column!important;
+}
+body.bd-home-redesign[data-page="index.html"] #main > #home-start.bd-approved-hero > .bd-approved-portrait{
+order:2!important;grid-column:auto!important;grid-row:auto!important;
+min-height:0!important;height:auto!important;aspect-ratio:4/4.4!important;width:100%!important;
+}
+}
 </style></head><body data-page="index.html" class="bd-home-redesign bd-conversion-layout"><a class="skip" href="#main">İçeriğe geç</a><header class="site-header"><div class="container header-inner"><a class="brand brand-with-logo" href="#/" aria-label="Buse Digital — ana sayfa"><img src="assets/media/marka/busedigital-logo.svg" alt="Buse Digital logo" width="66" height="66" decoding="async"><span class="brand-wordmark"><strong>Buse Digital</strong><small>AI Creative Studio</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Menüyü aç"><span></span><span></span></button><nav id="navigation" aria-label="Ana menü">
 <a href="#/hakkimda">Hakkımda</a>
 <div class="nav-group nav-services">
