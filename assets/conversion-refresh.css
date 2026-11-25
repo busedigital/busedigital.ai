@@ -215,3 +215,7 @@ html body .bd-standalone-primary{gap:26px!important;font-family:Inter,Arial,sans
 html body .bd-standalone-primary>a{font-size:13px!important;font-weight:400!important;text-transform:uppercase!important;letter-spacing:.06em!important;color:#675879!important;font-family:Inter,Arial,sans-serif!important}
 html body .bd-standalone-primary summary{font-family:Inter,Arial,sans-serif!important}
 @media(min-width:851px){html body a.bd-standalone-offer{padding:11px 19px!important;min-height:46px!important;font-weight:750!important;box-sizing:border-box;display:inline-flex;align-items:center}}
+html body .bd-standalone-primary .bd-blog-mini{margin-left:-22px!important}
+html body .bd-standalone-primary .bd-blog-mini>summary{padding:0 4px!important;min-width:0!important;gap:0!important}
+html body .bd-standalone-primary .bd-blog-mini>summary svg{width:14px;height:14px}
+html body .bd-standalone-primary .bd-blog-mini .bd-standalone-menu-items{right:0;left:auto;min-width:200px}
