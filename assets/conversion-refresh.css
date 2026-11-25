@@ -210,3 +210,8 @@ html body .bd-standalone-header{padding-left:20px!important;padding-right:20px!i
 html body .bd-standalone-mobile>summary{min-width:56px!important;height:40px!important;min-height:40px!important;padding:0 10px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:1.5px solid #76618F!important;border-radius:10px!important;background:transparent!important;color:#5f4b78!important;font:600 14px Inter,Manrope,Arial,sans-serif!important;box-sizing:border-box!important}
 }
 @media(max-width:850px){html body header.bd-standalone-header a.bd-standalone-brand{gap:14px!important}}
+/* bd-nav-unify-20261126: menü yazıları anasayfa gibi */
+html body .bd-standalone-primary{gap:26px!important;font-family:Inter,Arial,sans-serif!important}
+html body .bd-standalone-primary>a{font-size:13px!important;font-weight:400!important;text-transform:uppercase!important;letter-spacing:.06em!important;color:#675879!important;font-family:Inter,Arial,sans-serif!important}
+html body .bd-standalone-primary summary{font-family:Inter,Arial,sans-serif!important}
+@media(min-width:851px){html body a.bd-standalone-offer{padding:11px 19px!important;min-height:46px!important;font-weight:750!important;box-sizing:border-box;display:inline-flex;align-items:center}}
