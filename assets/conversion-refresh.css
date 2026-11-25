@@ -188,3 +188,25 @@ body #main .bd-combined-management-grid article{background:#FFFFFF;border:1px so
 body #main .bd-combined-management-grid p{color:#55565C!important;font-size:14px}
 body #main .bd-combined-management-grid a{color:#675879;text-decoration:underline;font-weight:700}
 @media(max-width:650px){body #main .bd-combined-management-grid{grid-template-columns:1fr}}
+
+/* bd-brand-unify-20261126: standalone sayfalardaki logo/marka alanı anasayfa ile birebir */
+html body .bd-standalone-header{background:#E3D8EE!important;box-shadow:0 2px 10px rgba(103,88,121,.07)!important}
+html body .bd-standalone-header .bd-standalone-navwrap{min-height:90px}
+html body .bd-standalone-brand{display:flex!important;align-items:center!important;gap:16px!important;font-family:Inter,Arial,sans-serif!important;color:#675879!important;text-decoration:none!important}
+html body .bd-standalone-brand img{width:68px!important;height:68px!important;flex:0 0 68px!important;object-fit:contain!important;border-radius:50%!important;background:#F2F3F1!important;padding:3px!important;box-shadow:0 0 0 1px rgba(242,243,241,.28)!important;box-sizing:border-box!important}
+html body .bd-standalone-brand>span{display:flex!important;flex-direction:column!important;font-size:25.6px!important;font-weight:750!important;letter-spacing:-.055em!important;line-height:1.2!important;color:#675879!important}
+html body .bd-standalone-brand small{display:block!important;font-size:8px!important;font-weight:400!important;letter-spacing:.25em!important;color:#675879!important;margin-top:6px!important;line-height:1.1!important}
+@media(max-width:850px){
+html body .bd-standalone-header .bd-standalone-navwrap{min-height:68px}
+html body .bd-standalone-brand{gap:14px!important}
+html body .bd-standalone-brand img{width:46px!important;height:46px!important;flex:0 0 46px!important;padding:2px!important}
+html body .bd-standalone-brand>span{font-size:17px!important;letter-spacing:-.045em!important}
+html body .bd-standalone-brand small{font-size:9.5px!important;letter-spacing:.06em!important;margin-top:2px!important}
+}
+@media(max-width:370px){html body .bd-standalone-brand>span{font-size:15px!important}}
+html body .bd-standalone-header{padding-top:0!important;padding-bottom:0!important}
+@media(max-width:850px){
+html body .bd-standalone-header{padding-left:20px!important;padding-right:20px!important}
+html body .bd-standalone-mobile>summary{min-width:56px!important;height:40px!important;min-height:40px!important;padding:0 10px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:1.5px solid #76618F!important;border-radius:10px!important;background:transparent!important;color:#5f4b78!important;font:600 14px Inter,Manrope,Arial,sans-serif!important;box-sizing:border-box!important}
+}
+@media(max-width:850px){html body header.bd-standalone-header a.bd-standalone-brand{gap:14px!important}}
