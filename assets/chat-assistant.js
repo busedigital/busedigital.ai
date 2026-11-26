@@ -40,7 +40,7 @@
       a: 'Ödemeler banka havalesi/EFT (IBAN) ya da Shopier üzerinden alınır. Ödeme planı teklifte belirtilir. Ayrıntılar için ' + L('/hizmet-kosullari.html', 'Hizmet ve Satış Koşulları') + '.' },
     { id: 'haklar', q: 'Teslim edilen içerikleri ticari kullanabilir miyim?', k: ['ticari', 'kullanim hakk', 'telif', 'lisans', 'hak'],
       a: 'Teslim edilen çalışmalar, ödemenin tamamlanmasının ardından teklifte belirtilen amaçlar doğrultusunda kullanılabilir. Ayrıntılar ' + L('/hizmet-kosullari.html', 'Hizmet ve Satış Koşulları') + ' sayfasında.' },
-    { id: 'referans', q: 'Daha önce kimlerle çalıştınız?', k: ['referans', 'is birligi', 'isbirligi', 'musteri', 'kimlerle', 'rahun', 'portfoy', 'ornek'],
+    { id: 'referans', q: 'Daha önce kimlerle çalıştınız?', k: ['referans', 'is birligi', 'isbirligi', 'musteri', 'kimlerle', 'rahun'],
       a: 'raHun grubunun “Kelebek” şarkısı için yapay zekâ destekli müzik klibini hazırladım. Farklı sektörlerdeki çalışmalarımı ' + L('/index.html#/calismalarim', 'Portföy') + ' sayfasında sektöre göre inceleyebilirsiniz. Portföydeki marka çalışmaları bağımsız örneklerdir, resmî iş birliği değildir.' },
     { id: 'akademi', q: 'Akademiye nasıl katılırım?', k: ['akademi', 'egitim', 'kurs', 'ders', 'ogren', 'mentor', 'collaby', 'matchai'],
       a: 'UGC &amp; AI Collaby Academy’ye benim aracılığımla katıldığınızda <strong>mentörünüz</strong> oluyorum. Ücret <strong>369 $</strong>, kayıt Shopier üzerinden. Bana Instagram’dan “AKADEMİ” yazmanız yeterli. Akademi bir eğitim programıdır; kazanç, gelir veya iş garantisi vermez. ' + L('/akademi.html', 'Akademi sayfası') },
@@ -55,7 +55,30 @@
     { id: 'tesekkur', q: null, k: ['tesekkur', 'sagol', 'sağol', 'eyvallah', 'tamam'],
       a: 'Rica ederim! Başka bir sorunuz olursa buradayım. Projenizi konuşmak isterseniz:' + CTA },
   ];
-  var PRI = { akademi: 3, meta: 3, kisiye: 3, web: 2.5, animasyon: 2, avatar: 2, sosyal: 2, garanti: 2.5, logo: 2, odeme: 2, haklar: 2, revize: 2, format: 2, urun: 1.5, iletisim: 1.5 };
+  var SECTORS = [
+    ['automotive', 'Otomotiv', ['araba', 'arac', 'otomobil', 'otomotiv', 'oto ', 'galeri', 'lastik', 'yedek parca', 'paspas', 'oto yikama', 'motor']],
+    ['beauty', 'Kozmetik &amp; Kişisel Bakım', ['kozmetik', 'makyaj', 'cilt', 'parfum', 'ruj', 'sac bakim', 'guzellik', 'kisisel bakim', 'krem', 'serum']],
+    ['food', 'Gıda &amp; İçecek', ['gida', 'yemek', 'restoran', 'kafe', 'cafe', 'kahve', 'icecek', 'tatli', 'pasta', 'cikolata', 'firin', 'mutfak']],
+    ['fashion', 'Moda &amp; Giyim', ['moda', 'giyim', 'elbise', 'gelinlik', 'butik', 'tekstil', 'canta', 'ayakkabi', 'kiyafet']],
+    ['jewelry', 'Takı &amp; Mücevherat', ['taki', 'mucevher', 'pirlanta', 'yuzuk', 'kolye', 'kuyum', 'altin', 'gumus']],
+    ['hotel', 'Otel &amp; Turizm', ['otel', 'turizm', 'tatil', 'pansiyon', 'konaklama', 'acenta', 'resort']],
+    ['home', 'Mobilya', ['mobilya', 'koltuk', 'kanepe', 'masa', 'sandalye', 'yatak']],
+    ['home-decor', 'Ev Dekorasyonu', ['dekorasyon', 'ev urun', 'ev tekstil', 'aydinlatma', 'zuccaciye', 'cezve']],
+    ['baby', 'Anne &amp; Bebek', ['bebek', 'anne', 'cocuk', 'oyuncak', 'mama']],
+    ['pets', 'Evcil Hayvan', ['evcil', 'kedi', 'kopek', 'pet ', 'veteriner', 'mama']],
+    ['technology', 'Teknoloji &amp; Elektronik', ['teknoloji', 'elektronik', 'telefon', 'bilgisayar', 'yazilim', 'uygulama', 'gadget']],
+    ['architecture', 'Mimari &amp; Gayrimenkul', ['mimar', 'insaat', 'gayrimenkul', 'emlak', 'villa', 'konut', 'proje tanitim']],
+    ['business', 'İşletme Tanıtımı', ['isletme', 'dukkan', 'magaza', 'salon', 'klinik', 'kuafor', 'spor salonu']],
+    ['retail', 'E-Ticaret &amp; Perakende', ['e-ticaret', 'eticaret', 'online magaza', 'perakende', 'trendyol', 'shopify']],
+  ];
+  SECTORS.forEach(function (x) {
+    A.push({ id: 'sec-' + x[0], sector: x[1], q: x[1], k: x[2],
+      a: '<strong>' + x[1] + '</strong> sektöründeki çalışmalarımı sizin için seçtim:<span class="bdc-cta">' + L('/index.html#/calismalarim?tab=ai&sector=' + x[0], x[1] + ' portföyünü gör →') + '</span><small class="bdc-small">Portföydeki marka çalışmaları bağımsız yapay zekâ örnekleridir, resmî iş birliği değildir.</small>Beğendiğiniz bir iş olursa detay penceresindeki “Benzer bir iş için teklif al” butonuyla bana iletebilirsiniz.' });
+  });
+  A.push({ id: 'portfoy', q: 'Portföyünüzü görmek istiyorum', k: ['portfoy', 'calismalar', 'ornekler', 'isleriniz', 'galeri'],
+    a: 'Hangi sektördesiniz? Seçin, o sektördeki çalışmalarımı göstereyim. Tümünü görmek için: ' + L('/index.html#/calismalarim', 'Portföy') });
+  A.push({ id: 'diger', q: 'Başka bir sorum var', k: [], a: 'Tabii, aşağıdaki sorulardan birini seçebilir ya da sorunuzu yazabilirsiniz.' });
+  var PRI = { portfoy: 1.5, akademi: 3, meta: 3, kisiye: 3, web: 2.5, animasyon: 2, avatar: 2, sosyal: 2, garanti: 2.5, logo: 2, odeme: 2, haklar: 2, revize: 2, format: 2, urun: 1.5, iletisim: 1.5 };
   var QUICK = ['hizmet', 'fiyat', 'sure', 'revize', 'akademi', 'iletisim'];
 
   function norm(s) {
@@ -64,7 +87,7 @@
   function find(text) {
     var t = ' ' + norm(text) + ' ', best = null, score = 0;
     A.forEach(function (it) {
-      var sc = 0; it.k.forEach(function (k) { if (t.indexOf(norm(k)) > -1) sc += k.length > 4 ? 2 : 1; }); if (sc) sc *= (PRI[it.id] || 1);
+      var sc = 0; it.k.forEach(function (k) { if (t.indexOf(norm(k)) > -1) sc += k.length > 4 ? 2 : 1; }); if (sc) sc *= (PRI[it.id] || (it.sector ? 2.6 : 1));
       if (sc > score) { score = sc; best = it; }
     });
     return best;
@@ -87,8 +110,8 @@
     '.bdc-m.me{background:#76618F;color:#fff;border-top-right-radius:6px;align-self:flex-end}' +
     '.bdc-m a{color:#5F4B78;font-weight:600}.bdc-m ul{margin:6px 0;padding-left:18px}.bdc-m li{margin:2px 0}' +
     '.bdc-cta{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.bdc-cta a{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;background:#76618F;color:#fff!important;text-decoration:none;font-size:13px}.bdc-cta a+a{background:#fff;color:#5F4B78!important;border:1px solid #76618F}' +
-    '.bdc-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 10px}' +
-    '.bdc-chip{border:1px solid #D9CCE6;background:#fff;color:#5F4B78;border-radius:999px;padding:7px 11px;font:600 12.5px Inter,Arial,sans-serif;cursor:pointer;text-align:left}.bdc-chip:hover{background:#F1EBF6;border-color:#76618F}' +
+    '.bdc-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 10px;max-height:180px;overflow-y:auto}' +
+    '.bdc-chip.sec{background:#F1EBF6}.bdc-small{display:block;font-size:11.5px;color:#7A6E86;margin:8px 0}.bdc-chip{border:1px solid #D9CCE6;background:#fff;color:#5F4B78;border-radius:999px;padding:7px 11px;font:600 12.5px Inter,Arial,sans-serif;cursor:pointer;text-align:left}.bdc-chip:hover{background:#F1EBF6;border-color:#76618F}' +
     '.bdc-form{display:flex;gap:8px;padding:10px 12px 12px;border-top:1px solid #E6DDEF;background:#fff}' +
     '.bdc-form input{flex:1;min-width:0;height:42px;border:1px solid #D9CCE6;border-radius:999px;padding:0 14px;font:15px Inter,Arial,sans-serif;color:#3B3346;outline:none}.bdc-form input:focus{border-color:#76618F}' +
     '.bdc-form button{width:42px;height:42px;border:0;border-radius:50%;background:#76618F;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}' +
@@ -108,13 +131,24 @@
     document.body.append(btn, tip, p);
     var log = p.querySelector('.bdc-log'), chips = p.querySelector('.bdc-chips'), inp = p.querySelector('input'), started = false;
     function add(html, who) { var m = document.createElement('div'); m.className = 'bdc-m ' + who; if (who === 'me') m.textContent = html; else m.innerHTML = html; log.appendChild(m); log.scrollTop = log.scrollHeight; }
+    function chip(it, label) {
+      var c = document.createElement('button'); c.type = 'button'; c.className = 'bdc-chip' + (it.sector ? ' sec' : ''); c.innerHTML = label || it.q; c.onclick = function () { ask(c.textContent, it); }; chips.appendChild(c);
+    }
+    function byId(id) { return A.filter(function (x) { return x.id === id; })[0]; }
+    function renderSectors() {
+      chips.innerHTML = '';
+      A.filter(function (x) { return x.sector; }).forEach(function (it) { chip(it, it.sector); });
+      chip(byId('diger'));
+    }
     function renderChips(exclude) {
       chips.innerHTML = '';
+      if (exclude === 'portfoy') { renderSectors(); return; }
+      if (exclude && exclude.indexOf('sec-') === 0) { chip(byId('portfoy'), 'Başka bir sektöre bak'); }
       var ids = QUICK.concat(['reklam', 'urun', 'animasyon', 'avatar', 'sosyal', 'meta', 'web', 'odeme', 'kisiye']).filter(function (id) { return id !== exclude; });
       var seen = 0;
+      if (!exclude || exclude.indexOf('sec-') !== 0) { var pf = byId('portfoy'); if (exclude !== 'portfoy') { chip(pf, 'Sektörüme göre portföy'); seen++; } }
       ids.forEach(function (id) {
-        if (seen >= 4) return; var it = A.filter(function (x) { return x.id === id; })[0]; if (!it || it.used) return; seen++;
-        var c = document.createElement('button'); c.type = 'button'; c.className = 'bdc-chip'; c.textContent = it.q; c.onclick = function () { ask(it.q, it); }; chips.appendChild(c);
+        if (seen >= 4) return; var it = byId(id); if (!it || it.used) return; seen++; chip(it);
       });
     }
     function ask(text, forced) {
@@ -123,14 +157,14 @@
     }
     function open() {
       p.hidden = false; btn.style.display = 'none'; tip.remove(); btn.setAttribute('aria-expanded', 'true');
-      if (!started) { started = true; add('Merhaba! Ben Buse Digital Asistanı. Hizmetler, fiyatlandırma, teslim süresi veya akademi hakkında merak ettiklerinizi sorabilirsiniz.', 'bot'); renderChips(); }
+      if (!started) { started = true; add('Merhaba! Ben Buse Digital Asistanı. 👋<br><strong>Hangi sektördesiniz?</strong> Seçin, size o sektördeki çalışmalarımı göstereyim. Hizmetler, fiyat veya teslim süresi hakkında da soru sorabilirsiniz.', 'bot'); renderSectors(); }
       setTimeout(function () { inp.focus(); }, 50);
     }
     function close() { p.hidden = true; btn.style.display = ''; btn.setAttribute('aria-expanded', 'false'); btn.focus(); }
     btn.onclick = open; tip.onclick = open; p.querySelector('.bdc-x').onclick = close;
     p.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
     p.querySelector('form').addEventListener('submit', function (e) { e.preventDefault(); var v = inp.value.trim(); if (!v) return; inp.value = ''; ask(v); });
-    p.addEventListener('click', function (e) { if (e.target.closest('a') && window.innerWidth <= 768) close(); });
+    p.addEventListener('click', function (e) { var a = e.target.closest('a'); if (a && (window.innerWidth <= 768 || /calismalarim/.test(a.getAttribute('href') || ''))) close(); });
     setTimeout(function () { if (tip.parentNode) tip.style.display = 'none'; }, 9000);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
